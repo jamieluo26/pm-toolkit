@@ -1,0 +1,704 @@
+<div id="__MAP_ROOT_ID__" lang="zh-CN">
+  <style>
+    #__MAP_ROOT_ID__ {
+      container-type: inline-size; container-name: floor-map; color-scheme: light dark;
+      --mm-bg: light-dark(#ffffff, #1d2028); --mm-canvas: light-dark(#fafbfe, #191c23);
+      --mm-text: light-dark(#273348, #e4e8f0); --mm-muted: light-dark(#66748b, #a5b0c3);
+      --mm-line: light-dark(#e4e9f1, #353b49); --mm-accent: light-dark(#3e6be8, #9ab4ff);
+      --mm-root: light-dark(#283f67, #bfd2ff); --mm-root-text: light-dark(#ffffff, #1c2c49);
+      --mm-hover: light-dark(#eef3ff, #2d3546); --mm-dot: light-dark(#dbe2ee, #333b4d);
+      --mm-confirmed: light-dark(#238265, #73cdb1); --mm-suggested: light-dark(#ac771c, #e2bc75);
+      --mm-branch-1: light-dark(#bd8032, #d8ac6e); --mm-branch-2: light-dark(#6078bc, #a3b5ec);
+      --mm-branch-3: light-dark(#568d80, #92c8b9); --mm-branch-4: light-dark(#8b73ac, #c1a6df);
+      color: var(--mm-text); background: var(--mm-bg); border: 1px solid var(--mm-line); border-radius: 16px;
+      overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 14px; line-height: 1.5;
+    }
+    #__MAP_ROOT_ID__ button { font: inherit; color: inherit; }
+    #__MAP_ROOT_ID__ button:focus-visible { outline: 2px solid var(--mm-accent); outline-offset: 3px; }
+    #__MAP_ROOT_ID__ .mm-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 6px 10px; border: 1px solid transparent; border-radius: 7px; background: transparent; white-space: nowrap; }
+    #__MAP_ROOT_ID__ .mm-button:hover { background: var(--mm-hover); }
+    #__MAP_ROOT_ID__ .mm-button:disabled { opacity: .45; }
+    #__MAP_ROOT_ID__ .mm-button[data-action="focus"] { color: var(--mm-accent); background: color-mix(in srgb, var(--mm-accent) 9%, var(--mm-bg)); }
+    #__MAP_ROOT_ID__ .mm-button svg { width: 16px; height: 16px; }
+    #__MAP_ROOT_ID__ .mm-small { font-size: 12px; }
+    #__MAP_ROOT_ID__ .mm-muted { color: var(--mm-muted); }
+    #__MAP_ROOT_ID__ .fm-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 18px 96px 8px 20px; }
+    #__MAP_ROOT_ID__ .fm-heading { font-size: 18px; font-weight: 500; letter-spacing: .02em; }
+    #__MAP_ROOT_ID__ .fm-meta { display: flex; align-items: center; gap: 9px; }
+    #__MAP_ROOT_ID__ .fm-edition { color: var(--mm-muted); }
+    #__MAP_ROOT_ID__ .fm-actions { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; padding: 6px 14px 12px; }
+    #__MAP_ROOT_ID__ .fm-legend { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 0 20px 13px; color: var(--mm-muted); }
+    #__MAP_ROOT_ID__ .fm-legend-item { display: inline-flex; align-items: center; gap: 7px; }
+    #__MAP_ROOT_ID__ .fm-mark { display: inline-block; flex: 0 0 7px; width: 7px; height: 7px; }
+    #__MAP_ROOT_ID__ .fm-mark[data-status="confirmed"] { background: var(--mm-confirmed); border-radius: 50%; }
+    #__MAP_ROOT_ID__ .fm-mark[data-status="suggested"] { background: var(--mm-suggested); transform: rotate(45deg); }
+    #__MAP_ROOT_ID__ .fm-mark[data-status="pending"] { box-sizing: border-box; border: 1px solid var(--mm-muted); }
+    #__MAP_ROOT_ID__ .fm-canvas { position: relative; height: 550px; overflow: hidden; touch-action: none; cursor: grab; border-block: 1px solid var(--mm-line); background-color: var(--mm-canvas); background-image: radial-gradient(var(--mm-dot) .7px, transparent .7px); background-size: 20px 20px; }
+    #__MAP_ROOT_ID__ .fm-canvas[data-dragging="true"] { cursor: grabbing; }
+    #__MAP_ROOT_ID__ .fm-world { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+    #__MAP_ROOT_ID__ .fm-wires { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
+    #__MAP_ROOT_ID__ .fm-wires path { fill: none; stroke-width: 1.5; }
+    #__MAP_ROOT_ID__ .fm-wires path[data-active="true"] { stroke-width: 2; }
+    #__MAP_ROOT_ID__ .fm-topic { position: absolute; width: max-content; max-width: 230px; }
+    #__MAP_ROOT_ID__ .fm-topic[hidden] { display: none; }
+    #__MAP_ROOT_ID__ .fm-label-row { position: relative; display: flex; justify-content: center; align-items: center; gap: 8px; min-height: 40px; }
+    #__MAP_ROOT_ID__ .fm-node { border: 1px solid transparent; background: transparent; border-radius: 6px; padding: 7px 10px; white-space: nowrap; font-size: 14px; }
+    #__MAP_ROOT_ID__ .fm-node:hover { background: var(--mm-hover); }
+    #__MAP_ROOT_ID__ .fm-topic[data-level="branch"] .fm-node { font-weight: 500; font-size: 16px; padding: 9px 12px; border-radius: 10px; background: color-mix(in srgb, var(--branch-color) 12%, var(--mm-bg)); }
+    #__MAP_ROOT_ID__ .fm-node[aria-pressed="true"] { border-color: var(--mm-accent); background: var(--mm-hover); }
+    #__MAP_ROOT_ID__ .fm-topic[data-level="branch"] .fm-node[aria-pressed="true"] { border-color: var(--mm-accent); }
+    #__MAP_ROOT_ID__ .fm-topic .fm-node[data-center="true"] { font-size: 20px; font-weight: 500; padding: 14px 18px; border-radius: 12px; color: var(--mm-root-text); background: var(--mm-root); }
+    #__MAP_ROOT_ID__[data-density="compact"] .fm-node { padding-block: 5px; }
+    #__MAP_ROOT_ID__ .fm-caption { color: var(--mm-muted); font-size: 14px; text-align: center; margin-top: 5px; padding: 0 5px; white-space: nowrap; }
+    #__MAP_ROOT_ID__ .fm-topic[data-side="center"] .fm-caption { margin-top: 8px; }
+    #__MAP_ROOT_ID__ .fm-fold { position: absolute; top: 6px; }
+    #__MAP_ROOT_ID__ .fm-fold .mm-button { border: 1px solid var(--mm-line); border-radius: 50%; min-width: 27px; height: 27px; padding: 0 5px; font-size: 12px; background: var(--mm-bg); color: var(--mm-muted); }
+    #__MAP_ROOT_ID__ .fm-topic[data-side="left"] .fm-fold { right: calc(100% + 7px); }
+    #__MAP_ROOT_ID__ .fm-topic[data-side="right"] .fm-fold { left: calc(100% + 7px); }
+    #__MAP_ROOT_ID__ .fm-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 10px 14px 4px; }
+    #__MAP_ROOT_ID__ .fm-zoom { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; }
+    #__MAP_ROOT_ID__ .fm-zoom-value { min-width: 38px; text-align: center; }
+    #__MAP_ROOT_ID__ .fm-selected { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; padding: 5px 20px 16px; color: var(--mm-muted); }
+    #__MAP_ROOT_ID__ .fm-path { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    #__MAP_ROOT_ID__ .fm-detail { margin: 0; padding: 18px 20px 22px; border-top: 1px solid var(--mm-line); background: var(--mm-bg); }
+    #__MAP_ROOT_ID__ .fm-detail[hidden] { display: none; }
+    #__MAP_ROOT_ID__ .fm-detail-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    #__MAP_ROOT_ID__ .fm-detail-title { font-weight: 500; }
+    #__MAP_ROOT_ID__ .fm-detail-status { display: inline-flex; align-items: center; gap: 7px; }
+    #__MAP_ROOT_ID__ .fm-breadcrumb { margin-bottom: 10px; overflow-wrap: anywhere; }
+    #__MAP_ROOT_ID__ .fm-facts { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; margin: 0; }
+    #__MAP_ROOT_ID__ .fm-facts dt { color: var(--mm-muted); }
+    #__MAP_ROOT_ID__ .fm-facts dd { margin: 0; overflow-wrap: anywhere; }
+    @container floor-map (max-width: 480px) {
+      #__MAP_ROOT_ID__ .fm-canvas { height: 490px; }
+      #__MAP_ROOT_ID__ .fm-legend { gap: 10px; }
+      #__MAP_ROOT_ID__ .fm-header { padding-left: 14px; }
+      #__MAP_ROOT_ID__ .fm-heading { font-size: 16px; }
+      #__MAP_ROOT_ID__ .fm-selected { padding-left: 14px; }
+    }
+    @media (pointer: coarse) {
+      #__MAP_ROOT_ID__ .mm-button { min-height: 44px; }
+      #__MAP_ROOT_ID__ .fm-fold { top: 0; }
+      #__MAP_ROOT_ID__ .fm-fold .mm-button { min-width: 44px; min-height: 44px; }
+    }
+  </style>
+  <div class="fm-header">
+    <span class="fm-heading">__MAP_TITLE__</span>
+    <span class="fm-meta mm-small mm-muted"><span class="fm-edition">__MAP_EDITION__</span><span>__MAP_KIND__</span></span>
+    <span class="fm-path mm-small" aria-label="聚焦路径"></span>
+  </div>
+  <div class="fm-actions" aria-label="导图操作">
+    <button type="button" class="mm-button cursor-interaction" data-action="expand">展开全部</button>
+    <button type="button" class="mm-button cursor-interaction" data-action="collapse">收起全部</button>
+    <button type="button" class="mm-button cursor-interaction" data-action="focus" data-tooltip="只看选中节点及其后代">聚焦分支</button>
+    <span class="fm-return" hidden><button type="button" class="mm-button cursor-interaction" data-action="unfocus">返回全图</button></span>
+    <button type="button" class="mm-button cursor-interaction" data-action="detail" aria-expanded="false" aria-controls="fm-detail-panel">节点说明</button>
+  </div>
+  <div class="fm-legend mm-small" aria-label="节点状态图例">
+    <span class="fm-legend-item"><span class="fm-mark" data-status="confirmed" aria-hidden="true"></span>已确认</span>
+    <span class="fm-legend-item"><span class="fm-mark" data-status="suggested" aria-hidden="true"></span>建议方案</span>
+    <span class="fm-legend-item"><span class="fm-mark" data-status="pending" aria-hidden="true"></span>待确认</span>
+  </div>
+  <div class="fm-canvas" aria-label="可拖拽缩放的__MAP_TITLE__导图">
+    <div class="fm-world">
+      <svg class="fm-wires" aria-hidden="true"></svg>
+    </div>
+  </div>
+  <div class="fm-bottom">
+    <div class="fm-zoom" aria-label="画布缩放">
+      <button type="button" class="mm-button cursor-interaction" data-action="zoom-out" aria-label="缩小" data-tooltip="缩小">−</button>
+      <span class="fm-zoom-value mm-small mm-numbers" aria-live="off">100%</span>
+      <button type="button" class="mm-button cursor-interaction" data-action="zoom-in" aria-label="放大" data-tooltip="放大">+</button>
+      <button type="button" class="mm-button cursor-interaction" data-action="fit">适应画布</button>
+      <button type="button" class="mm-button cursor-interaction" data-action="actual">100%</button>
+    </div>
+    <button type="button" class="mm-button cursor-interaction" data-action="center" data-tooltip="将当前主题移回画布中心">回到中心</button>
+  </div>
+  <div class="fm-selected mm-small" aria-live="polite" aria-atomic="true"></div>
+  <div id="fm-detail-panel" class="fm-detail" aria-live="polite" aria-atomic="true" hidden>
+    <div class="fm-detail-top">
+      <span class="fm-detail-title"></span>
+      <span class="fm-detail-status mm-small"></span>
+      <button type="button" class="mm-button cursor-interaction" data-action="close-detail" aria-label="关闭节点说明">关闭</button>
+    </div>
+    <div class="fm-breadcrumb mm-small mm-muted"></div>
+    <dl class="fm-facts"></dl>
+  </div>
+  <script>
+    (() => {
+      const root = document.getElementById('__MAP_ROOT_ID__');
+      const labels = { confirmed: '已确认', suggested: '建议方案', pending: '待确认' };
+      const settings = __MINDMAP_DATA__;
+      const overview = settings.root;
+      const branches = overview.children;
+      const nodes = new Map();
+      const parents = new Map();
+      const index = (item, parent) => {
+        nodes.set(item.id, item);
+        if (parent) parents.set(item.id, parent.id);
+        item.children.forEach(child => index(child, item));
+      };
+      index(overview, null);
+      let selected = settings.initialSelected || branches[0]?.id || 'root';
+      let expanded = new Set(settings.initialExpanded || []);
+      let focusRoot = 'root';
+      let returnState = null;
+      let detailOpen = false;
+      let view = { scale: 1, x: 0, y: 0 };
+      let restoredView = false;
+      let lastSavedFingerprint = '';
+      const canvas = root.querySelector('.fm-canvas');
+      const wires = root.querySelector('.fm-wires');
+      const world = root.querySelector('.fm-world');
+      const controls = new Map();
+      const topics = new Map();
+      const toggles = new Map();
+      const geometry = new Map();
+      const captions = Object.fromEntries(Array.from(nodes.values()).filter(item => item.caption).map(item => [item.id, item.caption]));
+      const branchColors = Object.fromEntries(branches.map((item, i) => [item.id, 'var(--mm-branch-' + (i % 4 + 1) + ')']));
+      let extent = { x: 0, y: 0, w: 1, h: 1 };
+      let visible = new Set();
+      const mark = status => {
+        const el = document.createElement('span');
+        el.className = 'fm-mark';
+        el.dataset.status = status;
+        el.setAttribute('aria-hidden', 'true');
+        return el;
+      };
+      const pathFor = id => {
+        const path = [];
+        let current = id;
+        while (current) { path.unshift(nodes.get(current).title); current = parents.get(current); }
+        return path;
+      };
+      const restore = state => {
+        const saved = state?.privateContent;
+        if (![1, 2].includes(saved?.schema)) return;
+        if (Array.isArray(saved.expanded)) expanded = new Set(saved.expanded.filter(id => nodes.has(id) && id !== 'root'));
+        if (nodes.has(saved.selected)) selected = saved.selected;
+        if (saved.schema === 2) {
+          if (nodes.has(saved.focusRoot)) focusRoot = saved.focusRoot;
+          detailOpen = saved.detailOpen === true;
+          const camera = saved.view;
+          if (camera && [camera.scale, camera.x, camera.y].every(Number.isFinite)) {
+            view = { scale: Math.min(2.5, Math.max(0.35, camera.scale)), x: camera.x, y: camera.y };
+            restoredView = true;
+          }
+          if (saved.returnState && Array.isArray(saved.returnState.expanded)) {
+            const snapshot = saved.returnState;
+            returnState = {
+              expanded: snapshot.expanded.filter(id => nodes.has(id)),
+              selected: nodes.has(snapshot.selected) ? snapshot.selected : 'root',
+              view: snapshot.view && [snapshot.view.scale, snapshot.view.x, snapshot.view.y].every(Number.isFinite) ? snapshot.view : { scale: 1, x: 0, y: 0 }
+            };
+          }
+        }
+        let ancestor = parents.get(selected);
+        while (ancestor && ancestor !== 'root') { expanded.add(ancestor); ancestor = parents.get(ancestor); }
+      };
+      restore(window.openai?.widgetState);
+      const save = () => {
+        if (typeof window.openai?.setWidgetState !== 'function') return;
+        try {
+          const privateContent = { schema: 2, selected, expanded: Array.from(expanded), focusRoot, returnState, detailOpen, view: { ...view } };
+          lastSavedFingerprint = JSON.stringify(privateContent);
+          Promise.resolve(window.openai.setWidgetState({
+            modelContent: { selectedNode: nodes.get(selected).title, path: pathFor(selected), status: labels[nodes.get(selected).status], focusedBranch: nodes.get(focusRoot).title },
+            privateContent
+          })).catch(() => {});
+        } catch (_) {}
+      };
+      const colorFor = id => {
+        let current = id;
+        while (parents.get(current) && parents.get(current) !== 'root') current = parents.get(current);
+        return branchColors[current] || 'var(--mm-text)';
+      };
+      const descendants = id => {
+        const result = [];
+        nodes.get(id).children.forEach(child => { result.push(child.id, ...descendants(child.id)); });
+        return result;
+      };
+      nodes.forEach(item => {
+        const topic = document.createElement('div');
+        topic.className = 'fm-topic';
+        topic.id = root.id + '-topic-' + item.id;
+        topic.dataset.id = item.id;
+        topic.dataset.level = item.id === 'root' ? 'root' : parents.get(item.id) === 'root' ? 'branch' : 'leaf';
+        topic.style.setProperty('--branch-color', colorFor(item.id));
+        const row = document.createElement('div');
+        row.className = 'fm-label-row';
+        if (item.id !== 'root') row.append(mark(item.status));
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'fm-node cursor-interaction';
+        button.dataset.node = item.id;
+        button.textContent = item.title;
+        button.setAttribute('aria-label', item.title + '，' + labels[item.status] + '，选中主题');
+        button.setAttribute('aria-keyshortcuts', 'ArrowUp ArrowDown ArrowLeft ArrowRight Enter Space');
+        row.append(button);
+        topic.append(row);
+        if (captions[item.id]) {
+          const caption = document.createElement('div');
+          caption.className = 'fm-caption mm-small';
+          caption.textContent = captions[item.id];
+          topic.append(caption);
+        }
+        if (item.children.length && item.id !== 'root') {
+          const fold = document.createElement('div');
+          fold.className = 'fm-fold';
+          const toggle = document.createElement('button');
+          toggle.type = 'button';
+          toggle.className = 'mm-button cursor-interaction';
+          toggle.dataset.toggle = item.id;
+          toggle.setAttribute('aria-controls', item.children.map(child => root.id + '-topic-' + child.id).join(' '));
+          fold.append(toggle);
+          topic.append(fold);
+          toggles.set(item.id, toggle);
+        }
+        world.append(topic);
+        controls.set(item.id, button);
+        topics.set(item.id, topic);
+      });
+      const point = id => {
+        const box = geometry.get(id);
+        return box ? { x: box.x + extent.ox + box.w / 2, y: box.y + extent.oy + box.h / 2 } : null;
+      };
+      const showDetails = () => {
+        const item = nodes.get(selected);
+        const selectedLabel = root.querySelector('.fm-selected');
+        selectedLabel.replaceChildren(mark(item.status), document.createTextNode(pathFor(selected).join(' › ') + ' · ' + labels[item.status]));
+        root.querySelector('.fm-detail-title').textContent = item.title;
+        const status = root.querySelector('.fm-detail-status');
+        status.replaceChildren(mark(item.status), document.createTextNode(labels[item.status]));
+        root.querySelector('.fm-breadcrumb').textContent = pathFor(selected).join(' › ');
+        const facts = root.querySelector('.fm-facts');
+        facts.replaceChildren();
+        item.facts.forEach(([label, value]) => {
+          const dt = document.createElement('dt');
+          const dd = document.createElement('dd');
+          dt.textContent = label;
+          dd.textContent = value;
+          facts.append(dt, dd);
+        });
+        root.querySelector('.fm-detail').hidden = !detailOpen;
+        root.querySelector('[data-action="detail"]').setAttribute('aria-expanded', String(detailOpen));
+      };
+      const updateUI = () => {
+        controls.forEach((button, id) => {
+          button.setAttribute('aria-pressed', String(id === selected));
+          button.dataset.center = String(id === focusRoot);
+          const toggle = toggles.get(id);
+          if (toggle) {
+            const open = expanded.has(id);
+            toggle.textContent = open ? '−' : '+ ' + nodes.get(id).children.length;
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.setAttribute('aria-label', (open ? '收起' : '展开') + nodes.get(id).title + '的子节点');
+            toggle.dataset.tooltip = open ? '收起子节点，保留内部展开状态' : '展开 ' + nodes.get(id).children.length + ' 个子节点';
+            toggle.parentElement.hidden = id === focusRoot;
+          }
+        });
+        root.querySelector('[data-action="focus"]').disabled = selected === focusRoot || !nodes.get(selected).children.length;
+        root.querySelector('.fm-return').hidden = focusRoot === 'root';
+        const path = root.querySelector('.fm-path');
+        path.textContent = focusRoot === 'root' ? '' : pathFor(focusRoot).join(' › ');
+        showDetails();
+      };
+      const layout = () => {
+        const sizes = new Map();
+        topics.forEach((topic, id) => {
+          topic.hidden = false;
+          const button = controls.get(id);
+          button.dataset.center = String(id === focusRoot);
+          sizes.set(id, { w: topic.offsetWidth, h: Math.max(40, topic.offsetHeight) });
+        });
+        visible = new Set();
+        const visit = id => {
+          visible.add(id);
+          if (id === focusRoot || expanded.has(id)) nodes.get(id).children.forEach(child => visit(child.id));
+        };
+        visit(focusRoot);
+        const childrenOf = id => nodes.get(id).children.filter(child => visible.has(child.id));
+        const spans = new Map();
+        const span = id => {
+          if (spans.has(id)) return spans.get(id);
+          const size = sizes.get(id);
+          const children = childrenOf(id);
+          const sum = children.reduce((total, child) => total + span(child.id), 0) + Math.max(0, children.length - 1) * 12;
+          const height = Math.max(size.h, sum);
+          spans.set(id, height);
+          return height;
+        };
+        geometry.clear();
+        const place = (id, innerX, centerY, side) => {
+          const size = sizes.get(id);
+          const x = side === 'left' ? innerX - size.w : innerX;
+          geometry.set(id, { x, y: centerY - size.h / 2, w: size.w, h: size.h, side });
+          const children = childrenOf(id);
+          const height = children.reduce((total, child) => total + span(child.id), 0) + Math.max(0, children.length - 1) * 12;
+          let cursor = centerY - height / 2;
+          const nextX = side === 'left' ? x - 56 : x + size.w + 56;
+          children.forEach(child => {
+            place(child.id, nextX, cursor + span(child.id) / 2, side);
+            cursor += span(child.id) + 12;
+          });
+        };
+        const center = sizes.get(focusRoot);
+        geometry.set(focusRoot, { x: -center.w / 2, y: -center.h / 2, w: center.w, h: center.h, side: 'center' });
+        if (focusRoot === 'root') {
+          const midpoint = Math.ceil(branches.length / 2);
+          [['left', branches.filter((b, i) => (b.side || (i < midpoint ? 'left' : 'right')) === 'left')], ['right', branches.filter((b, i) => (b.side || (i < midpoint ? 'left' : 'right')) === 'right')]].forEach(([side, list]) => {
+            const height = list.reduce((total, child) => total + span(child.id), 0) + Math.max(0, list.length - 1) * 64;
+            let cursor = -height / 2;
+            const innerX = side === 'left' ? -center.w / 2 - 28 : center.w / 2 + 28;
+            list.forEach(child => {
+              place(child.id, innerX, cursor + span(child.id) / 2, side);
+              cursor += span(child.id) + 64;
+            });
+          });
+        } else {
+          const children = childrenOf(focusRoot);
+          const height = children.reduce((total, child) => total + span(child.id), 0) + Math.max(0, children.length - 1) * 12;
+          let cursor = -height / 2;
+          children.forEach(child => {
+            place(child.id, center.w / 2 + 56, cursor + span(child.id) / 2, 'right');
+            cursor += span(child.id) + 12;
+          });
+        }
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        geometry.forEach((box, id) => {
+          const extraLeft = toggles.has(id) && box.side === 'left' ? 44 : 0;
+          const extraRight = toggles.has(id) && box.side === 'right' ? 44 : 0;
+          minX = Math.min(minX, box.x - extraLeft);
+          maxX = Math.max(maxX, box.x + box.w + extraRight);
+          minY = Math.min(minY, box.y);
+          maxY = Math.max(maxY, box.y + box.h);
+        });
+        extent = { x: minX, y: minY, w: maxX - minX + 56, h: maxY - minY + 56, ox: 28 - minX, oy: 28 - minY };
+        world.style.width = extent.w + 'px';
+        world.style.height = extent.h + 'px';
+        topics.forEach((topic, id) => {
+          topic.hidden = !visible.has(id);
+          if (!visible.has(id)) return;
+          const box = geometry.get(id);
+          topic.dataset.side = box.side;
+          topic.style.left = box.x + extent.ox + 'px';
+          topic.style.top = box.y + extent.oy + 'px';
+        });
+        if (!visible.has(selected)) selected = focusRoot;
+        updateUI();
+        drawWires();
+      };
+      const drawWires = () => {
+        wires.setAttribute('width', extent.w);
+        wires.setAttribute('height', extent.h);
+        wires.setAttribute('viewBox', '0 0 ' + extent.w + ' ' + extent.h);
+        wires.replaceChildren();
+        const active = new Set();
+        let ancestor = selected;
+        while (ancestor) { active.add(ancestor); ancestor = parents.get(ancestor); }
+        geometry.forEach((child, id) => {
+          if (id === focusRoot) return;
+          const parent = geometry.get(parents.get(id));
+          if (!parent) return;
+          const left = child.side === 'left';
+          const x0 = (left ? parent.x : parent.x + parent.w) + extent.ox;
+          const x1 = (left ? child.x + child.w : child.x) + extent.ox;
+          const y0 = parent.y + parent.h / 2 + extent.oy;
+          const y1 = child.y + child.h / 2 + extent.oy;
+          const mid = (x0 + x1) / 2;
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', 'M ' + x0 + ' ' + y0 + ' C ' + mid + ' ' + y0 + ', ' + mid + ' ' + y1 + ', ' + x1 + ' ' + y1);
+          path.style.stroke = colorFor(id);
+          path.style.opacity = active.has(id) ? '1' : '0.55';
+          path.dataset.active = String(active.has(id));
+          path.dataset.node = id;
+          wires.append(path);
+        });
+      };
+      let cameraFrame = 0;
+      const paintView = () => {
+        world.style.transform = 'translate(' + view.x + 'px, ' + view.y + 'px) scale(' + view.scale + ')';
+        root.querySelector('.fm-zoom-value').textContent = Math.round(view.scale * 100) + '%';
+        canvas.dataset.scale = view.scale.toFixed(4);
+        canvas.dataset.viewX = view.x.toFixed(2);
+        canvas.dataset.viewY = view.y.toFixed(2);
+        canvas.dataset.focusRoot = focusRoot;
+      };
+      const setView = (next, animate = false) => {
+        cancelAnimationFrame(cameraFrame);
+        if (!animate || matchMedia('(prefers-reduced-motion: reduce)').matches) { view = { ...next }; paintView(); return; }
+        const before = { ...view };
+        const start = performance.now();
+        const step = now => {
+          const t = Math.min(1, (now - start) / 170);
+          const ease = 1 - Math.pow(1 - t, 3);
+          view = { scale: before.scale + (next.scale - before.scale) * ease, x: before.x + (next.x - before.x) * ease, y: before.y + (next.y - before.y) * ease };
+          paintView();
+          if (t < 1) cameraFrame = requestAnimationFrame(step);
+        };
+        cameraFrame = requestAnimationFrame(step);
+      };
+      const fit = (animate = false) => {
+        const scale = Math.max(0.35, Math.min(1.05, (canvas.clientWidth - 24) / extent.w, (canvas.clientHeight - 34) / extent.h));
+        setView({ scale, x: (canvas.clientWidth - extent.w * scale) / 2, y: (canvas.clientHeight - extent.h * scale) / 2 }, animate);
+      };
+      const centerOn = (id, scale = view.scale, animate = false) => {
+        const p = point(id);
+        if (!p) return;
+        setView({ scale, x: canvas.clientWidth / 2 - p.x * scale, y: canvas.clientHeight / 2 - p.y * scale }, animate);
+      };
+      const ensureVisible = id => {
+        const box = geometry.get(id);
+        if (!box) return;
+        const padding = 28;
+        const left = (box.x + extent.ox) * view.scale + view.x;
+        const right = left + box.w * view.scale;
+        const top = (box.y + extent.oy) * view.scale + view.y;
+        const bottom = top + box.h * view.scale;
+        let x = view.x, y = view.y;
+        if (left < padding) x += padding - left;
+        else if (right > canvas.clientWidth - padding) x -= right - canvas.clientWidth + padding;
+        if (top < padding) y += padding - top;
+        else if (bottom > canvas.clientHeight - padding) y -= bottom - canvas.clientHeight + padding;
+        setView({ ...view, x, y });
+      };
+      const zoom = (scale, x = canvas.clientWidth / 2, y = canvas.clientHeight / 2) => {
+        const nextScale = Math.min(2.5, Math.max(0.35, scale));
+        const wx = (x - view.x) / view.scale;
+        const wy = (y - view.y) / view.scale;
+        setView({ scale: nextScale, x: x - wx * nextScale, y: y - wy * nextScale });
+      };
+      const rebuild = ({ anchor = selected, fitMap = false, animate = false } = {}) => {
+        const previous = point(anchor);
+        const screen = previous ? { x: previous.x * view.scale + view.x, y: previous.y * view.scale + view.y } : null;
+        layout();
+        const current = point(anchor);
+        if (fitMap) fit(animate);
+        else if (current && screen) setView({ ...view, x: screen.x - current.x * view.scale, y: screen.y - current.y * view.scale });
+        else paintView();
+      };
+      let saveTimer = 0;
+      const saveSoon = () => { clearTimeout(saveTimer); saveTimer = setTimeout(save, 240); };
+      const select = (id, inspect = false, keyboard = false) => {
+        if (!visible.has(id)) return;
+        selected = id;
+        if (inspect) detailOpen = true;
+        updateUI();
+        drawWires();
+        if (keyboard) {
+          ensureVisible(id);
+          controls.get(id).focus({ preventScroll: true });
+        }
+        saveSoon();
+      };
+      const toggle = id => {
+        if (!nodes.get(id).children.length || id === focusRoot) return;
+        selected = id;
+        if (expanded.has(id)) expanded.delete(id);
+        else expanded.add(id);
+        rebuild({ anchor: id });
+        saveSoon();
+      };
+      const focusBranch = (id, automatic = false) => {
+        if (!nodes.get(id).children.length || id === focusRoot) return;
+        if (!returnState) returnState = { expanded: Array.from(expanded), selected, view: { ...view } };
+        const previousSelected = selected;
+        focusRoot = id;
+        selected = automatic && [id, ...descendants(id)].includes(previousSelected) ? previousSelected : id;
+        expanded.add(id);
+        if (automatic) nodes.get(id).children.forEach(child => expanded.delete(child.id));
+        rebuild({ fitMap: true, animate: !automatic });
+        if (!automatic) saveSoon();
+      };
+      const unfocus = () => {
+        if (focusRoot === 'root') return;
+        focusRoot = 'root';
+        if (returnState) {
+          expanded = new Set(returnState.expanded);
+          selected = returnState.selected;
+          const oldView = returnState.view;
+          returnState = null;
+          layout();
+          setView(oldView, true);
+        } else { selected = 'root'; rebuild({ fitMap: true, animate: true }); }
+        saveSoon();
+      };
+      let suppressClickUntil = 0;
+      root.addEventListener('click', event => {
+        if (performance.now() < suppressClickUntil) return;
+        const button = event.target.closest('button');
+        if (!button || !root.contains(button)) return;
+        if (button.dataset.toggle) { toggle(button.dataset.toggle); return; }
+        if (button.dataset.node) { select(button.dataset.node); return; }
+        const action = button.dataset.action;
+        if (action === 'expand') {
+          [focusRoot, ...descendants(focusRoot)].forEach(id => { if (nodes.get(id).children.length) expanded.add(id); });
+          rebuild({ fitMap: true, animate: true });
+        } else if (action === 'collapse') {
+          descendants(focusRoot).forEach(id => expanded.delete(id));
+          selected = focusRoot;
+          rebuild({ fitMap: true, animate: true });
+        } else if (action === 'focus') focusBranch(selected);
+        else if (action === 'unfocus') unfocus();
+        else if (action === 'detail') { detailOpen = !detailOpen; updateUI(); }
+        else if (action === 'close-detail') { detailOpen = false; updateUI(); }
+        else if (action === 'fit') fit(true);
+        else if (action === 'actual') centerOn(selected, 1, true);
+        else if (action === 'center') centerOn(focusRoot, view.scale, true);
+        else if (action === 'zoom-in') zoom(view.scale * 1.15);
+        else if (action === 'zoom-out') zoom(view.scale / 1.15);
+        saveSoon();
+      });
+      root.addEventListener('dblclick', event => {
+        const button = event.target.closest('[data-node]');
+        if (!button) return;
+        const id = button.dataset.node;
+        if (id !== focusRoot && nodes.get(id).children.length) toggle(id);
+        else select(id, true);
+      });
+      root.addEventListener('keydown', event => {
+        const nodeButton = event.target.closest('[data-node], [data-toggle]');
+        if (event.key === 'Escape') {
+          if (detailOpen) { detailOpen = false; updateUI(); controls.get(selected).focus({ preventScroll: true }); saveSoon(); }
+          else if (focusRoot !== 'root') unfocus();
+          return;
+        }
+        if (!nodeButton) return;
+        const id = nodeButton.dataset.node || nodeButton.dataset.toggle;
+        if (id !== selected) { selected = id; updateUI(); drawWires(); }
+        const item = nodes.get(id);
+        if (event.key === 'Enter') { event.preventDefault(); select(id, true); return; }
+        if (event.key === ' ' || ((event.metaKey || event.ctrlKey) && event.key === '/')) {
+          event.preventDefault();
+          if (id === focusRoot) {
+            if (item.children.length) { item.children.forEach(child => expanded.has(child.id) ? expanded.delete(child.id) : expanded.add(child.id)); rebuild({ anchor: id }); saveSoon(); }
+          } else if (item.children.length) toggle(id);
+          else select(id, true);
+          return;
+        }
+        if (event.key === '+' || event.key === '=') { event.preventDefault(); zoom(view.scale * 1.15); saveSoon(); return; }
+        if (event.key === '-') { event.preventDefault(); zoom(view.scale / 1.15); saveSoon(); return; }
+        if (event.key === '0') { event.preventDefault(); fit(true); saveSoon(); return; }
+        if (event.key.toLowerCase() === 'f' && !event.metaKey && !event.ctrlKey) { event.preventDefault(); focusBranch(id); return; }
+        if (!event.key.startsWith('Arrow')) return;
+        event.preventDefault();
+        const box = geometry.get(id);
+        let target = null;
+        if (id === focusRoot) {
+          const children = item.children.filter(child => visible.has(child.id));
+          const side = event.key === 'ArrowLeft' ? 'left' : event.key === 'ArrowRight' ? 'right' : null;
+          target = children.find(child => !side || geometry.get(child.id).side === side)?.id || children[0]?.id;
+        } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+          let siblings = nodes.get(parents.get(id)).children.filter(child => visible.has(child.id));
+          if (parents.get(id) === focusRoot && focusRoot === 'root') siblings = siblings.filter(child => geometry.get(child.id).side === box.side);
+          const at = siblings.findIndex(child => child.id === id);
+          target = siblings[at + (event.key === 'ArrowUp' ? -1 : 1)]?.id;
+        } else {
+          const outward = box.side === 'left' ? event.key === 'ArrowLeft' : event.key === 'ArrowRight';
+          if (outward && item.children.length) {
+            if (!expanded.has(id)) { expanded.add(id); rebuild({ anchor: id }); }
+            target = item.children[0].id;
+          } else if (!outward) target = parents.get(id);
+        }
+        if (target) select(target, false, true);
+      });
+      canvas.addEventListener('wheel', event => {
+        event.preventDefault();
+        const box = canvas.getBoundingClientRect();
+        const multiplier = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? canvas.clientHeight : 1;
+        if (event.ctrlKey || event.metaKey) zoom(view.scale * Math.exp(-event.deltaY * multiplier * 0.003), event.clientX - box.x, event.clientY - box.y);
+        else setView({ ...view, x: view.x - event.deltaX * multiplier, y: view.y - event.deltaY * multiplier });
+        saveSoon();
+      }, { passive: false });
+      const pointers = new Map();
+      let drag = null;
+      const local = event => {
+        const box = canvas.getBoundingClientRect();
+        return { x: event.clientX - box.x, y: event.clientY - box.y };
+      };
+      const beginGesture = () => {
+        const values = Array.from(pointers.values());
+        if (values.length > 1) {
+          const a = values[0], b = values[1];
+          const midpoint = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+          drag = { type: 'pinch', distance: Math.max(1, Math.hypot(a.x - b.x, a.y - b.y)), scale: view.scale, worldX: (midpoint.x - view.x) / view.scale, worldY: (midpoint.y - view.y) / view.scale };
+        } else if (values.length) drag = { type: 'pan', start: values[0], view: { ...view } };
+      };
+      canvas.addEventListener('pointerdown', event => {
+        if (event.target.closest('button')) return;
+        if (event.pointerType === 'mouse' && event.button !== 0) return;
+        event.preventDefault();
+        cancelAnimationFrame(cameraFrame);
+        pointers.set(event.pointerId, local(event));
+        canvas.setPointerCapture(event.pointerId);
+        canvas.dataset.dragging = 'true';
+        beginGesture();
+      });
+      canvas.addEventListener('pointermove', event => {
+        if (!pointers.has(event.pointerId) || !drag) return;
+        pointers.set(event.pointerId, local(event));
+        if (drag.type === 'pinch' && pointers.size > 1) {
+          const [a, b] = Array.from(pointers.values());
+          const scale = Math.min(2.5, Math.max(0.35, drag.scale * Math.hypot(a.x - b.x, a.y - b.y) / drag.distance));
+          setView({ scale, x: (a.x + b.x) / 2 - drag.worldX * scale, y: (a.y + b.y) / 2 - drag.worldY * scale });
+          suppressClickUntil = performance.now() + 200;
+        } else if (drag.type === 'pan') {
+          const p = pointers.get(event.pointerId);
+          const dx = p.x - drag.start.x, dy = p.y - drag.start.y;
+          if (Math.hypot(dx, dy) > 4) {
+            setView({ ...drag.view, x: drag.view.x + dx, y: drag.view.y + dy });
+            suppressClickUntil = performance.now() + 200;
+          }
+        }
+      });
+      const endGesture = event => {
+        if (!pointers.has(event.pointerId)) return;
+        pointers.delete(event.pointerId);
+        if (canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
+        if (pointers.size) beginGesture();
+        else { drag = null; canvas.dataset.dragging = 'false'; saveSoon(); }
+      };
+      canvas.addEventListener('pointerup', endGesture);
+      canvas.addEventListener('pointercancel', endGesture);
+      window.addEventListener('openai:set_globals', event => {
+        const state = event.detail?.globals?.widgetState;
+        if (state?.privateContent?.schema === 2) {
+          if (JSON.stringify(state.privateContent) === lastSavedFingerprint) return;
+          restore(state);
+          layout();
+          paintView();
+        }
+      });
+      layout();
+      if (!restoredView) fit();
+      else paintView();
+      const responsiveBranch = () => {
+        if (selected !== 'root' && nodes.get(selected).children.length) return selected;
+        let id = selected;
+        while (parents.get(id) && parents.get(id) !== 'root') id = parents.get(id);
+        return id !== 'root' && nodes.get(id).children.length ? id : branches.find(item => item.children.length)?.id;
+      };
+      if (canvas.clientWidth < 480 && focusRoot === 'root' && responsiveBranch()) focusBranch(responsiveBranch(), true);
+      let lastWidth = canvas.clientWidth;
+      let lastHeight = canvas.clientHeight;
+      const resize = new ResizeObserver(() => {
+        if (canvas.clientWidth === lastWidth && canvas.clientHeight === lastHeight) return;
+        lastWidth = canvas.clientWidth;
+        lastHeight = canvas.clientHeight;
+        if (lastWidth < 480 && focusRoot === 'root' && responsiveBranch()) focusBranch(responsiveBranch(), true);
+        else fit();
+      });
+      resize.observe(canvas);
+      document.fonts.ready.then(() => { rebuild(); if (!restoredView) fit(); });
+      if (globalThis.Tweak) {
+        const design = { density: 'comfortable' };
+        const tweak = new Tweak({ container: root, onChange: () => {
+          root.dataset.density = design.density;
+          rebuild({ fitMap: true });
+        }});
+        tweak.addSelect(design, 'density', { label: '节点间距', options: [{ label: '舒展', value: 'comfortable' }, { label: '紧凑', value: 'compact' }] });
+      }
+    })();
+  </script>
+</div>
