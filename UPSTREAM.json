@@ -1,0 +1,36 @@
+{
+  "kind": "frozen-distribution-snapshots",
+  "authority": "Original linked repositories are code authorities. Snapshots are byte-for-byte distribution only; no independent edits.",
+  "update": "Select a new explicitly approved upstream commit, replace the whole selected snapshot, update hashes and rerun integration/UI/document checks. No automatic fetch or self-update.",
+  "license": "No newlicense. Existingpubliceligibility does not automatically qualify this new composition.",
+  "files": [
+    {
+      "upstream_repo": "https://github.com/jamieluo26/product-mindmap",
+      "commit": "fb2375b81cd78f5ad8bda727eed337441aeeab93",
+      "source_path": "scripts/build_map.py",
+      "distributed_path": "components/product-mindmap/scripts/build_map.py",
+      "sha256": "bae32f987a45dd9e8f15f722272d5a069d2fceffdf3818a5745764af1c103b7a"
+    },
+    {
+      "upstream_repo": "https://github.com/jamieluo26/product-mindmap",
+      "commit": "fb2375b81cd78f5ad8bda727eed337441aeeab93",
+      "source_path": "assets/mindmap.html",
+      "distributed_path": "components/product-mindmap/assets/mindmap.html",
+      "sha256": "6a4a5a67df9174594c4ece69882aa7b12b7f1931733c4d5c308a7e2d64c88139"
+    },
+    {
+      "upstream_repo": "https://github.com/jamieluo26/product-mindmap",
+      "commit": "fb2375b81cd78f5ad8bda727eed337441aeeab93",
+      "source_path": "assets/standalone.html",
+      "distributed_path": "components/product-mindmap/assets/standalone.html",
+      "sha256": "938e4675201e46d60a958ff8d93a0856b31469b9d210f1a46a62e0dc7488f8ac"
+    },
+    {
+      "upstream_repo": "https://github.com/jamieluo26/structured-docx",
+      "commit": "2026458393dad89f3d13dfc275af4d16221541da",
+      "source_path": "tools/structured_docx.py",
+      "distributed_path": "components/structured-docx/tools/structured_docx.py",
+      "sha256": "b89f9b09a291e9c93ea90ae32643c74e2e18ab0b8913646b2449729b1f802f81"
+    }
+  ]
+}
