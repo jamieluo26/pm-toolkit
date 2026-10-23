@@ -1,0 +1,232 @@
+{
+  "edition": "v0.1 synthetic",
+  "initialExpanded": [
+    "root",
+    "requirements",
+    "pending"
+  ],
+  "initialSelected": "root",
+  "kind": "给定材料的决策图",
+  "root": {
+    "children": [
+      {
+        "children": [],
+        "facts": [
+          [
+            "audience",
+            "为想按主题找回待读内容的个人读者，提供一个本地阅读清单演示。"
+          ],
+          [
+            "pain",
+            "设定中的痛点是零散记录不便按主题浏览，未经过真实访谈。"
+          ],
+          [
+            "value",
+            "价值假设是减少找回内容的步骤；本例不声称效率提升或采用率。"
+          ],
+          [
+            "goal",
+            "让评审者能够讨论范围、操作筛选，并核对同版交接材料。"
+          ],
+          [
+            "hypothesis",
+            "主题是否符合读者习惯、是否需要跨设备使用，仍待真实研究。"
+          ]
+        ],
+        "id": "context",
+        "status": "suggested",
+        "title": "定位与价值"
+      },
+      {
+        "children": [
+          {
+            "children": [],
+            "facts": [
+              [
+                "决定",
+                "合成设定内将书目展示和主题筛选纳入本地演示。"
+              ],
+              [
+                "来源",
+                "S2"
+              ]
+            ],
+            "id": "decision-D1",
+            "status": "confirmed",
+            "title": "D1"
+          },
+          {
+            "children": [],
+            "facts": [
+              [
+                "决定",
+                "本演示采用默认全部、单主题包含匹配、重复选择稳定及空态提示。"
+              ],
+              [
+                "来源",
+                "S4"
+              ]
+            ],
+            "id": "decision-D2",
+            "status": "confirmed",
+            "title": "D2"
+          }
+        ],
+        "facts": [
+          [
+            "层级",
+            "给定设定内"
+          ]
+        ],
+        "id": "decisions",
+        "status": "confirmed",
+        "title": "决定与依据"
+      },
+      {
+        "children": [
+          {
+            "children": [],
+            "facts": [
+              [
+                "需求",
+                "默认展示四本给定书目，保留其标题和全部主题。"
+              ],
+              [
+                "检查",
+                "打开演示原型并观察默认清单。"
+              ],
+              [
+                "预期",
+                "4本；方法卡片、界面笔记、工程日记、调研手册均出现。"
+              ],
+              [
+                "来源",
+                "S3"
+              ]
+            ],
+            "id": "requirement-R1",
+            "status": "suggested",
+            "title": "R1 / C1"
+          },
+          {
+            "children": [],
+            "facts": [
+              [
+                "需求",
+                "单选主题筛选；选择全部恢复；重复选择保持结果。"
+              ],
+              [
+                "检查",
+                "选择技术两次，再选择全部。"
+              ],
+              [
+                "预期",
+                "技术两次均为工程日记1本；返回全部为4本。"
+              ],
+              [
+                "来源",
+                "S4"
+              ]
+            ],
+            "id": "requirement-R2",
+            "status": "suggested",
+            "title": "R2 / C2"
+          },
+          {
+            "children": [],
+            "facts": [
+              [
+                "需求",
+                "无匹配书目时显示空态，仍可切回全部。"
+              ],
+              [
+                "检查",
+                "选择历史，然后切回全部。"
+              ],
+              [
+                "预期",
+                "历史0本并显示提示；全部恢复4本。"
+              ],
+              [
+                "来源",
+                "S4"
+              ]
+            ],
+            "id": "requirement-R3",
+            "status": "suggested",
+            "title": "R3 / C3"
+          }
+        ],
+        "facts": [
+          [
+            "状态",
+            "需要实际观察"
+          ]
+        ],
+        "id": "requirements",
+        "status": "suggested",
+        "title": "需求与检查计划"
+      },
+      {
+        "children": [
+          {
+            "children": [],
+            "facts": [
+              [
+                "问题",
+                "是否需要跨设备使用，尚无真实用户研究。"
+              ],
+              [
+                "来源",
+                "S5"
+              ]
+            ],
+            "id": "pending-Q1",
+            "status": "pending",
+            "title": "Q1"
+          },
+          {
+            "children": [],
+            "facts": [
+              [
+                "问题",
+                "阅读清单未来的业务导出字段和格式未定，本版不实现。"
+              ],
+              [
+                "来源",
+                "S6"
+              ]
+            ],
+            "id": "pending-Q2",
+            "status": "pending",
+            "title": "Q2"
+          }
+        ],
+        "facts": [
+          [
+            "排除",
+            "用户登录、云同步和多人协作；阅读清单业务数据导出；真实在线数据接入和生产上线"
+          ]
+        ],
+        "id": "pending",
+        "status": "pending",
+        "title": "待定与排除"
+      }
+    ],
+    "facts": [
+      [
+        "来源类型",
+        "synthetic"
+      ],
+      [
+        "注意",
+        "图中的确认仅指给定设定；不证明真实人的批准。"
+      ]
+    ],
+    "id": "root",
+    "status": "suggested",
+    "title": "个人阅读清单"
+  },
+  "rootId": "pm-toolkit-map",
+  "schema": "interactive-mindmap/v1"
+}
