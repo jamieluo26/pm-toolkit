@@ -1,0 +1,50 @@
+{
+  "schema": "pm-flow-trace/v1",
+  "version": "1.1",
+  "source_sha256": "40385fea82f37e8dcb98567ce708a3b88264eb324967eaf254ddfa83a6130967",
+  "meaning": "declared requirements only; no executed acceptance",
+  "rows": [
+    {
+      "requirement": "browse",
+      "check": "browse-c1",
+      "declared_text": "默认显示全部3本；筛选进度与主题取交集。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "40385fea82f37e8dcb98567ce708a3b88264eb324967eaf254ddfa83a6130967"
+    },
+    {
+      "requirement": "browse",
+      "check": "browse-c2",
+      "declared_text": "筛选历史显示空态；重置恢复全部；重复筛选稳定。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "40385fea82f37e8dcb98567ce708a3b88264eb324967eaf254ddfa83a6130967"
+    },
+    {
+      "requirement": "maintain",
+      "check": "maintain-c1",
+      "declared_text": "打开详情能看到全部字段。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "40385fea82f37e8dcb98567ce708a3b88264eb324967eaf254ddfa83a6130967"
+    },
+    {
+      "requirement": "maintain",
+      "check": "maintain-c2",
+      "declared_text": "必填缺失阻止保存；有效新增/编辑仅当前页面保留，刷新恢复样例。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "40385fea82f37e8dcb98567ce708a3b88264eb324967eaf254ddfa83a6130967"
+    },
+    {
+      "requirement": "layout",
+      "check": "layout-c1",
+      "declared_text": "进度与主题筛选在顶部，空态时仍保留重置入口。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "40385fea82f37e8dcb98567ce708a3b88264eb324967eaf254ddfa83a6130967"
+    },
+    {
+      "requirement": "layout",
+      "check": "layout-c2",
+      "declared_text": "移位后空态、重置与重复筛选均与前版一致。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "40385fea82f37e8dcb98567ce708a3b88264eb324967eaf254ddfa83a6130967"
+    }
+  ]
+}

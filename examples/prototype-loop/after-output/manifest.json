@@ -1,0 +1,16 @@
+{
+  "schema": "pm-flow-artifacts/v1",
+  "source_sha256": "40385fea82f37e8dcb98567ce708a3b88264eb324967eaf254ddfa83a6130967",
+  "generator": {
+    "flow_core.py": "ae733e1f39bdac9fd72793b064436a27b50ae4bdfcfe8403aebee892d36ac6d2",
+    "pm_flow.py": "527bcd54e2ccc7b97e16559f4392b5469dc751b8de7d8f086fb09aaf3d1d6c5e",
+    "assets/collection.html": "994a1c7bb8faf701ac6e82c5dd85ae2acf45712874c895c60aa920218916662d"
+  },
+  "files": {
+    "PRD.md": "f06331eb2d3197166867d1c4f140e319283c1338e819576ebe5825369c2514b5",
+    "acceptance.md": "f6d8e035805ef075e136f168883fae37958684e2974d4724d5d84165a0a7936d",
+    "prototype.html": "0827e6d1921672ccd249d1f2b70be7a2dcfda85affd724d30fa6e4971e981616",
+    "source.json": "40385fea82f37e8dcb98567ce708a3b88264eb324967eaf254ddfa83a6130967",
+    "trace.json": "5258eb8d683880243cde16ced16ecc56bdb7011067b8cc7d2747894ae5ff03c0"
+  }
+}
