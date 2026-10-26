@@ -1,0 +1,102 @@
+{
+  "schema": "pm-collection/v1",
+  "id": "personal_tasks",
+  "version": "0.1",
+  "parent_sha256": null,
+  "title": "个人任务板",
+  "positioning": "为个人将当日任务按状态和优先级整理；材料全部人工合成。",
+  "pain": "任务笔记可能分散，优先级与完成状态难以同时查看；尚待真实用户验证。",
+  "value": "在一处查看任务、筛选状态并调整估时；收益仍待实测。",
+  "fields": [
+    {
+      "key": "task",
+      "label": "任务",
+      "type": "text",
+      "required": true,
+      "choices": []
+    },
+    {
+      "key": "status",
+      "label": "状态",
+      "type": "choice",
+      "required": true,
+      "choices": [
+        "待办",
+        "进行中",
+        "完成"
+      ]
+    },
+    {
+      "key": "priority",
+      "label": "优先级",
+      "type": "choice",
+      "required": false,
+      "choices": [
+        "高",
+        "普通"
+      ]
+    },
+    {
+      "key": "hours",
+      "label": "预计小时",
+      "type": "number",
+      "required": true,
+      "choices": []
+    }
+  ],
+  "search_fields": [
+    "task"
+  ],
+  "filters": [
+    "status",
+    "priority"
+  ],
+  "layout": "toolbar",
+  "items": [
+    {
+      "id": "task_a",
+      "values": {
+        "task": "整理周末行程",
+        "status": "待办",
+        "priority": "普通",
+        "hours": 1.5
+      }
+    },
+    {
+      "id": "task_b",
+      "values": {
+        "task": "完成一页练习",
+        "status": "进行中",
+        "priority": "高",
+        "hours": 2
+      }
+    },
+    {
+      "id": "task_c",
+      "values": {
+        "task": "备份个人笔记",
+        "status": "完成",
+        "priority": "",
+        "hours": 0.5
+      }
+    }
+  ],
+  "requirements": [
+    {
+      "id": "organize",
+      "statement": "按状态与优先级安排个人任务",
+      "acceptance": [
+        "初始显示3项任务；高优先级显示1项；与待办组合显示空态。",
+        "重置恢复全部任务。"
+      ]
+    },
+    {
+      "id": "edit_task",
+      "statement": "查看与编辑任务估时",
+      "acceptance": [
+        "详情包含任务、状态、优先级和预计小时。",
+        "数值无效/必填缺失阻止保存；有效编辑在本会话更新列表。"
+      ]
+    }
+  ]
+}

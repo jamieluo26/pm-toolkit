@@ -1,0 +1,36 @@
+{
+  "schema": "pm-flow-trace/v1",
+  "version": "0.1",
+  "source_sha256": "386112476df5a3c84d8e636801631147ce61531ee8686b28e8752a8a2dc98f23",
+  "meaning": "declared requirements only; no executed acceptance",
+  "rows": [
+    {
+      "requirement": "organize",
+      "check": "organize-c1",
+      "declared_text": "初始显示3项任务；高优先级显示1项；与待办组合显示空态。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "386112476df5a3c84d8e636801631147ce61531ee8686b28e8752a8a2dc98f23"
+    },
+    {
+      "requirement": "organize",
+      "check": "organize-c2",
+      "declared_text": "重置恢复全部任务。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "386112476df5a3c84d8e636801631147ce61531ee8686b28e8752a8a2dc98f23"
+    },
+    {
+      "requirement": "edit_task",
+      "check": "edit_task-c1",
+      "declared_text": "详情包含任务、状态、优先级和预计小时。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "386112476df5a3c84d8e636801631147ce61531ee8686b28e8752a8a2dc98f23"
+    },
+    {
+      "requirement": "edit_task",
+      "check": "edit_task-c2",
+      "declared_text": "数值无效/必填缺失阻止保存；有效编辑在本会话更新列表。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "386112476df5a3c84d8e636801631147ce61531ee8686b28e8752a8a2dc98f23"
+    }
+  ]
+}
