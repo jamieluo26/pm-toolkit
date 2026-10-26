@@ -1,0 +1,23 @@
+{
+  "version": "generic-snapshot-v1",
+  "role": "Fixed distribution of a generic archival snapshot;replace the complete three-file closure when updating;no original business materials",
+  "files": [
+    {
+      "file": "tools/keyed_snapshot_diff.py",
+      "sha256": "6914eb4cad4518d23c41a2448da31e4adae822211c4860fc06fc645a977926ab",
+      "bytes": 11771
+    },
+    {
+      "file": "tools/audit_io.py",
+      "sha256": "4e9fd404d234ffda41270191a4d4b9239437dd89d6ca53d95453f9988a50e48c",
+      "bytes": 3941
+    },
+    {
+      "file": "tools/file_audit_core.py",
+      "sha256": "1dbf65f62ea774947d9627382b76b70412327f5919d189fee4c5e7084b69f892",
+      "bytes": 8293
+    }
+  ],
+  "license": "No new license added",
+  "limits": "Caller content is retained;fingerprints are not anonymization;comparison does not prove approval"
+}
