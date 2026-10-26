@@ -2,7 +2,7 @@
 name: feedback-intent-preservation-review
 description: Review supplied feedback and proposed carrier changes for uncancelled functions left without an evidenced replacement. Use for a cited intent-preservation draft, without discovering capabilities, editing artifacts or approving changes.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Feedback intent preservation review
@@ -33,7 +33,11 @@ facts needed; do not certify whole-product coverage or treat omissions as an emp
 
 Return a cited draft showing the given intent and old carrier, requested change, supplied
 replacement or scoped cancellation, unplaced intentions, preserved facts and unresolved
-choices. A later verification requirement is a plan, not evidence that a check ran. Use
+choices. Retain each supplied record identifier when discussing its function, request,
+observation, proposal or decision, alongside its source location. This keeps the draft
+traceable even when different records share wording; do not replace identifiers with
+only a generic role or an unlabeled paraphrase.
+A later verification requirement is a plan, not evidence that a check ran. Use
 the user's language. The optional [blank aid](templates/intent-review.md) can help arrange
 the draft; the fields above suffice without a template-reading tool. A general meeting
 summary, historical implementation review or acceptance-coverage matrix is a different task.
