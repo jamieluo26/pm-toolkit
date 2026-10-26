@@ -1,0 +1,39 @@
+id: declared-paths
+title: Caller meanings allow both direct and intermediate paths
+tag: quality_test
+input:
+  prompt: '调用方已按本次用户授权任务完成质量前置。本条是同一任务内的合成验证子任务，不是新的独立用户任务；无需重复执行前置或读取其他 Skill。保持本用例的无工具约束，只完成下面目标。
+
+
+    请用中文审阅本次给定关系的双向追踪，保留同一view中的独立关系，并说明能证明到哪一层；只出草案。
+
+
+    All records are fictional. Scope S1 is one review scope containing statements
+    R1 and R2.
+
+    map.txt:L1 Caller meanings: R1/R2 are requirement statements, C1/C2 are distinct
+    components in view V1, T1/T2/T3 are acceptance checks, N1 is an annotation.
+
+    map.txt:L2 Directed arrows mean a trace from a requirement through optional treatment
+    to a check or annotation. Direct requirement-to-check links are valid.
+
+    map.txt:L3 Declared links: R1 -> C1; C1 -> T1; C1 -> N1; R1 -> C2; C2 -> T2; R2
+    -> T3.
+
+    review.txt:L1 No behavior test, approval or source discovery is part of this exercise.
+
+    '
+constraints:
+  timeout_seconds: 300
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - R1
+  - T1
+  - T3
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001

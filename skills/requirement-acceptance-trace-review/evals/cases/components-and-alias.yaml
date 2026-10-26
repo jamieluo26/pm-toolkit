@@ -1,0 +1,38 @@
+id: components-and-alias
+title: Same-view components and ambiguous display names stay distinct
+tag: quality_test
+input:
+  prompt: '调用方已按本次用户授权任务完成质量前置。本条是同一任务内的合成验证子任务，不是新的独立用户任务；无需重复执行前置或读取其他 Skill。保持本用例的无工具约束，只完成下面目标。
+
+
+    请用中文核对给定追踪材料，解释同名关系和同一view的组件，列最小待补项；不要解决范围外需求。
+
+
+    All records are fictional. Only scope S3 is under review.
+
+    map.txt:L1 Caller identities: R3 is the requirement; C1 and C2 are distinct components
+    in view V3; both display the name Toggle. T1/T2 are acceptance checks.
+
+    map.txt:L2 Caller direction is requirement -> component -> check. Declared links:
+    R3 -> C1; R3 -> C2; C1 -> T1.
+
+    note.txt:L1 The note declares Toggle -> T2 but provides no mapping of Toggle to
+    C1 or C2.
+
+    note.txt:L2 No further identity or relationship rule is supplied.
+
+    '
+constraints:
+  timeout_seconds: 300
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - C1
+  - C2
+  - T2
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001
