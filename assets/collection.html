@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>集合原型 · PM Toolkit</title>
+  <link rel="icon" href="data:,">
+  <!--
+    Collection prototype template. The core replaces the single JSON sentinel below.
+    All supplied values enter the page through text nodes or DOM properties.
+    No request, persistence, deletion, or source-file mutation is performed.
+    Stable data-testid contract:
+      app, collection-layout [data-layout=sidebar|toolbar], layout-mode,
+      collection-title, spec-version, source-sha, session-notice,
+      search-input, filter-<field.key>, reset-filters, new-item,
+      result-count, empty-state, collection-list,
+      item-row-<item.id>, item-open-<item.id>, session-status,
+      detail-dialog, detail-title, detail-id, detail-field-<field.key>,
+      detail-edit, detail-close,
+      editor-dialog, editor-title, editor-form, editor-field-<field.key>,
+      field-error-<field.key>, editor-save, editor-cancel, form-error,
+      editor-tag-<field.key>-<zero-based choice index>,
+      editor-tag-input-<field.key>, editor-tag-add-<field.key>.
+    For tags, editor-field-<key> identifies a fieldset. Declared choices render
+    checkboxes; when no choices are declared, exact new tags can also be added.
+    Search is a literal case-insensitive substring within each selected scalar
+    or individual tag. Selected filters use exact choice/tag values, combined
+    with AND. Optional text/tags may be empty. Optional numeric blanks become
+    null; required numeric blanks and all nonfinite numbers are rejected.
+    Choice fields still need a declared enum value.
+    Browser behavior and source/requirements approval remain separate evidence.
+    Desktop layout target: 1280px and wider. No mobile compatibility assertion.
+  -->
+  <style>
+    :root{--paper:#f5f6ef;--surface:#fffef9;--ink:#173b30;--muted:#61736a;--line:#dbe4d9;--green:#25684a;--soft:#e9f0df;--amber:#9a631a;--red:#a23734;--shadow:0 14px 40px rgba(27,60,43,.055)}
+    *{box-sizing:border-box}
+    body{margin:0;min-width:1060px;background:var(--paper);color:var(--ink);font:15px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #a2c46f;outline-offset:3px}
+    button:disabled{cursor:not-allowed;opacity:.55}
+    [hidden]{display:none!important}
+    .shell{width:min(1400px,calc(100% - 88px));margin:0 auto;padding:32px 0 54px}
+    .topline,.top-actions,.section-heading,.results-heading,.dialog-heading,.dialog-actions{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .topline{padding-bottom:23px;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:750;letter-spacing:.01em}
+    .brand-mark{display:grid;place-items:center;width:33px;height:33px;border-radius:10px;background:var(--green);color:white;font-size:19px}
+    .breadcrumb{font-size:13px;color:var(--muted);font-weight:450}
+    .chip{display:inline-flex;align-items:center;gap:7px;border:1px solid #d7e2cb;border-radius:99px;padding:5px 11px;background:#edf3e5;font-size:12px;color:#426344;white-space:nowrap}
+    .chip:before{content:"";width:6px;height:6px;background:#73994f;border-radius:50%}
+    .hero{padding:31px 0 22px}
+    .eyebrow{font-size:11px;font-weight:750;letter-spacing:.14em;color:#62805b;text-transform:uppercase}
+    h1{font-size:31px;line-height:1.25;letter-spacing:-.025em;margin:10px 0 10px;overflow-wrap:anywhere}
+    .positioning{max-width:930px;margin:0;color:var(--muted);font-size:15px}
+    .hero-meta{display:flex;flex-wrap:wrap;align-items:center;gap:7px 12px;margin-top:13px;color:#809175;font-size:10px}
+    .hero-meta code{font:10px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere;color:#718269}
+    .summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:21px}
+    .summary-card{padding:16px 19px;background:#eff2e7;border:1px solid #e0e7d6;border-radius:14px}
+    .summary-card h2{font-size:11px;font-weight:700;letter-spacing:.06em;color:#65815b;margin:0 0 5px}
+    .summary-card p{font-size:13px;margin:0;color:#47604e;overflow-wrap:anywhere}
+    .workspace-top{margin:5px 0 17px}
+    .section-heading h2{font-size:18px;margin:0}
+    .section-subtitle{font-size:12px;color:var(--muted);margin:3px 0 0}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 15px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);font-size:13px;font-weight:650;min-height:40px}
+    .button:hover{background:#edf3e7;border-color:#b9cbb2}
+    .button.primary{background:var(--green);border-color:var(--green);color:white}
+    .button.primary:hover{background:#1b543b}
+    .button.quiet{background:transparent}
+    .button.small{font-size:12px;min-height:33px;padding:6px 11px}
+    .collection-layout{display:grid;gap:19px;align-items:start}
+    .layout-sidebar{grid-template-columns:244px minmax(0,1fr)}
+    .layout-toolbar{grid-template-columns:minmax(0,1fr)}
+    .filter-panel,.results-panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+    .filter-panel{padding:20px}
+    .filter-heading{font-size:13px;font-weight:750;margin:0 0 18px}
+    .filter-controls{display:grid;gap:16px}
+    .control-group{display:flex;flex-direction:column;gap:6px;min-width:0}
+    .control-group>label,.control-label{font-size:12px;color:#4e6558;font-weight:650}
+    input[type=text],input[type=number],select{border:1px solid #cedbcd;border-radius:8px;padding:9px 11px;width:100%;background:#fff;color:var(--ink);min-height:40px}
+    input::placeholder{color:#8a998c;opacity:1}
+    select{padding-right:25px}
+    .hint{font-size:11px;color:#7b8c7d;line-height:1.45}
+    .filter-footer{font-size:11px;color:#7c8d7e;margin-top:21px;padding-top:14px;border-top:1px solid #e5ebdf}
+    .layout-toolbar .filter-panel{padding:17px 20px}
+    .layout-toolbar .filter-heading{margin-bottom:12px}
+    .layout-toolbar .filter-controls{display:flex;align-items:start;gap:15px;flex-wrap:wrap}
+    .layout-toolbar .control-group{flex:1 1 180px}
+    .layout-toolbar .control-group.search-group{flex:2 1 270px}
+    .layout-toolbar .filter-footer{padding:0;border:0;margin:12px 0 0}
+    .results-panel{overflow:hidden;min-height:310px}
+    .results-heading{padding:17px 20px;border-bottom:1px solid var(--line);background:#fcfdf7}
+    .results-title{font-size:13px;font-weight:750}
+    .result-count{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+    .records{list-style:none;padding:0;margin:0}
+    .record-item{margin:0;padding:0;border-bottom:1px solid #e7ece1}
+    .record-item:last-child{border-bottom:0}
+    .record-button{display:grid;grid-template-columns:minmax(160px,1.5fr) minmax(0,2fr) 26px;gap:20px;align-items:center;border:0;background:transparent;width:100%;text-align:left;color:var(--ink);padding:20px;min-height:93px}
+    .record-button:hover{background:#f1f6e9}
+    .record-button:focus-visible{outline-offset:-4px}
+    .record-title{font-size:15px;font-weight:700;display:block;overflow-wrap:anywhere}
+    .record-id{font:11px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;display:block;color:#8b998c;margin-top:4px;overflow-wrap:anywhere}
+    .record-fields{display:flex;flex-wrap:wrap;gap:8px 19px}
+    .record-field{font-size:12px;min-width:85px;max-width:100%;overflow-wrap:anywhere}
+    .record-field-label{display:block;color:#84917f;font-size:10px;margin-bottom:2px}
+    .record-field-value{display:block;color:#536b59}
+    .record-arrow{font-size:20px;color:#89a174;text-align:right}
+    .session-dot{display:inline-block;margin-left:8px;border-radius:99px;padding:2px 7px;background:#eef2e4;color:#6d805c;font-size:10px;font-weight:550;vertical-align:middle}
+    .empty{padding:65px 30px;text-align:center}
+    .empty-symbol{display:grid;place-items:center;margin:0 auto 13px;width:45px;height:45px;border-radius:14px;background:var(--soft);font-size:22px;color:#7a985e}
+    .empty h3{font-size:16px;margin:0 0 6px}
+    .empty p{font-size:12px;color:var(--muted);margin:0 auto 17px;max-width:390px}
+    .notice{display:flex;gap:11px;align-items:flex-start;padding:14px 17px;background:#edf1e3;border:1px solid #dde5d1;border-radius:11px;margin-top:20px;font-size:12px;color:#60704e}
+    .notice-symbol{font-weight:750;color:#81965d}
+    .status{font-size:12px;min-height:20px;margin:12px 2px 0;color:#42704a}
+    .technical{margin-top:25px;border-top:1px solid var(--line);padding-top:18px}
+    .technical summary{font-size:12px;color:#67805e;cursor:pointer;width:fit-content}
+    .provenance{display:grid;grid-template-columns:100px minmax(0,1fr);font-size:12px;gap:7px 15px;margin:17px 0 0}
+    .provenance dt{color:#81917e}
+    .provenance dd{margin:0;overflow-wrap:anywhere}
+    .mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px}
+    .requirements{display:grid;gap:15px;margin:19px 0 0}
+    .requirement{padding:13px 15px;background:#eef2e7;border-radius:9px}
+    .requirement h3{font-size:12px;margin:0 0 5px}
+    .requirement ul{font-size:12px;color:var(--muted);padding-left:20px;margin:6px 0 0}
+    dialog{border:1px solid #d5dfce;border-radius:21px;padding:0;width:660px;max-width:calc(100vw - 70px);max-height:calc(100vh - 70px);color:var(--ink);background:var(--surface);box-shadow:0 30px 90px #153b302b}
+    dialog::backdrop{background:#16352766;backdrop-filter:blur(3px)}
+    .dialog-heading{padding:24px 26px 20px;border-bottom:1px solid var(--line);align-items:flex-start}
+    .dialog-heading h2{font-size:21px;line-height:1.3;margin:0 0 5px;overflow-wrap:anywhere}
+    .dialog-subtitle{font-size:12px;margin:0;color:var(--muted)}
+    .icon-button{border:0;background:#edf2e5;color:#69815e;border-radius:8px;width:32px;height:32px;font-size:21px;line-height:1;flex-shrink:0}
+    .dialog-body{padding:22px 26px}
+    .dialog-actions{padding:17px 26px;border-top:1px solid var(--line);background:#f3f6ec;justify-content:flex-end}
+    .detail-grid{display:grid;grid-template-columns:125px minmax(0,1fr);gap:16px 22px;margin:0}
+    .detail-grid dt{font-size:12px;color:#7d8e77}
+    .detail-grid dd{font-size:14px;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+    .detail-note{font-size:12px;color:#79886e;margin:22px 0 0;padding-top:15px;border-top:1px solid var(--line)}
+    .editor-fields{display:grid;gap:19px}
+    .editor-group{display:grid;gap:6px}
+    .editor-group>label{font-size:13px;font-weight:650}
+    .required{color:#a16729;font-size:11px;font-weight:500;margin-left:7px}
+    .field-error{font-size:12px;color:var(--red);margin:0}
+    [aria-invalid=true]{border-color:#ba6b5c!important}
+    .form-error{font-size:12px;color:var(--red);background:#fff0e9;border:1px solid #edcfc2;border-radius:9px;padding:10px 13px;margin-bottom:18px}
+    fieldset.tag-editor{min-width:0;padding:12px 14px 14px;margin:0;border:1px solid #cedbcd;border-radius:9px}
+    .tag-editor legend{padding:0 5px;font-size:13px;font-weight:650}
+    .tag-options{display:flex;gap:8px 14px;flex-wrap:wrap;min-height:26px;align-items:center}
+    .tag-option{display:inline-flex;gap:7px;align-items:center;font-size:13px;line-height:1.5;max-width:100%;overflow-wrap:anywhere}
+    .tag-option input{width:15px;height:15px;accent-color:var(--green);flex-shrink:0}
+    .tag-new{display:flex;gap:9px;margin-top:11px;align-items:center}
+    .tag-new input{flex:1;min-width:0}
+    .initial-error{border:1px solid #edcfc2;background:#fff7ef;padding:25px;border-radius:14px;margin-top:24px}
+    .initial-error h1{font-size:21px;margin-top:0}
+    .initial-error p{font-size:13px;margin-bottom:0;overflow-wrap:anywhere}
+  </style>
+</head>
+<body>
+  <main class="shell" id="app" data-testid="app"><p>正在载入本地集合演示…</p></main>
+  <noscript><p>本地交互演示需要启用 JavaScript。不会发起网络请求或保存数据。</p></noscript>
+  <script type="application/json" id="flow-data">__FLOW_PAYLOAD__</script>
+  <script>
+  (() => {
+    'use strict';
+    const app = document.getElementById('app');
+    const make = (tag, cls, text, testid) => {
+      const node = document.createElement(tag);
+      if (cls) node.className = cls;
+      if (text !== undefined && text !== null) node.textContent = String(text);
+      if (testid) node.dataset.testid = testid;
+      return node;
+    };
+    const button = (text, cls, testid, action) => {
+      const node = make('button', 'button ' + (cls || ''), text, testid);
+      node.type = 'button';
+      if (action) node.addEventListener('click', action);
+      return node;
+    };
+    const own = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
+    const format = value => value === null ? '' : Array.isArray(value) ? value.join(' · ') : String(value);
+    const copy = value => JSON.parse(JSON.stringify(value));
+    try {
+      const payload = JSON.parse(document.getElementById('flow-data').textContent);
+      const spec = payload.spec;
+      if (!spec || spec.schema !== 'pm-collection/v1' || !Array.isArray(spec.fields) || !spec.fields.length || !Array.isArray(spec.items) || !['sidebar', 'toolbar'].includes(spec.layout)) {
+        throw new Error('集合材料不符合 pm-collection/v1。');
+      }
+      const fieldMap = new Map();
+      for (const field of spec.fields) {
+        if (typeof field.key !== 'string' || !field.key || fieldMap.has(field.key) || typeof field.label !== 'string' || !['text', 'number', 'choice', 'tags'].includes(field.type) || typeof field.required !== 'boolean' || !Array.isArray(field.choices) || !field.choices.every(x => typeof x === 'string') || new Set(field.choices).size !== field.choices.length) {
+          throw new Error('字段定义不完整或重复。');
+        }
+        fieldMap.set(field.key, field);
+      }
+      if (!Array.isArray(spec.search_fields) || !spec.search_fields.every(key => fieldMap.has(key)) || !Array.isArray(spec.filters) || !spec.filters.every(key => fieldMap.has(key) && ['choice', 'tags'].includes(fieldMap.get(key).type)) || new Set(spec.filters).size !== spec.filters.length || !Array.isArray(spec.requirements)) {
+        throw new Error('检索、筛选或需求声明不完整。');
+      }
+      const ids = new Set();
+      for (const item of spec.items) {
+        if (!item || !own(item, 'id') || !item.values || ids.has(String(item.id))) throw new Error('条目标识或字段值不完整。');
+        ids.add(String(item.id));
+        for (const field of spec.fields) {
+          const value = item.values[field.key];
+          if (!own(item.values, field.key) || (field.type === 'number' && !(value === null && !field.required) && (typeof value !== 'number' || !Number.isFinite(value))) || (['text', 'choice'].includes(field.type) && typeof value !== 'string') || (field.type === 'tags' && (!Array.isArray(value) || !value.every(x => typeof x === 'string')))) {
+            throw new Error('条目包含不符合声明类型的字段。');
+          }
+        }
+      }
+      let records = copy(spec.items);
+      let nextSessionId = 1;
+      const changedIds = new Set();
+      const selectedFilters = new Map();
+      const filterSelects = new Map();
+      let query = '';
+      let detailId = null;
+      let editingId = null;
+      const primaryField = spec.fields.find(field => field.type === 'text') || spec.fields[0];
+      const itemTitle = item => format(item.values[primaryField.key]) || String(item.id);
+      const getRecord = id => records.find(item => String(item.id) === String(id));
+      app.replaceChildren();
+      document.title = String(spec.title) + ' · 集合原型';
+
+      const top = make('header', 'topline');
+      const brand = make('div', 'brand');
+      brand.append(make('span', 'brand-mark', '▦'), make('span', '', 'PM Toolkit'), make('span', 'breadcrumb', '/ 集合原型'));
+      top.append(brand, make('span', 'chip', '本地演示 · 本次会话'));
+      app.append(top);
+      const hero = make('section', 'hero');
+      hero.append(make('div', 'eyebrow', 'COLLECTION / A WORKING PROTOTYPE'), make('h1', '', spec.title, 'collection-title'), make('p', 'positioning', spec.positioning));
+      const heroMeta = make('div', 'hero-meta');
+      heroMeta.append(make('span', '', '版本 ' + String(spec.version), 'spec-version'), make('span', '', '源材料 SHA256'), make('code', '', payload.source_sha256, 'source-sha'));
+      hero.append(heroMeta);
+      const summary = make('div', 'summary-grid');
+      for (const [label, value] of [['痛点假设', spec.pain], ['价值假设', spec.value]]) {
+        const card = make('div', 'summary-card');
+        card.append(make('h2', '', label), make('p', '', value));
+        summary.append(card);
+      }
+      hero.append(summary);
+      app.append(hero);
+      const workspaceTop = make('div', 'section-heading workspace-top');
+      const headingGroup = make('div');
+      headingGroup.append(make('h2', '', '浏览集合'), make('p', 'section-subtitle', '检索、筛选与编辑，围绕同一份给定材料。'));
+      const actions = make('div', 'top-actions');
+      const resetTop = button('重置筛选', 'quiet', 'reset-filters', () => resetFilters());
+      const add = button('＋ 新增条目', 'primary', 'new-item', () => openEditor(null));
+      actions.append(resetTop, add);
+      workspaceTop.append(headingGroup, actions);
+      app.append(workspaceTop);
+      const layout = make('div', 'collection-layout layout-' + spec.layout, null, 'collection-layout');
+      layout.dataset.layout = spec.layout;
+      const filters = make(spec.layout === 'sidebar' ? 'aside' : 'section', 'filter-panel');
+      filters.setAttribute('aria-label', '集合检索与筛选');
+      filters.append(make('h3', 'filter-heading', spec.layout === 'sidebar' ? '侧栏筛选' : '顶部筛选', 'layout-mode'));
+      const controls = make('div', 'filter-controls');
+      const searchGroup = make('div', 'control-group search-group');
+      const searchLabel = make('label', '', '检索内容');
+      const searchInput = make('input', '', null, 'search-input');
+      searchInput.id = 'collection-search';
+      searchInput.type = 'text';
+      searchInput.placeholder = '输入文字，按字面查找';
+      searchInput.autocomplete = 'off';
+      searchLabel.htmlFor = searchInput.id;
+      const searchHint = make('span', 'hint', spec.search_fields.length ? '检索字段：' + spec.search_fields.map(key => fieldMap.get(key).label).join('、') : '当前材料没有声明可检索字段。');
+      searchHint.id = 'collection-search-hint';
+      searchInput.setAttribute('aria-describedby', searchHint.id);
+      searchInput.disabled = spec.search_fields.length === 0;
+      searchInput.addEventListener('input', () => { query = searchInput.value; renderRecords(); });
+      searchGroup.append(searchLabel, searchInput, searchHint);
+      controls.append(searchGroup);
+      spec.filters.forEach((key, index) => {
+        const field = fieldMap.get(key);
+        const group = make('div', 'control-group');
+        const label = make('label', '', field.label);
+        const select = make('select', '', null, 'filter-' + key);
+        select.id = 'collection-filter-' + index;
+        label.htmlFor = select.id;
+        select.addEventListener('change', () => {
+          const option = select.selectedOptions[0];
+          if (select.value === '') selectedFilters.delete(key);
+          else selectedFilters.set(key, option.dataset.literal);
+          renderRecords();
+        });
+        group.append(label, select);
+        controls.append(group);
+        filterSelects.set(key, select);
+      });
+      filters.append(controls, make('div', 'filter-footer', '检索与各筛选条件同时满足。重置后恢复整个当前会话集合。'));
+      const resultsPanel = make('section', 'results-panel');
+      resultsPanel.setAttribute('aria-label', '集合结果');
+      const resultsHeading = make('div', 'results-heading');
+      const resultCount = make('span', 'result-count', '', 'result-count');
+      resultCount.setAttribute('aria-live', 'polite');
+      resultsHeading.append(make('span', 'results-title', '条目清单'), resultCount);
+      const list = make('ul', 'records', null, 'collection-list');
+      const empty = make('div', 'empty', null, 'empty-state');
+      empty.hidden = true;
+      empty.append(make('div', 'empty-symbol', '⌕'), make('h3', '', '没有匹配的条目'), make('p', '', '可以换一个检索词，或重置筛选查看当前会话中的全部条目。'), button('恢复全部', 'small', 'empty-reset', () => resetFilters()));
+      resultsPanel.append(resultsHeading, list, empty);
+      layout.append(filters, resultsPanel);
+      app.append(layout);
+      const notice = make('div', 'notice', null, 'session-notice');
+      notice.append(make('span', 'notice-symbol', '◌'), make('span', '', '此页保留调用者给定内容，来源与脱敏未经工具核验。新增和编辑仅保留在当前页面会话；刷新或关闭页面会丢失这些更改。不会写入原文件、存储数据或发起网络请求。'));
+      app.append(notice);
+      const status = make('p', 'status', '', 'session-status');
+      status.setAttribute('role', 'status');
+      app.append(status);
+      const technical = make('details', 'technical');
+      technical.append(make('summary', '', '查看材料版本与给定检查计划'));
+      const provenance = make('dl', 'provenance');
+      const provenanceRows = [['集合标识', spec.id, null], ['版本', spec.version, null], ['源材料 SHA256', payload.source_sha256, null], ['父版本 SHA256', spec.parent_sha256 === null ? '无（独立起点）' : spec.parent_sha256, null]];
+      for (const [label, value, testid] of provenanceRows) provenance.append(make('dt', '', label), make('dd', label.includes('SHA256') ? 'mono' : '', value, testid));
+      technical.append(provenance);
+      const requirements = make('div', 'requirements');
+      for (const requirement of spec.requirements) {
+        const block = make('section', 'requirement');
+        block.append(make('h3', '', String(requirement.id) + ' · ' + String(requirement.statement)));
+        const checks = make('ul');
+        for (const check of Array.isArray(requirement.acceptance) ? requirement.acceptance : []) checks.append(make('li', '', check));
+        block.append(checks);
+        requirements.append(block);
+      }
+      technical.append(requirements, make('p', 'hint', '以上为给定文字与检查计划。页面可操作不等于需求已获批准，也不替代当前版本的独立行为、视觉和人工验收。'));
+      app.append(technical);
+
+      const detailDialog = make('dialog', '', null, 'detail-dialog');
+      detailDialog.setAttribute('aria-labelledby', 'collection-detail-title');
+      const detailHeading = make('div', 'dialog-heading');
+      const detailHeadingText = make('div');
+      const detailTitle = make('h2', '', '', 'detail-title');
+      detailTitle.id = 'collection-detail-title';
+      detailHeadingText.append(detailTitle, make('p', 'dialog-subtitle', '给定字段的完整文字'));
+      const detailClose = button('×', '', 'detail-close', () => detailDialog.close());
+      detailClose.className = 'icon-button';
+      detailClose.setAttribute('aria-label', '关闭条目详情');
+      detailHeading.append(detailHeadingText, detailClose);
+      const detailBody = make('div', 'dialog-body');
+      const detailValues = make('dl', 'detail-grid');
+      const detailNote = make('p', 'detail-note');
+      detailBody.append(detailValues, detailNote);
+      const detailActions = make('div', 'dialog-actions');
+      const detailEdit = button('编辑本次会话条目', 'primary', 'detail-edit', () => {
+        const id = detailId;
+        detailDialog.close();
+        openEditor(id);
+      });
+      detailActions.append(detailEdit);
+      detailDialog.append(detailHeading, detailBody, detailActions);
+      app.append(detailDialog);
+
+      const editorDialog = make('dialog', '', null, 'editor-dialog');
+      editorDialog.setAttribute('aria-labelledby', 'collection-editor-title');
+      const editorHeading = make('div', 'dialog-heading');
+      const editorHeadingText = make('div');
+      const editorTitle = make('h2', '', '', 'editor-title');
+      editorTitle.id = 'collection-editor-title';
+      editorHeadingText.append(editorTitle, make('p', 'dialog-subtitle', '只修改本次页面会话，不会写回源材料。'));
+      const closeEditor = button('×', '', 'editor-close', () => editorDialog.close());
+      closeEditor.className = 'icon-button';
+      closeEditor.setAttribute('aria-label', '取消并关闭编辑');
+      editorHeading.append(editorHeadingText, closeEditor);
+      const editorForm = make('form', '', null, 'editor-form');
+      editorForm.noValidate = true;
+      const editorBody = make('div', 'dialog-body');
+      const formError = make('div', 'form-error', '', 'form-error');
+      formError.hidden = true;
+      formError.setAttribute('role', 'alert');
+      const editorFields = make('div', 'editor-fields');
+      editorBody.append(formError, editorFields);
+      const editorActions = make('div', 'dialog-actions');
+      editorActions.append(button('取消', 'quiet', 'editor-cancel', () => editorDialog.close()));
+      const save = button('保存到本次会话', 'primary', 'editor-save');
+      save.type = 'submit';
+      editorActions.append(save);
+      editorForm.append(editorBody, editorActions);
+      editorDialog.append(editorHeading, editorForm);
+      app.append(editorDialog);
+      let editors = new Map();
+      editorForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const values = {};
+        let firstInvalid = null;
+        let errors = 0;
+        for (const field of spec.fields) {
+          const entry = editors.get(field.key);
+          entry.error.textContent = '';
+          entry.control.removeAttribute('aria-invalid');
+          const candidate = entry.read();
+          let message = '';
+          if (field.type === 'number') {
+            if (entry.control.validity.badInput || (candidate.trim() !== '' && (!Number.isFinite(Number(candidate)) || Math.abs(Number(candidate)) > Number.MAX_SAFE_INTEGER))) message = '请输入绝对值不超过 9007199254740991 的有限数值。';
+            else if (candidate.trim() === '' && field.required) message = '此数字字段必填，请输入一个有限数值。';
+            else if (candidate.trim() === '') Object.defineProperty(values, field.key, {value: null, enumerable: true, writable: true, configurable: true});
+            else Object.defineProperty(values, field.key, {value: Number(candidate), enumerable: true, writable: true, configurable: true});
+          } else if (field.type === 'choice') {
+            if (candidate === null && !field.required) Object.defineProperty(values, field.key, {value: '', enumerable: true, writable: true, configurable: true});
+            else if (candidate === null || !field.choices.includes(candidate)) message = '请选择一个给定选项。';
+            else if (field.required && candidate.trim() === '') message = '此字段不能为空。';
+            else Object.defineProperty(values, field.key, {value: candidate, enumerable: true, writable: true, configurable: true});
+          } else if (field.type === 'tags') {
+            if (field.required && candidate.length === 0) message = '请至少选择一个标签。';
+            else if (field.choices.length && !candidate.every(tag => field.choices.includes(tag))) message = '标签必须来自给定选项。';
+            else Object.defineProperty(values, field.key, {value: candidate, enumerable: true, writable: true, configurable: true});
+          } else {
+            if (field.required && candidate.trim() === '') message = '此字段不能为空。';
+            else if (candidate.length > 1000) message = '文本不能超过 1000 个字符。';
+            else Object.defineProperty(values, field.key, {value: candidate, enumerable: true, writable: true, configurable: true});
+          }
+          if (message) {
+            errors += 1;
+            entry.error.textContent = message;
+            entry.control.setAttribute('aria-invalid', 'true');
+            if (!firstInvalid) firstInvalid = entry.focus;
+          }
+        }
+        if (errors) {
+          formError.textContent = '还有 ' + errors + ' 个字段需要处理；内容尚未保存。';
+          formError.hidden = false;
+          firstInvalid.focus();
+          return;
+        }
+        formError.hidden = true;
+        const isNew = editingId === null;
+        let savedId = editingId;
+        if (isNew) {
+          do { savedId = 'session-' + nextSessionId++; } while (records.some(item => String(item.id) === savedId));
+          records = records.concat([{id: savedId, values}]);
+        } else records = records.map(item => String(item.id) === String(savedId) ? {id: item.id, values} : item);
+        changedIds.add(String(savedId));
+        editorDialog.close();
+        rebuildFilters();
+        renderRecords();
+        status.textContent = (isNew ? '已新增' : '已更新') + '“' + itemTitle(getRecord(savedId)) + '”。仅当前会话有效；当前筛选条件保持不变。';
+        openDetails(savedId);
+      });
+
+      function rebuildFilters() {
+        for (const key of spec.filters) {
+          const field = fieldMap.get(key);
+          const select = filterSelects.get(key);
+          const literals = Array.from(new Set(field.type === 'choice' ? field.choices : field.choices.concat(records.flatMap(item => item.values[key]))));
+          select.replaceChildren();
+          const all = make('option', '', '全部' + field.label);
+          all.value = '';
+          select.append(all);
+          literals.forEach((value, index) => {
+            const option = make('option', '', value);
+            option.value = String(index);
+            option.dataset.literal = value;
+            select.append(option);
+          });
+          if (selectedFilters.has(key)) {
+            const index = literals.indexOf(selectedFilters.get(key));
+            if (index >= 0) select.value = String(index);
+            else { selectedFilters.delete(key); select.value = ''; }
+          }
+        }
+      }
+      function matches(item) {
+        const needle = query.toLowerCase();
+        if (needle && !spec.search_fields.some(key => {
+          const value = item.values[key];
+          return (Array.isArray(value) ? value : [value]).some(part => part !== null && String(part).toLowerCase().includes(needle));
+        })) return false;
+        for (const [key, value] of selectedFilters) {
+          const actual = item.values[key];
+          if (Array.isArray(actual) ? !actual.includes(value) : actual !== value) return false;
+        }
+        return true;
+      }
+      function renderRecords() {
+        const visible = records.filter(matches);
+        resultCount.textContent = '显示 ' + visible.length + ' / ' + records.length + ' 条';
+        list.replaceChildren();
+        list.hidden = visible.length === 0;
+        empty.hidden = visible.length !== 0;
+        for (const item of visible) {
+          const row = make('li', 'record-item', null, 'item-row-' + item.id);
+          const open = button('', '', 'item-open-' + item.id, () => openDetails(item.id));
+          open.className = 'record-button';
+          open.setAttribute('aria-label', '查看“' + itemTitle(item) + '”的详情');
+          open.setAttribute('aria-haspopup', 'dialog');
+          const titleGroup = make('span');
+          const title = make('span', 'record-title', itemTitle(item));
+          if (changedIds.has(String(item.id))) title.append(make('span', 'session-dot', '会话修改'));
+          titleGroup.append(title, make('span', 'record-id', item.id));
+          const fields = make('span', 'record-fields');
+          for (const field of spec.fields.filter(field => field.key !== primaryField.key)) {
+            const one = make('span', 'record-field');
+            const value = item.values[field.key];
+            one.append(make('span', 'record-field-label', field.label), make('span', 'record-field-value', value === null || value === '' || (Array.isArray(value) && !value.length) ? '—' : format(value)));
+            fields.append(one);
+          }
+          open.append(titleGroup, fields, make('span', 'record-arrow', '›'));
+          row.append(open);
+          list.append(row);
+        }
+      }
+      function resetFilters() {
+        query = '';
+        searchInput.value = '';
+        selectedFilters.clear();
+        for (const select of filterSelects.values()) select.value = '';
+        renderRecords();
+        status.textContent = '已重置检索与筛选；显示当前会话的全部条目。';
+        if (!searchInput.disabled) searchInput.focus();
+      }
+      function openDetails(id) {
+        const item = getRecord(id);
+        if (!item) return;
+        detailId = item.id;
+        detailTitle.textContent = itemTitle(item);
+        detailValues.replaceChildren(make('dt', '', '条目标识'), make('dd', 'mono', item.id, 'detail-id'));
+        for (const field of spec.fields) {
+          const value = item.values[field.key];
+          detailValues.append(make('dt', '', field.label), make('dd', '', value === null || value === '' || (Array.isArray(value) && !value.length) ? '（空）' : format(value), 'detail-field-' + field.key));
+        }
+        detailNote.textContent = changedIds.has(String(item.id)) ? '此条目已在当前会话修改。原JSON材料未改变，刷新页面将恢复源材料。' : '此条目来自调用者给定材料，来源未经工具核验。编辑时只创建本次页面会话的变化。';
+        if (!detailDialog.open) detailDialog.showModal();
+        detailClose.focus();
+      }
+      function openEditor(id) {
+        editingId = id;
+        const record = id === null ? null : getRecord(id);
+        if (id !== null && !record) return;
+        editorTitle.textContent = id === null ? '新增条目' : '编辑条目';
+        formError.hidden = true;
+        formError.textContent = '';
+        editorFields.replaceChildren();
+        editors = new Map();
+        spec.fields.forEach((field, index) => {
+          const group = make('div', 'editor-group');
+          const error = make('p', 'field-error', '', 'field-error-' + field.key);
+          error.id = 'collection-editor-error-' + index;
+          const fieldId = 'collection-editor-field-' + index;
+          const value = record ? record.values[field.key] : null;
+          let control, focus, read;
+          if (field.type === 'tags') {
+            control = make('fieldset', 'tag-editor', null, 'editor-field-' + field.key);
+            control.tabIndex = -1;
+            const legend = make('legend', '', field.label);
+            if (field.required) legend.append(make('span', 'required', '必填'));
+            const options = make('div', 'tag-options');
+            const current = value === null ? [] : value;
+            const selected = new Set(current);
+            const candidates = field.choices.length ? field.choices.slice() : Array.from(new Set(records.flatMap(item => item.values[field.key]).concat(current)));
+            const boxes = [];
+            function addTag(tag) {
+              const label = make('label', 'tag-option');
+              const check = make('input', '', null, 'editor-tag-' + field.key + '-' + boxes.length);
+              check.type = 'checkbox';
+              check.checked = selected.has(tag);
+              check.addEventListener('change', () => check.checked ? selected.add(tag) : selected.delete(tag));
+              boxes.push(check);
+              label.append(check, make('span', '', tag));
+              options.append(label);
+            }
+            candidates.forEach(addTag);
+            control.append(legend, options);
+            if (!field.choices.length) {
+              const freeRow = make('div', 'tag-new');
+              const freeInput = make('input', '', null, 'editor-tag-input-' + field.key);
+              freeInput.type = 'text';
+              freeInput.id = fieldId;
+              freeInput.setAttribute('aria-label', '添加' + field.label + '标签');
+              freeInput.placeholder = '逐个添加标签';
+              const addTagButton = button('添加标签', 'small', 'editor-tag-add-' + field.key, () => {
+                const literal = freeInput.value;
+                if (!literal.trim()) { freeInput.focus(); return; }
+                if (literal.length > 1000) { error.textContent = '标签不能超过 1000 个字符。'; freeInput.focus(); return; }
+                if (!candidates.includes(literal)) { candidates.push(literal); selected.add(literal); addTag(literal); }
+                else { selected.add(literal); boxes[candidates.indexOf(literal)].checked = true; }
+                freeInput.value = '';
+                freeInput.focus();
+              });
+              freeInput.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); addTagButton.click(); } });
+              freeRow.append(freeInput, addTagButton);
+              control.append(freeRow, make('span', 'hint', '标签按完整字面值匹配。输入后先添加，再保存条目。'));
+            }
+            focus = boxes[0] || control;
+            read = () => candidates.filter(tag => selected.has(tag));
+          } else {
+            const label = make('label', '', field.label);
+            label.htmlFor = fieldId;
+            if (field.required) label.append(make('span', 'required', '必填'));
+            group.append(label);
+            if (field.type === 'choice') {
+              control = make('select', '', null, 'editor-field-' + field.key);
+              const placeholder = make('option', '', '请选择' + field.label);
+              placeholder.value = '';
+              control.append(placeholder);
+              field.choices.forEach((literal, choiceIndex) => {
+                const option = make('option', '', literal);
+                option.value = String(choiceIndex);
+                control.append(option);
+              });
+              control.value = value !== null && field.choices.includes(value) ? String(field.choices.indexOf(value)) : '';
+              read = () => control.value === '' ? null : field.choices[Number(control.value)];
+            } else {
+              control = make('input', '', null, 'editor-field-' + field.key);
+              control.type = field.type === 'number' ? 'number' : 'text';
+              if (field.type === 'number') { control.step = 'any'; control.inputMode = 'decimal'; }
+              control.value = value === null ? '' : String(value);
+              control.autocomplete = 'off';
+              read = () => control.value;
+            }
+            control.id = fieldId;
+            control.required = field.required;
+            focus = control;
+          }
+          control.setAttribute('aria-describedby', error.id);
+          group.append(control, error);
+          if (field.type === 'number') group.append(make('span', 'hint', field.required ? '仅接受有限数值；空白不会自动改成 0。' : '仅接受有限数值；留空表示 null，不会自动改成 0。'));
+          editorFields.append(group);
+          editors.set(field.key, {control, focus, error, read});
+        });
+        editorDialog.showModal();
+        const first = editors.values().next().value;
+        if (first) first.focus.focus();
+      }
+      rebuildFilters();
+      renderRecords();
+    } catch (error) {
+      const message = make('section', 'initial-error');
+      message.setAttribute('role', 'alert');
+      message.append(make('h1', '', '这份集合材料暂时无法显示'), make('p', '', error instanceof Error ? error.message : '请核对给定材料。'));
+      app.replaceChildren(message);
+    }
+  })();
+  </script>
+</body>
+</html>
