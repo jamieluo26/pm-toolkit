@@ -1,0 +1,16 @@
+{
+  "schema": "pm-flow-artifacts/v1",
+  "source_sha256": "c9d7ce75759e8e7df20d7e7734b2e84b8ee4fb05656cfa4f9027af1c10b54b44",
+  "generator": {
+    "flow_core.py": "ae733e1f39bdac9fd72793b064436a27b50ae4bdfcfe8403aebee892d36ac6d2",
+    "pm_flow.py": "527bcd54e2ccc7b97e16559f4392b5469dc751b8de7d8f086fb09aaf3d1d6c5e",
+    "assets/collection.html": "994a1c7bb8faf701ac6e82c5dd85ae2acf45712874c895c60aa920218916662d"
+  },
+  "files": {
+    "PRD.md": "05e8ccd869c24d2a8337d0ae4530b1bfe5126ea983996a1d59ed8b94cb645840",
+    "acceptance.md": "90e676517a4ef2b4664b0ac16a99c77bae89867b821b49911dce49486f259884",
+    "prototype.html": "9d272bdd037b389cb7df0ba11bd7b9d3c14fa5002a1b6c1d5f03c4cd26739090",
+    "source.json": "c9d7ce75759e8e7df20d7e7734b2e84b8ee4fb05656cfa4f9027af1c10b54b44",
+    "trace.json": "e6bd0f72d0785bd6286d96bf3bef06e05c99c700da9622051cdfbb2ac10de57a"
+  }
+}
