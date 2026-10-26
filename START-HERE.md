@@ -1,3 +1,9 @@
+# 下一步：评审变更工作包（v0.2）
+
+先打开[评审页面](review.html)，对照合成记录看变化，再按[两个审阅任务](examples/review-change/prompts.md)显式供料。[运行说明](docs/review-workpack.md)提供比较命令与9文件本地工作目录；[Skill发布边界](docs/skills-v02.md)列出当前完整回放与显式调用的支持边界。
+
+以下保留首版任务路线。
+
 # 按任务开始
 
 打开index.html可用浏览入口；以下材料也可直接在Markdown编辑器阅读和填写。

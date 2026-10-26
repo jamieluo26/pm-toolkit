@@ -1,5 +1,20 @@
 # PM Toolkit
 
+**v0.2：评审变更工作包。** 新增稳定键双快照比较工具，以及需求/验收追踪和反馈意图保留两份文本审阅Skill。两棵当前完整树均通过5项治理用例，候选汇总门通过；使用与宿主边界见验证说明。
+
+[体验评审变更工作包](review.html) · [步骤](playbooks/review-change.md) · [运行说明](docs/review-workpack.md) · [Skill实际边界](docs/skills-v02.md)
+
+```sh
+python3 pm_review.py demo --output ../my-review
+python3 pm_review.py check --output ../my-review
+```
+
+它生成一份9文件的全合成评审目录，把字面变化、关系审阅和功能承接放在一起；不自动调用模型、修改原型或代替验收。公开的v0.1工作路径仍保留，旧命令不变。
+
+![评审变更工作包实际预览](assets/review-preview.jpg)
+
+## 已公开的v0.1工作路径
+
 把需求、方案和交付接成一条能实际使用的工作路径。
 
 面向产品经理和研发协作者的**手动首版 v0.1**：六份可填写模板、一条完整合成案例、交互决策图、可操作演示原型、可编辑Word，以及本地生成与核对命令。AI可以辅助审阅文字，本包不调用模型或安装Skill。
