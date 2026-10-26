@@ -1,0 +1,47 @@
+{
+  "schema": "pm-review-workspace/v1",
+  "case": "synthetic-reading-list-review",
+  "files": [
+    {
+      "path": "WORKSPACE.md",
+      "bytes": 908,
+      "sha256": "c75f62a6be51329869b82da7d335323453fc4a2877c6462901abdf0c0875cb08"
+    },
+    {
+      "path": "after.json",
+      "bytes": 297,
+      "sha256": "85587702ce266e7be59c29157ee14e5c0ca943b98d0ab9192a8bf71a79948441"
+    },
+    {
+      "path": "before.json",
+      "bytes": 199,
+      "sha256": "7d93cb276ad5a350e056c04ea2ecd839a76ba113133657b951ddb96d8bcb2e43"
+    },
+    {
+      "path": "case.md",
+      "bytes": 1836,
+      "sha256": "0c723069a38a84c8bb0b8a065316c10b2cc9513895cb5c2aea192f6e78f04952"
+    },
+    {
+      "path": "policy.json",
+      "bytes": 253,
+      "sha256": "2d2d76c0ac83fb0eb1341b15023c50e2de9779cbf97523dd7359e9402d1b9442"
+    },
+    {
+      "path": "prompts.md",
+      "bytes": 981,
+      "sha256": "9154dadda3932c7154fb9f493d3f6cf49c813027e5424d58542e6f8845b957b3"
+    },
+    {
+      "path": "snapshot-diff.json",
+      "bytes": 4836,
+      "sha256": "4d8139af780f9b8aedf3f8c49079dfb438ae9a763451cdcaa1f6f7a94c32be75"
+    },
+    {
+      "path": "snapshots.json",
+      "bytes": 97,
+      "sha256": "4d938a1ecf5e7d40070ec6ed5bd24ca4c682920e8563d2121ad375ed96fb6edf"
+    }
+  ],
+  "proof": "consistency only;no approval,execution,identity or anonymization proof"
+}

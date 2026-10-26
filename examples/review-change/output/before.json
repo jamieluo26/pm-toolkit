@@ -1,0 +1,12 @@
+[
+  {
+    "key": "F-topic",
+    "meaning": "按主题筛选",
+    "carrier": "侧栏主题区"
+  },
+  {
+    "key": "F-reset",
+    "meaning": "恢复全部",
+    "carrier": "侧栏全部按钮"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "schema": "keyed-snapshot-policy/v1",
+  "id_field": "key",
+  "identity_field": "meaning",
+  "state_field": "carrier",
+  "states": [
+    "侧栏主题区",
+    "侧栏全部按钮",
+    "顶部主题选择器",
+    "未安置",
+    "结果区"
+  ]
+}

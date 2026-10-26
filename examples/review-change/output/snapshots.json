@@ -1,0 +1,5 @@
+{
+  "schema": "keyed-snapshot-manifest/v1",
+  "before": "before.json",
+  "after": "after.json"
+}

@@ -1,0 +1,153 @@
+{
+  "schema": "keyed-snapshot-report/v1",
+  "status": "COMPARISON_BUILT",
+  "counts": {
+    "before_records": 2,
+    "after_records": 3,
+    "union_records": 3,
+    "retained": 2,
+    "added": 1,
+    "removed": 0,
+    "shared_identity_changed": 0
+  },
+  "transitions": [
+    {
+      "before": {
+        "presence": "absent"
+      },
+      "after": {
+        "presence": "present",
+        "state_sha256": "df9425d13c94645bde3cfc2ef61c7348d1b7d5dab6b3b33036b964ecc81bafa8",
+        "state": "结果区"
+      },
+      "records": 1
+    },
+    {
+      "before": {
+        "presence": "present",
+        "state_sha256": "fc28a1cc959808309c836293a0c50e3c1154a614a7da281ea990729150d254e6",
+        "state": "侧栏主题区"
+      },
+      "after": {
+        "presence": "present",
+        "state_sha256": "1de30d7b3bd7c69c063885b18592d7299adca5bf3ff6034ace1760b901bd56ca",
+        "state": "顶部主题选择器"
+      },
+      "records": 1
+    },
+    {
+      "before": {
+        "presence": "present",
+        "state_sha256": "390da2e6dec2ff15f21ec3aadf32b6d20591e090d6567f1f41e3569453313290",
+        "state": "侧栏全部按钮"
+      },
+      "after": {
+        "presence": "present",
+        "state_sha256": "e3151f73267725fca38e3caefa5b1be8b3ecaa2b5ea51aec160ed230fb0c902f",
+        "state": "未安置"
+      },
+      "records": 1
+    }
+  ],
+  "records": [
+    {
+      "position": 1,
+      "id_sha256": "4a13de51aa3bf3622b7698a20dae52d6e422ebedf671682fa412f20447bb7079",
+      "kind": "added",
+      "identity_changed": null,
+      "before": {
+        "presence": "absent"
+      },
+      "after": {
+        "presence": "present",
+        "state_sha256": "df9425d13c94645bde3cfc2ef61c7348d1b7d5dab6b3b33036b964ecc81bafa8",
+        "identity_sha256": "56ec391189bbc51851a72e560deec1f6bf7a59ba2f42ec372e6fc0e6c609d627",
+        "state": "结果区",
+        "identity": "显示当前结果数量"
+      },
+      "id": "F-count"
+    },
+    {
+      "position": 2,
+      "id_sha256": "f5a8f98bdb8151c41711bfc167e1fd89dfcd40054c7f45e0b720ace38ef1440f",
+      "kind": "retained",
+      "identity_changed": false,
+      "before": {
+        "presence": "present",
+        "state_sha256": "390da2e6dec2ff15f21ec3aadf32b6d20591e090d6567f1f41e3569453313290",
+        "identity_sha256": "f7b779ce2b51976138e0d04ac09d0bb8fc91e61f62bb722c796a1f2cc1acd25b",
+        "state": "侧栏全部按钮",
+        "identity": "恢复全部"
+      },
+      "after": {
+        "presence": "present",
+        "state_sha256": "e3151f73267725fca38e3caefa5b1be8b3ecaa2b5ea51aec160ed230fb0c902f",
+        "identity_sha256": "f7b779ce2b51976138e0d04ac09d0bb8fc91e61f62bb722c796a1f2cc1acd25b",
+        "state": "未安置",
+        "identity": "恢复全部"
+      },
+      "id": "F-reset"
+    },
+    {
+      "position": 3,
+      "id_sha256": "9c579de52d0ab4b2edc507d841fe55123d6225a0fc199c90d257053d7769e803",
+      "kind": "retained",
+      "identity_changed": false,
+      "before": {
+        "presence": "present",
+        "state_sha256": "fc28a1cc959808309c836293a0c50e3c1154a614a7da281ea990729150d254e6",
+        "identity_sha256": "1fe542af8ba2d77108c25abb6a581defa320e9c8076c07aa560aa7a07a0fc16f",
+        "state": "侧栏主题区",
+        "identity": "按主题筛选"
+      },
+      "after": {
+        "presence": "present",
+        "state_sha256": "1de30d7b3bd7c69c063885b18592d7299adca5bf3ff6034ace1760b901bd56ca",
+        "identity_sha256": "1fe542af8ba2d77108c25abb6a581defa320e9c8076c07aa560aa7a07a0fc16f",
+        "state": "顶部主题选择器",
+        "identity": "按主题筛选"
+      },
+      "id": "F-topic"
+    }
+  ],
+  "limits": {
+    "max_records": 10000,
+    "max_states": 256,
+    "max_depth": 32,
+    "max_nodes": 100000,
+    "max_string_chars": 4096,
+    "max_input_bytes": 1048576,
+    "max_output_bytes": 4194304
+  },
+  "contract": {
+    "ordering": "typed ID encoding bytes; positions are union ordinals, not input row numbers",
+    "encoding": "local v1 typed JSON scalars; exact Unicode; float hex; no normalization",
+    "denominator": "each union ID exactly once; retained+removed=before; retained+added=after",
+    "values_included": true,
+    "input_mutated": false,
+    "anonymization_proved": false,
+    "business_approval_proved": false
+  },
+  "inputs": [
+    {
+      "role": "manifest",
+      "bytes": 97,
+      "sha256": "4d938a1ecf5e7d40070ec6ed5bd24ca4c682920e8563d2121ad375ed96fb6edf"
+    },
+    {
+      "role": "policy",
+      "bytes": 253,
+      "sha256": "2d2d76c0ac83fb0eb1341b15023c50e2de9779cbf97523dd7359e9402d1b9442"
+    },
+    {
+      "role": "before",
+      "bytes": 199,
+      "sha256": "7d93cb276ad5a350e056c04ea2ecd839a76ba113133657b951ddb96d8bcb2e43"
+    },
+    {
+      "role": "after",
+      "bytes": 297,
+      "sha256": "85587702ce266e7be59c29157ee14e5c0ca943b98d0ab9192a8bf71a79948441"
+    }
+  ]
+}
