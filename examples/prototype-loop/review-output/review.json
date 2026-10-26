@@ -1,0 +1,43 @@
+{
+  "schema": "pm-review-evidence/v1",
+  "status": "DECLARED_DECISIONS_COVERED",
+  "meaning": "Literal supplied decisions and change coverage only; not real human approval or executed acceptance.",
+  "input_sha256": {
+    "before.json": "c9d7ce75759e8e7df20d7e7734b2e84b8ee4fb05656cfa4f9027af1c10b54b44",
+    "after.json": "40385fea82f37e8dcb98567ce708a3b88264eb324967eaf254ddfa83a6130967",
+    "feedback.json": "85adb2e364eaaddcaa894d1bcb4014666d47eafd0ea0634429c5e2328abe0e82",
+    "decisions.json": "5c95fde02481e2f162a2c969f74c82e1c54ea64e1314ae7df9fef0a178f011b9"
+  },
+  "before_version": "1.0",
+  "after_version": "1.1",
+  "changed_paths": [
+    "/layout",
+    "/requirements"
+  ],
+  "coverage": {
+    "/layout": [
+      "f_toolbar"
+    ],
+    "/requirements": [
+      "f_toolbar"
+    ]
+  },
+  "issues": [],
+  "decisions": [
+    {
+      "feedback_id": "f_toolbar",
+      "status": "adopted",
+      "rationale": "合成决定：本次只调整承载位置，保留原功能意图并增加相应检查声明。",
+      "paths": [
+        "/layout",
+        "/requirements"
+      ]
+    },
+    {
+      "feedback_id": "f_cloud",
+      "status": "declined",
+      "rationale": "合成决定：首版只支持页面会话，云端同步需要独立的数据与权限设计，不纳入本增量。",
+      "paths": []
+    }
+  ]
+}
