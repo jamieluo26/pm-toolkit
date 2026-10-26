@@ -1,0 +1,17 @@
+[
+  {
+    "key": "F-topic",
+    "meaning": "按主题筛选",
+    "carrier": "顶部主题选择器"
+  },
+  {
+    "key": "F-reset",
+    "meaning": "恢复全部",
+    "carrier": "未安置"
+  },
+  {
+    "key": "F-count",
+    "meaning": "显示当前结果数量",
+    "carrier": "结果区"
+  }
+]
