@@ -1,0 +1,23 @@
+{
+  "schema": "pm-decisions/v1",
+  "before_sha256": "c9d7ce75759e8e7df20d7e7734b2e84b8ee4fb05656cfa4f9027af1c10b54b44",
+  "after_sha256": "40385fea82f37e8dcb98567ce708a3b88264eb324967eaf254ddfa83a6130967",
+  "feedback_sha256": "85adb2e364eaaddcaa894d1bcb4014666d47eafd0ea0634429c5e2328abe0e82",
+  "items": [
+    {
+      "feedback_id": "f_toolbar",
+      "status": "adopted",
+      "rationale": "合成决定：本次只调整承载位置，保留原功能意图并增加相应检查声明。",
+      "paths": [
+        "/layout",
+        "/requirements"
+      ]
+    },
+    {
+      "feedback_id": "f_cloud",
+      "status": "pending",
+      "rationale": "合成待定：尚未决定云端同步范围。",
+      "paths": []
+    }
+  ]
+}

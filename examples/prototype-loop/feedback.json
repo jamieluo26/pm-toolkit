@@ -1,0 +1,14 @@
+{
+  "schema": "pm-feedback/v1",
+  "before_sha256": "c9d7ce75759e8e7df20d7e7734b2e84b8ee4fb05656cfa4f9027af1c10b54b44",
+  "items": [
+    {
+      "id": "f_toolbar",
+      "text": "将筛选从侧栏移到顶部工具栏，保留进度/主题筛选、空态与重置。"
+    },
+    {
+      "id": "f_cloud",
+      "text": "希望跨设备自动同步阅读清单。"
+    }
+  ]
+}
