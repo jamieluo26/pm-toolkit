@@ -1,5 +1,19 @@
 # PM Toolkit
 
+**v0.3：集合原型 → 同源 PRD → 评审增量。** 支持自定义字段、选项与样例的轻量集合；阅读清单和个人任务板共用一个生成器。提供可点击列表/详情/会话编辑、同版 PRD 与检查计划，以及绑定前后规格的给定决定核对。
+
+![原型与PRD评审路径实际截图](assets/flow-preview.png)
+
+[体验新版路径](flow.html) · [运行说明](docs/prototype-loop.md) · [规格合同](docs/prototype-spec.md) · [六步闭环](playbooks/prototype-loop.md) · [本轮验证](docs/verification-v03.md)
+
+```sh
+python3 pm_flow.py build --source examples/personal-tasks/spec.json --output ../my-task-board
+python3 pm_flow.py check --source examples/personal-tasks/spec.json --output ../my-task-board
+```
+
+本模块仅需 Python 3.10+ 标准库。结构化规格单向生成原型与文档，不能反推任意 HTML 或双向合并手改 PRD。评审标签由调用者给定，未决/冲突保留 HOLD；不证明真实审批或实际验收。新增准确公开范围已确认；验证层次见本版验证记录。以下旧版本路径继续保留。
+
+
 **v0.2：评审变更工作包。** 新增稳定键双快照比较工具，以及需求/验收追踪和反馈意图保留两份文本审阅Skill。两棵当前完整树均通过5项治理用例，候选汇总门通过；使用与宿主边界见验证说明。
 
 [体验评审变更工作包](review.html) · [步骤](playbooks/review-change.md) · [运行说明](docs/review-workpack.md) · [Skill实际边界](docs/skills-v02.md)

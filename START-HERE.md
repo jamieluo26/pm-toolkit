@@ -1,3 +1,9 @@
+# 先体验 v0.3
+
+[原型与 PRD 评审路径](flow.html)有两个可操作集合案例。要换自己的字段与样例，先复制[个人任务规格](examples/personal-tasks/spec.json)，再按[运行说明](docs/prototype-loop.md)生成新目录。要审阅一次实际增量，按[闭环六步](playbooks/prototype-loop.md)比较侧栏前版与工具栏后版。
+
+新增准确公开范围已确认；下文继续保留既有公开版本操作。
+
 # 下一步：评审变更工作包（v0.2）
 
 先打开[评审页面](review.html)，对照合成记录看变化，再按[两个审阅任务](examples/review-change/prompts.md)显式供料。[运行说明](docs/review-workpack.md)提供比较命令与9文件本地工作目录；[Skill发布边界](docs/skills-v02.md)列出当前完整回放与显式调用的支持边界。
