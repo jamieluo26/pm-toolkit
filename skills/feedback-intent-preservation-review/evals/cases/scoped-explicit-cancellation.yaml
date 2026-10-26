@@ -1,0 +1,50 @@
+id: scoped-explicit-cancellation
+title: Applicable cancellation is honored only in its declared context
+tag: quality_test
+input:
+  prompt: '这是已获授权任务内的虚构行为验证，任务质量前置已由调用方完成。请按本例的无工具约束，仅用已注入的主 Skill 与下面可见材料完成最终答复；无需重复读取其他
+    Skill、模板、文件或服务。
+
+
+    请用中文分别审阅 Context Red 和 Context Blue 的功能处理。给定取消有效时应尊重，但不要把取消扩到别的上下文。只审阅材料。
+
+
+    All records are fictional.
+
+    scope.txt:L1 The caller explicitly defines Decision D31 as the applicable cancellation
+    authority for Context Red only; its scope does not include Context Blue.
+
+    current.txt:L1 F31 is the export function, currently described in both Context
+    Red and Context Blue. F32 is the filter function in both contexts.
+
+    decision.txt:L1 C31: Decision D31 explicitly cancels F31 in Context Red for this
+    proposal. It leaves F32 unchanged.
+
+    request.txt:L1 R31 requests a smaller presentation in both contexts and says other
+    functions stay available. It does not cancel F31 in Context Blue.
+
+    proposal.txt:L1 P31 removes the old cards in both contexts and provides replacement
+    filters. It supplies no export carrier in either context.
+
+    boundary.txt:L1 The authority mapping above is supplied by the caller, not inferred
+    from any person''s name, role, date or status string. No implementation or acceptance
+    has occurred in this record.
+
+    '
+constraints:
+  timeout_seconds: 300
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain:
+  - F31
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all:
+      - F31
+  - output_contains:
+      any:
+      - C31
+      - decision.txt:L1

@@ -1,0 +1,42 @@
+id: removed-carrier-orphaned-function
+title: Removing a carrier does not cancel an unplaced function
+tag: quality_test
+input:
+  prompt: '这是已获授权任务内的虚构行为验证，任务质量前置已由调用方完成。请按本例的无工具约束，仅用已注入的主 Skill 与下面可见材料完成最终答复；无需重复读取其他
+    Skill、模板、文件或服务。
+
+
+    请用中文核对移除旧卡片的方案是否安置了仍需保留的功能。缺映射就列出，不创造新页面或替用户取消功能。
+
+
+    The supplied records are fictional.
+
+    current.txt:L1 F21: The old control card can narrow the displayed set. F22: The
+    same card can export the selected set.
+
+    request.txt:L1 R21 asks to remove the bulky card and says both functions must
+    remain. It does not cancel export.
+
+    proposal.txt:L1 P21 replaces the card with a small filter control that implements
+    only the stated narrowing intent. No export carrier is identified.
+
+    proposal.txt:L2 A note says "the card is gone, so the task is complete". There
+    is no executed check or further carrier mapping.
+
+    boundary.txt:L1 Only these current descriptions and proposed changes are supplied.
+    No code or actual page is available.
+
+    '
+constraints:
+  timeout_seconds: 300
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - F21
+  - F22
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001

@@ -1,0 +1,46 @@
+id: facets-observer-and-conflicting-decisions
+title: A wording request cannot silently change rules or settle competing authority
+tag: quality_test
+input:
+  prompt: '这是已获授权任务内的虚构行为验证，任务质量前置已由调用方完成。请按本例的无工具约束，仅用已注入的主 Skill 与下面可见材料完成最终答复；无需重复读取其他
+    Skill、模板、文件或服务。
+
+
+    请用中文审阅反馈来源、要求改变的维度和应保留事实；把仍有冲突的选择列出来，不按日期或头衔替我裁决。
+
+
+    These are fictional supplied excerpts.
+
+    current.txt:L1 F41: A dialog action submits the selected items after the stated
+    existing confirmation. Its label is "Send selection".
+
+    request.txt:L1 R41: The caller asks only to clarify the wording and explicitly
+    retain the current action meaning, confirmation and access boundary. No other
+    facet is requested to change.
+
+    machine.txt:L1 M41 is an automated observation: the label may be unclear. It also
+    recommends removing confirmation, but it supplies no cancellation authority.
+
+    decision-a.txt:L1 A41 claims the applicable wording should be "Review and send".
+
+    decision-b.txt:L1 B41 has a later date and a more senior role label, also claims
+    applicability, and prefers "Send now". The caller provides no precedence between
+    A41 and B41.
+
+    proposal.txt:L1 P41 copies the machine suggestion to remove confirmation and selects
+    B41 solely because it is newer.
+
+    '
+constraints:
+  timeout_seconds: 300
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - F41
+  - R41
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001

@@ -1,0 +1,47 @@
+id: supported-replacement-preserves-intent
+title: A supplied carrier change preserves each stated function
+tag: quality_test
+input:
+  prompt: '这是已获授权任务内的虚构行为验证，任务质量前置已由调用方完成。请按本例的无工具约束，仅用已注入的主 Skill 与下面可见材料完成最终答复；无需重复读取其他
+    Skill、模板、文件或服务。
+
+
+    请用中文审阅这份反馈改动方案，按给定的功能意图、旧载体和新载体核对，保留来源与未要求改变的事实。只给文本审阅草案。
+
+
+    All people, objects and records are fictional supplied descriptions.
+
+    current.txt:L1 F11: The summary tile lets a reader see the number of pending items.
+    F12: Its history link opens the selected item''s past decisions.
+
+    feedback.txt:L1 R11 is the caller''s presentation request: replace the large summary
+    tile with a compact toolbar. Retain the pending count and history access.
+
+    proposal.txt:L1 P11 puts the pending count in the toolbar label and gives each
+    selected row a history action. These are proposed carriers, not an implementation
+    observation.
+
+    unchanged.txt:L1 The caller declares action meanings and the existing role-limited
+    visibility unchanged. The changed facet is presentation arrangement only.
+
+    evidence.txt:L1 M11 is a machine observation that the old tile is large; it is
+    not a user decision. R11 is the request. No executed test or final approval is
+    supplied.
+
+    verification.txt:L1 The caller asks that a later check cover count readability
+    and history access. This is a requested check, not evidence it ran.
+
+    '
+constraints:
+  timeout_seconds: 300
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - F11
+  - F12
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001
