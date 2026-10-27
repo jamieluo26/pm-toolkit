@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>准备自己的产品任务 · PM Toolkit</title><link rel="icon" href="data:,">
+<style>
+:root{--paper:#f7f7f0;--card:#fffef9;--forest:#214c3c;--green:#36654d;--ink:#263b32;--muted:#667369;--line:#d7dfd0;--pale:#eaf0e3;--amber:#fff0cf;--error:#9e3f2c}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea,select{font:inherit}button,a,input,select,textarea{outline-offset:4px}a{color:var(--forest)}button,.download{border:1px solid var(--line);background:var(--card);color:var(--forest);padding:10px 16px;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block}button:hover,.download:hover{background:var(--pale)}button.primary,.download{background:var(--forest);color:white;border-color:var(--forest)}[hidden]{display:none!important}.bar{padding:18px max(24px,calc((100vw - 1280px)/2));border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:18px;align-items:center}.brand{font-weight:750;letter-spacing:.04em}.brand b{font-size:24px;margin-right:12px}.bar a{font-size:13px}.page{max-width:1280px;margin:auto;padding:42px 24px 64px}.eyebrow{letter-spacing:.16em;font-size:12px;color:var(--green);font-weight:750;margin:0 0 8px}h1{font-size:clamp(30px,4vw,48px);line-height:1.25;letter-spacing:-.04em;margin:0 0 18px;max-width:800px}h2{font-size:22px;margin:0 0 6px}h3{font-size:17px;margin:0 0 10px}.lead{font-size:17px;max-width:850px;color:var(--muted);margin:0 0 24px}.steps{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 28px}.steps span{padding:7px 12px;background:var(--pale);border-radius:5px;font-size:13px}.layout{display:grid;grid-template-columns:210px 1fr;gap:28px;align-items:start}.rail{position:sticky;top:18px}.rail a{display:block;padding:9px 0;text-decoration:none;font-size:14px}.rail .note{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;margin-top:16px}.section{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:26px;margin-bottom:20px;scroll-margin-top:18px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:start;margin-bottom:20px}.number{font-size:12px;color:var(--green);font-weight:750;letter-spacing:.1em}.hint,.intro{color:var(--muted);font-size:13px;margin:5px 0 14px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.wide{grid-column:1/-1}label{display:block;font-size:13px;font-weight:650}label>span{display:block;margin-bottom:5px}input,select,textarea{width:100%;border:1px solid #becbb9;border-radius:7px;padding:10px 11px;background:white;color:var(--ink);font-weight:400}textarea{resize:vertical;min-height:92px;line-height:1.55}textarea.code{font:12px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2;min-height:220px}input[type=checkbox]{width:auto;accent-color:var(--forest)}.check{display:flex;gap:9px;align-items:center;min-height:60px}.check span{margin:0}.field-card{padding:18px;border:1px solid var(--line);border-radius:10px;margin:14px 0;background:#fbfcf6}.field-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:14px}.field-head button{padding:5px 10px;font-size:12px}.field-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.field-grid textarea{min-height:74px}.notice{background:var(--pale);border-left:3px solid var(--green);padding:14px 18px;font-size:13px;margin:20px 0}.notice.pending{background:var(--amber);border-color:#a37c2d}.actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px}.status{font-size:13px;color:var(--muted)}.errors{padding:16px 20px;background:#fff0e9;color:var(--error);border:1px solid #dcb5a4;border-radius:8px;margin:16px 0}.errors ul{margin-bottom:0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#edf1e7;border-radius:8px;padding:16px;font-size:12px}.output{min-height:420px!important}details{border-top:1px solid var(--line);margin-top:18px;padding-top:14px}summary{cursor:pointer;font-size:13px;font-weight:650}footer{font-size:12px;color:var(--muted);margin-top:28px}.small{font-size:12px;color:var(--muted)}@media(max-width:900px){.layout{grid-template-columns:1fr}.rail{position:static;display:flex;gap:12px;flex-wrap:wrap}.rail .note{width:100%;margin-top:0}.grid.three,.field-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.page{padding:28px 16px}.section{padding:20px 16px}.grid,.grid.three,.field-grid{grid-template-columns:1fr}.bar{padding:14px 16px;align-items:start}.wide{grid-column:auto}.section-head{display:block}.field-head{align-items:start}h1{font-size:32px}}
+</style></head>
+<body>
+<header class="bar"><div class="brand"><b>P/</b> PM TOOLKIT <span class="small">/ TASK PREPARER</span></div><a href="docs/task-spec.md">查看输入合同 ↗</a></header>
+<main class="page">
+<p class="eyebrow">START WITH YOUR PRODUCT QUESTION</p>
+<h1>把一个问题，准备成一份可生成的产品任务。</h1>
+<p class="lead">先整理用户、问题与取舍，再配置集合列表或单表单。这里只帮助你填写并导出首版 task.json；原型、PRD 和 Word 由工具包的本地命令生成。</p>
+<div class="steps"><span>01 填背景与边界</span><span>02 配置有限规格</span><span>03 导出 JSON → 本地生成</span></div>
+<div class="layout"><aside class="rail"><nav aria-label="准备步骤"><a href="#identity">01 任务与来源</a><a href="#brief">02 用户与目标</a><a href="#scope">03 范围与取舍</a><a href="#prototype">04 字段与样例</a><a href="#requirements">05 规则与检查</a><a href="#export">06 导出与下一步</a></nav><p class="note">仅两类有限配置。内容保留在当前页面内存，刷新会恢复合成起点；不会联网、自动保存、调用模型或执行审批。</p></aside>
+<div><form id="prepare-form" novalidate>
+<section class="section" id="identity"><div class="section-head"><div><span class="number">01 / IDENTITY</span><h2>这次准备什么任务？</h2><p class="intro">两种起点均为人工合成。切换类型或重载会替换当前填写内容；请先保存需要保留的导出。</p></div><button type="button" id="reload-preset">重载当前合成起点</button></div>
+<div class="grid three"><label><span>原型类型</span><select id="kind"><option value="collection">集合列表 · 搜索 / 筛选 / 会话维护</option><option value="request">单表单 · 四状态会话演示</option></select></label><label><span>任务 ID（小写字母起始）</span><input id="task-id" maxlength="40"></label><label><span>首版版本号</span><input id="task-version" maxlength="120"></label><label class="wide"><span>任务与原型标题</span><input id="task-title" maxlength="120"></label><label><span>内容来源类型（调用者声明）</span><select id="source-kind"><option value="synthetic">synthetic · 人工合成</option><option value="user-supplied">user-supplied · 调用者提供</option></select></label><label><span>证据类型</span><select id="evidence-kind"><option value="synthetic">synthetic · 合成材料</option><option value="hypothesis">hypothesis · 待证假设</option><option value="supplied_observation">supplied_observation · 给定观察</option></select></label><label><span>证据来源位置 / 说明</span><input id="evidence-source"></label><label class="wide"><span>给定证据或假设</span><textarea id="evidence-text" rows="3"></textarea></label></div><p class="hint">来源类型不会证明分享资格、真实性或脱敏。请自行核对；不要放入密钥、真实个人资料或无权分发的材料。此准备器只建立首版，两个 parent 绑定均为 null；修订沿用原文件和评审命令。</p></section>
+<section class="section" id="brief"><span class="number">02 / PRODUCT BRIEF</span><h2>为谁解决什么问题？</h2><p class="intro">明确价值假设，尚未测量的指标保留“未采集 / 待验证”。与原型同源的定位、问题和价值须为单行文字。</p><div class="grid"><label><span>目标用户</span><textarea id="audience"></textarea></label><label><span>用户问题（单行）</span><textarea id="problem"></textarea></label><label><span>产品定位（单行）</span><textarea id="positioning"></textarea></label><label><span>价值假设（单行）</span><textarea id="value-hypothesis"></textarea></label><label><span>本轮目标</span><textarea id="goal"></textarea></label><label><span>优先级依据</span><textarea id="priority-basis"></textarea></label><label><span>成功指标描述</span><textarea id="metric-statement"></textarea></label><label><span>指标基线</span><textarea id="metric-baseline"></textarea></label><label><span>指标目标</span><textarea id="metric-target"></textarea></label><label><span>测量方式</span><textarea id="metric-measurement"></textarea></label></div></section>
+<section class="section" id="scope"><span class="number">03 / SCOPE & DECISIONS</span><h2>保留取舍，也保留未知。</h2><div class="grid"><label><span>纳入范围（每行一项）</span><textarea id="scope-included"></textarea></label><label><span>排除范围（每行一项）</span><textarea id="scope-excluded"></textarea></label><label><span>给定决定状态</span><select id="decision-status"><option value="pending">pending · 待定（默认）</option><option value="proposed">proposed · 提案</option><option value="conflict">conflict · 冲突</option><option value="declared">declared · 调用者声明</option></select></label><label><span>本轮给定决定 / 取舍</span><textarea id="decision-statement"></textarea></label><label class="wide"><span>未决事项（每行一项；只在确实解决后清空）</span><textarea id="pending"></textarea></label><label class="wide"><span>消费者范围 JSON（id / included 布尔 / reason）</span><textarea id="consumers-json" class="code" spellcheck="false"></textarea></label></div><p class="hint">所有需求自动关联这份给定证据与决定。消费者须说明纳入或排除理由。pending、proposed、conflict 或任何未决事项都会在 CLI 中保留 HOLD；declared 只是输入标签，不证明真人批准。</p></section>
+<section class="section" id="prototype"><div class="section-head"><div><span class="number">04 / FINITE PROTOTYPE</span><h2>把字段和样例换成自己的。</h2><p class="intro" id="prototype-intro"></p></div><button type="button" id="add-field">＋ 添加字段</button></div><div id="fields"></div><div id="collection-options" class="grid"><label><span>搜索字段 key（逗号分隔，至少一项）</span><input id="search-fields"></label><label><span>筛选字段 key（逗号分隔，只能单选 / 标签，可空）</span><input id="filter-fields"></label><label><span>筛选载体</span><select id="layout"><option value="sidebar">sidebar · 左侧</option><option value="toolbar">toolbar · 顶部</option></select></label></div><div id="request-options" hidden><label><span>给定初始状态（只是声明）</span><select id="initial-state"><option value="draft">draft · 草稿</option><option value="submitted">submitted · 已提交</option><option value="needs_info">needs_info · 待补充</option><option value="done">done · 已完成</option></select></label><p class="hint">固定四个转换：提交、带理由退回补充、重提、完成。草稿 / 待补充可编辑；其他状态只读，刷新恢复给定初值。</p></div><label><span id="samples-label">集合样例 items JSON</span><textarea id="samples-json" class="code" spellcheck="false" rows="13"></textarea></label><p class="hint">样例区需要填写 JSON；它不是自动生成数据。字段 key 改动后，请同步每项 values 或表单初值中的 key。number 使用数值或 null；可选 choice 可用空字符串，tags 使用字符串数组；true / false 不能替代数值。所有数值须有限且绝对值 ≤ 9007199254740991。</p></section>
+<section class="section" id="requirements"><span class="number">05 / RULES & CHECKS</span><h2>写清规则、条件与预期。</h2><p class="intro">这两个区域编辑有限 JSON，不是自然语言自动生成。需求以 rule_ids 引用下方规则；导出时会自动反向填写规则的 requirement_ids、生成检查 ID，并同步原型的检查文字。</p><label><span>需求与检查 JSON</span><textarea id="requirements-json" class="code" spellcheck="false" rows="19"></textarea></label><label><span>规则 JSON</span><textarea id="rules-json" class="code" spellcheck="false" rows="16"></textarea></label><details><summary>查看这两个编辑区的有限结构</summary><pre>需求：[{"id":"find","statement":"需求文字","priority":"must","priority_reason":"取舍依据","rule_ids":["rule_find"],"checks":[{"condition":"操作条件","expected":"可观察结果","evidence_level":"browser"}]}]
+规则：[{"id":"rule_find","statement":"规则文字","default":"默认","exception":"异常","boundary":"边界"}]
+priority：must / should / could
+evidence_level：browser / manual / content / static
+需求、规则、消费者及自动检查 ID 不能相互重名。规则必须有需求承接；检查仍是待执行计划。</pre></details></section>
+<section class="section" id="export"><span class="number">06 / EXPORT & BUILD</span><h2>带走首版 task.json。</h2><div class="notice pending">本页面不会生成原型、PRD 或 Word，也不会运行检查计划。导出成功只表示本页面能构造这份有限任务；CLI 仍须校验依赖、输入和制品。未决项应继续保留。</div><div id="errors" class="errors" role="alert" hidden></div><div class="actions"><button type="submit" id="export-task" class="primary">检查填写并生成 JSON</button><a id="download-task" class="download" download="task.json" hidden>下载 task.json ↓</a><span id="export-status" class="status" role="status">尚未导出</span></div><div id="export-result" hidden><label><span>导出的首版任务（只读）</span><textarea id="task-output" class="code output" readonly spellcheck="false"></textarea></label><h3>接着在工具包根目录运行</h3><pre>python3 pm_task.py build --source path/to/task.json --output path/to/new-workpack
+python3 pm_task.py check --source path/to/task.json --output path/to/new-workpack</pre><p class="hint">将下载文件保存到自己的材料目录，替换命令中的路径；输出目录必须不存在。合法待定材料退出 3 并产生 HOLD，可继续补齐来源与决定。完成真实操作后再记录观察与评审，流程见 <a href="docs/lifecycle.md">完整任务说明</a>。</p></div></section>
+</form><footer>输入内容保留调用者原意，本页面不负责脱敏、来源鉴定、真实审批或业务验收。离开或刷新前保存需要保留的 JSON；当前页面没有存储与恢复机制。</footer></div></div></main>
+<script id="prepare-core">
+(() => {
+  'use strict';
+  const clone = value => JSON.parse(JSON.stringify(value));
+  const fail = message => { throw new Error(message); };
+  const check = (ok,message) => { if(!ok)fail(message); };
+  const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+  const exact = (value,names) => object(value) && Object.keys(value).length === names.length && names.every(name=>Object.hasOwn(value,name));
+  const text = (value,max=1000,empty=false,multiline=false) => typeof value==='string' && [...value].length<=max && (empty||value.trim().length>0) && !(multiline ? /[\u0000-\u0008\u000b-\u001f\uD800-\uDFFF]/u : /[\u0000-\u001f\u2028\u2029\uD800-\uDFFF]/u).test(value);
+  const ident = value => typeof value==='string' && /^[a-z][a-z0-9_]{0,39}$/.test(value);
+  const safe = value => typeof value==='number' && Number.isFinite(value) && Math.abs(value)<=Number.MAX_SAFE_INTEGER;
+  const strings = (value,max=100,empty=false) => Array.isArray(value)&&value.length<=max&&(empty||value.length>0)&&value.every(item=>text(item))&&new Set(value).size===value.length;
+  const keyText = (value,label,max=1000,multiline=false) => check(text(value,max,false,multiline),label+'须为非空、有限长度的文字。');
+  const lines = value => value.split(/\r?\n/).map(item=>item.trim()).filter(Boolean);
+  function parseStrict(raw,label='JSON') {
+    check(typeof raw==='string'&&raw.length<=1_000_000,label+'过长或不是文本。');
+    let result;try{result=JSON.parse(raw);}catch(_){fail(label+'不是有效 JSON。');}
+    let i=0;
+    const space=()=>{while(/\s/.test(raw[i]||'')&&i<raw.length)i++;};
+    function quoted(){const start=i++;while(i<raw.length){const c=raw[i++];if(c==='\\'){i++;continue;}if(c==='"')return JSON.parse(raw.slice(start,i));}fail(label+'字符串未结束。');}
+    function visit(depth){check(depth<60,label+'嵌套过深。');space();const c=raw[i];
+      if(c==='{'){i++;space();const names=new Set();if(raw[i]==='}'){i++;return;}while(i<raw.length){const name=quoted();check(!names.has(name),label+'含重复 JSON 键。');names.add(name);space();i++;visit(depth+1);space();if(raw[i++]==='}')return;space();}}
+      else if(c==='['){i++;space();if(raw[i]===']'){i++;return;}while(i<raw.length){visit(depth+1);space();if(raw[i++]===']')return;}}
+      else if(c==='"')quoted();else while(i<raw.length&&!/[\s,}\]]/.test(raw[i]))i++;
+    }
+    visit(0);return result;
+  }
+  function validateFields(fields,kind){
+    check(Array.isArray(fields)&&fields.length>=1&&fields.length<=16,'字段数量须为 1–16。');const ids=new Set();
+    fields.forEach((f,index)=>{const prefix='字段 '+(index+1)+'：';check(object(f)&&'key label type required choices'.split(' ').every(k=>Object.hasOwn(f,k)),prefix+'结构不完整。');
+      const allowed=kind==='request'?'key label type required choices minimum maximum':'key label type required choices';check(Object.keys(f).every(k=>allowed.split(' ').includes(k)),prefix+'含不支持的属性。');
+      check(ident(f.key)&&!ids.has(f.key),prefix+'key 须合法且唯一。');ids.add(f.key);keyText(f.label,prefix+'名称',80);check(['text','number','choice','tags'].includes(f.type)&&typeof f.required==='boolean',prefix+'类型或必填不合法。');
+      check(strings(f.choices,30,true)&&(f.choices.length>0)===['choice','tags'].includes(f.type),prefix+'单选/标签须有唯一选项，其他类型不带选项。');
+      if(f.type==='number'&&kind==='request'){check((f.minimum==null||safe(f.minimum))&&(f.maximum==null||safe(f.maximum))&&(f.minimum==null||f.maximum==null||f.minimum<=f.maximum),prefix+'数值范围不合法。');}
+      else check(!Object.hasOwn(f,'minimum')&&!Object.hasOwn(f,'maximum'),prefix+'本类型不接受数值范围。');
+    });return ids;
+  }
+  function validateValues(fields,values,complete){
+    check(exact(values,fields.map(f=>f.key)),'样例或初值须与每个字段 key 逐项对应，不能遗漏或多填。');
+    for(const f of fields){const v=values[f.key],missing=f.type==='number'?v===null:f.type==='tags'?Array.isArray(v)&&v.length===0:typeof v==='string'&&v.trim()==='';
+      check(!(complete&&f.required&&missing),'字段 '+f.key+' 的必填值为空。');let valid;
+      if(f.type==='number')valid=v===null||safe(v)&&(f.minimum==null||v>=f.minimum)&&(f.maximum==null||v<=f.maximum);
+      else if(f.type==='tags')valid=strings(v,30,true)&&v.every(x=>f.choices.includes(x));
+      else valid=text(v,1000,true)&&(f.type!=='choice'||v===''||f.choices.includes(v));
+      check(valid,'字段 '+f.key+' 的值不符合类型、允许值或数值范围。');
+    }
+  }
+  function makePreset(kind){
+    check(['collection','request'].includes(kind),'不支持的原型类型。');
+    const request=kind==='request';
+    const common={kind,id:request?'my_request_task':'my_collection_task',version:'0.1',title:request?'我的协作请求任务':'我的资料整理任务',source_kind:'synthetic',
+      audience:'需要讨论产品交接的小组成员；这是人工合成起点。',problem:request?'合成背景：请求内容和补充理由分散，状态边界不易看清。':'合成背景：资料分散，按状态与主题寻找内容的路径不清晰。',
+      positioning:request?'用本地单表单讨论协作内容与处理状态。':'用本地集合列表讨论资料的查找与会话维护。',
+      value_hypothesis:'假设明确字段、规则和交接边界有助于讨论需求；尚无真实效果数据。',goal:'先对齐需求表达、有限原型与交接文档，再记录真实试用。',priority_basis:'先覆盖核心路径和错误边界，不预填收益。',
+      metric_statement:'目标用户能说明本轮核心操作与限制（待真实试用）。',metric_baseline:'未采集真实用户基线。',metric_target:'待真实试用后确定。',metric_measurement:'记录完成情况、阻断点与解释需求；技术检查单独记录。',
+      evidence_kind:'synthetic',evidence_text:'此处为人工合成的讨论起点；请替换为有权使用的证据或明确假设。',evidence_source:'PM Toolkit 准备器合成起点，非真实访谈。',
+      decision_status:'pending',decision_statement:'待定：核对本轮范围、用户问题和有限演示是否合适。',
+      included:request?'单表单、字段校验、四状态会话演示与同源交接。':'集合列表、搜索筛选、详情与当前会话新增/编辑。',excluded:'后台、登录、云端持久化、真实审批、真实资料采集及效率收益声明。',
+      pending:'核对内容来源、目标用户与本轮产品决定；尚未完成真实试用。',
+      consumers_json:JSON.stringify([{id:'consumer_local',included:true,reason:'本轮纳入本地演示的操作者。'},{id:'consumer_server',included:false,reason:'服务器和多人协作不在本轮范围。'}],null,2),
+      search_fields:'title, topics',filters:'stage, topics',layout:'sidebar',initial_state:'draft'};
+    const requirements=request?[
+      {id:'request_values',statement:'按给定类型、必填与范围核对请求内容。',priority:'must',priority_reason:'先明确输入含义和错误边界。',rule_ids:['rule_values'],checks:[{condition:'清空标题或输入超过80小时的数值后提交',expected:'保留输入并阻止转换；可选数值留空与零含义区分',evidence_level:'browser'}]},
+      {id:'request_states',statement:'演示提交、带理由退回、重提与完成。',priority:'must',priority_reason:'先对齐本地状态边界，不实现真实流程。',rule_ids:['rule_states'],checks:[{condition:'依次提交、退回补充、编辑后重提与完成',expected:'退回需要理由；已提交只读、待补充可改、终态无继续动作；刷新恢复源',evidence_level:'browser'}]}]:[
+      {id:'find',statement:'按状态和主题查找资料。',priority:'must',priority_reason:'先覆盖查找与无结果恢复。',rule_ids:['rule_find'],checks:[{condition:'使用搜索和状态/主题筛选，并尝试无结果条件',expected:'条件取交集；无结果仍可重置恢复给定样例',evidence_level:'browser'}]},
+      {id:'maintain',statement:'查看详情并在当前会话维护资料。',priority:'should',priority_reason:'先讨论会话修改的边界，持久化留在范围外。',rule_ids:['rule_maintain'],checks:[{condition:'查看详情、尝试必填错误与有效新增/编辑，再刷新',expected:'错误阻止保存；有效改动只在本页保留，刷新恢复给定样例',evidence_level:'browser'}]}];
+    const rules=request?[
+      {id:'rule_values',statement:'字段遵循给定类型与范围。',default:'可选数值可为null，零按零保留。',exception:'必填空、非法选项或越界时阻止提交。',boundary:'有限数值、最多16字段；不校验真实业务资格。'},
+      {id:'rule_states',statement:'只使用四状态和固定四转换。',default:'从草稿开始。',exception:'退回必须有理由，终态只读。',boundary:'会话内演示；刷新恢复初值；无真实审批。'}]:[
+      {id:'rule_find',statement:'搜索与精确筛选取交集。',default:'无筛选时显示全部给定样例。',exception:'无命中保留重置入口。',boundary:'只查询页面给定数据，不联网或推断身份。'},
+      {id:'rule_maintain',statement:'新增和编辑只作用于当前页面会话。',default:'详情逐项显示给定字段。',exception:'必填或数值错误时阻止保存。',boundary:'刷新恢复源，不提供删除、存储或后台。'}];
+    common.requirements_json=JSON.stringify(requirements,null,2);common.rules_json=JSON.stringify(rules,null,2);
+    common.fields=request?[
+      {key:'request_title',label:'请求标题',type:'text',required:true,choices:[]},
+      {key:'category',label:'请求类型',type:'choice',required:true,choices:['资料整理','界面验证','文档协作']},
+      {key:'effort_hours',label:'预计投入（小时）',type:'number',required:false,choices:[],minimum:0,maximum:80},
+      {key:'audiences',label:'相关角色',type:'tags',required:false,choices:['产品','设计','研发']},
+      {key:'description',label:'内容说明',type:'text',required:true,choices:[]}]:[
+      {key:'title',label:'资料名称',type:'text',required:true,choices:[]},
+      {key:'stage',label:'整理状态',type:'choice',required:true,choices:['待整理','进行中','已完成']},
+      {key:'topics',label:'主题',type:'tags',required:false,choices:['设计','写作','研究']},
+      {key:'pages',label:'页数（可选）',type:'number',required:false,choices:[]}];
+    common.samples_json=JSON.stringify(request?{request_title:'核对两份合成资料',category:'资料整理',effort_hours:null,audiences:['产品'],description:'只讨论虚构资料的引用与交接要点。'}:[
+      {id:'item_a',values:{title:'灯塔便笺',stage:'进行中',topics:['设计'],pages:12}},
+      {id:'item_b',values:{title:'河岸手册',stage:'待整理',topics:['研究'],pages:null}}],null,2);
+    return clone(common);
+  }
+  function buildTask(state){
+    check(object(state)&&['collection','request'].includes(state.kind),'请选择两种有限原型之一。');
+    check(ident(state.id),'任务 ID 须为小写字母起始的字母、数字或下划线，最长40字符。');keyText(state.title,'任务标题',120);keyText(state.version,'首版版本号',120);
+    check(['synthetic','user-supplied'].includes(state.source_kind),'来源类型不合法。');check(['synthetic','hypothesis','supplied_observation'].includes(state.evidence_kind),'证据类型不合法。');
+    check(['declared','proposed','pending','conflict'].includes(state.decision_status),'决定状态不合法。');
+    for(const key of ['audience','goal','priority_basis','metric_statement','metric_baseline','metric_target','metric_measurement','evidence_text','evidence_source','decision_statement'])keyText(state[key],key,3000,true);
+    for(const key of ['problem','positioning','value_hypothesis'])keyText(state[key],key+'（同源原型文字须单行）');
+    const included=lines(state.included),excluded=lines(state.excluded),pending=lines(state.pending);
+    check(strings(included)&&strings(excluded)&&strings(pending,100,true),'范围与未决须为每行一项、唯一且有限长度的文字；纳入与排除范围均不能为空。');
+    const fieldIds=validateFields(state.fields,state.kind),fields=clone(state.fields);
+    const consumers=parseStrict(state.consumers_json,'消费者 JSON'),simpleReqs=parseStrict(state.requirements_json,'需求 JSON'),simpleRules=parseStrict(state.rules_json,'规则 JSON');
+    check(Array.isArray(consumers)&&consumers.length>=1&&consumers.length<=100,'消费者数量须为1–100。');
+    check(Array.isArray(simpleReqs)&&simpleReqs.length>=1&&simpleReqs.length<=30,'需求数量须为1–30。');
+    check(Array.isArray(simpleRules)&&simpleRules.length>=1&&simpleRules.length<=100,'规则数量须为1–100。');
+    const allIds=new Set(['ev_prepare','dec_prepare']);const addId=(id,label)=>{check(ident(id)&&!allIds.has(id),label+' ID不合法或与其他引用重名。');allIds.add(id);};
+    const normalizedConsumers=consumers.map(row=>{check(exact(row,['id','included','reason']),'消费者只能填写id、included和reason。');addId(row.id,'消费者');check(typeof row.included==='boolean','消费者included必须为true/false布尔值。');keyText(row.reason,'消费者理由',3000,true);return {...row,evidence_ids:['ev_prepare']};});
+    const ruleIds=new Set();simpleRules.forEach(row=>{check(exact(row,['id','statement','default','exception','boundary']),'规则只接受id、statement、default、exception、boundary。');addId(row.id,'规则');ruleIds.add(row.id);for(const key of ['statement','default','exception','boundary'])keyText(row[key],'规则'+key,3000,true);});
+    const requirements=simpleReqs.map(row=>{check(exact(row,['id','statement','priority','priority_reason','rule_ids','checks']),'需求结构不符合页面中的有限结构。');addId(row.id,'需求');keyText(row.statement,'需求声明');check(['must','should','could'].includes(row.priority),'需求优先级须为must/should/could。');keyText(row.priority_reason,'需求优先级依据',3000,true);check(strings(row.rule_ids)&&row.rule_ids.every(id=>ruleIds.has(id)),'需求rule_ids须引用存在且唯一的规则。');check(Array.isArray(row.checks)&&row.checks.length>=1&&row.checks.length<=20,'每条需求须有1–20条检查。');
+      const checks=row.checks.map((c,i)=>{check(exact(c,['condition','expected','evidence_level']),'检查只接受condition、expected、evidence_level。');keyText(c.condition,'检查条件');keyText(c.expected,'检查预期');keyText(c.condition+'；预期：'+c.expected,'组合检查文字');check(['browser','manual','content','static'].includes(c.evidence_level),'检查证据层须为browser/manual/content/static。');const id=row.id+'_c'+(i+1);addId(id,'自动检查（请缩短需求id）');return {id,...c};});
+      const acceptance=checks.map(c=>c.condition+'；预期：'+c.expected);check(new Set(acceptance).size===acceptance.length,'同一需求内不能重复检查文字。');
+      return {...row,evidence_ids:['ev_prepare'],decision_ids:['dec_prepare'],checks};});
+    const rules=simpleRules.map(row=>{const ids=requirements.filter(req=>req.rule_ids.includes(row.id)).map(req=>req.id);check(ids.length>0,'每条规则都须至少有一项需求承接。');return {...row,evidence_ids:['ev_prepare'],requirement_ids:ids};});
+    const samples=parseStrict(state.samples_json,state.kind==='request'?'表单初值 JSON':'集合样例 JSON');
+    const prototype={schema:state.kind==='request'?'pm-request/v1':'pm-collection/v1',id:state.id,version:state.version,parent_sha256:null,title:state.title,positioning:state.positioning,pain:state.problem,value:state.value_hypothesis,fields};
+    if(state.kind==='request'){check(['draft','submitted','needs_info','done'].includes(state.initial_state),'初始状态不合法。');validateValues(fields,samples,['submitted','done'].includes(state.initial_state));prototype.initial_values=samples;prototype.initial_state=state.initial_state;}
+    else {const search=state.search_fields.split(',').map(s=>s.trim()).filter(Boolean),filters=state.filters.split(',').map(s=>s.trim()).filter(Boolean);check(strings(search,16)&&search.every(key=>fieldIds.has(key)),'搜索字段须唯一、存在且至少一项。');check(strings(filters,16,true)&&filters.every(key=>fieldIds.has(key)&&['choice','tags'].includes(fields.find(f=>f.key===key).type)),'筛选字段只能引用存在的单选/标签字段，且不能重复。');check(['sidebar','toolbar'].includes(state.layout),'筛选载体不合法。');check(Array.isArray(samples)&&samples.length<=500,'集合样例须为最多500项的数组。');const ids=new Set();samples.forEach(item=>{check(exact(item,['id','values'])&&ident(item.id)&&!ids.has(item.id),'集合样例id须合法且唯一，每项只有id与values。');ids.add(item.id);validateValues(fields,item.values,true);});Object.assign(prototype,{search_fields:search,filters,layout:state.layout,items:samples});}
+    prototype.requirements=requirements.map(row=>({id:row.id,statement:row.statement,acceptance:row.checks.map(c=>c.condition+'；预期：'+c.expected)}));
+    const task={schema:'pm-task/v1',id:state.id,version:state.version,parent_task_sha256:null,source_kind:state.source_kind,title:state.title,
+      brief:{audience:state.audience,problem:state.problem,positioning:state.positioning,value_hypothesis:state.value_hypothesis,goal:state.goal,success_metric:{statement:state.metric_statement,baseline:state.metric_baseline,target:state.metric_target,measurement:state.metric_measurement},priority_basis:state.priority_basis},
+      evidence:[{id:'ev_prepare',kind:state.evidence_kind,text:state.evidence_text,source:state.evidence_source}],decisions:[{id:'dec_prepare',statement:state.decision_statement,status:state.decision_status,evidence_ids:['ev_prepare']}],
+      scope:{included,excluded,consumers:normalizedConsumers},rules,requirements,prototype,pending};
+    const raw=JSON.stringify(task,null,2)+'\n';check(new TextEncoder().encode(raw).length<=2_000_000,'导出的任务超过2 MB，须减少内容。');
+    return {task,raw,status:pending.length||state.decision_status!=='declared'?'HOLD':'DRAFT_NOT_ACCEPTED'};
+  }
+  globalThis.PMPrepare=Object.freeze({makePreset,buildTask,parseStrict});
+})();
+</script>
+<script id="prepare-ui">
+(() => {
+  'use strict';const $=id=>document.getElementById(id),API=globalThis.PMPrepare;
+  const make=(tag,text)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=text;return el;};
+  const bindings={id:'task-id',title:'task-title',version:'task-version',source_kind:'source-kind',audience:'audience',problem:'problem',positioning:'positioning',value_hypothesis:'value-hypothesis',goal:'goal',priority_basis:'priority-basis',metric_statement:'metric-statement',metric_baseline:'metric-baseline',metric_target:'metric-target',metric_measurement:'metric-measurement',evidence_kind:'evidence-kind',evidence_text:'evidence-text',evidence_source:'evidence-source',decision_status:'decision-status',decision_statement:'decision-statement',included:'scope-included',excluded:'scope-excluded',pending:'pending',consumers_json:'consumers-json',search_fields:'search-fields',filters:'filter-fields',layout:'layout',initial_state:'initial-state',samples_json:'samples-json',requirements_json:'requirements-json',rules_json:'rules-json'};
+  const rows=[];let url=null;
+  function invalidate(){if(url){URL.revokeObjectURL(url);url=null;}$('task-output').value='';$('download-task').hidden=true;$('download-task').removeAttribute('href');$('export-result').hidden=true;$('export-status').textContent='已编辑，请重新检查并导出。';}
+  function control(label,value,type='text'){const wrap=make('label'),caption=make('span',label),input=make(type==='textarea'?'textarea':type==='select'?'select':'input');if(type==='text')input.type='text';input.value=value;wrap.append(caption,input);return {wrap,input};}
+  function addField(field){const card=make('article');card.className='field-card';const head=make('div');head.className='field-head';head.append(make('strong','字段配置'));const remove=make('button','移除此字段');remove.type='button';head.append(remove);const grid=make('div');grid.className='field-grid';card.append(head,grid);
+    const key=control('字段 key',field.key),label=control('字段名称',field.label),type=control('字段类型','', 'select');for(const kind of ['text','number','choice','tags']){const option=make('option',kind);option.value=kind;type.input.append(option);}type.input.value=field.type;
+    const required=control('提交 / 保存时必填','');required.input.type='checkbox';required.input.checked=field.required;required.wrap.className='check';
+    const choices=control('允许选项（每行一个）',field.choices.join('\n'),'textarea'),minimum=control('最小值（空为不另限）',field.minimum==null?'':String(field.minimum)),maximum=control('最大值（空为不另限）',field.maximum==null?'':String(field.maximum));choices.wrap.className='wide';
+    grid.append(key.wrap,label.wrap,type.wrap,required.wrap,choices.wrap,minimum.wrap,maximum.wrap);
+    const model={card,key:key.input,label:label.input,type:type.input,required:required.input,choices:choices.input,minimum:minimum.input,maximum:maximum.input};rows.push(model);
+    function update(){choices.wrap.hidden=!['choice','tags'].includes(type.input.value);minimum.wrap.hidden=maximum.wrap.hidden=!($('kind').value==='request'&&type.input.value==='number');}
+    type.input.addEventListener('change',update);update();remove.addEventListener('click',()=>{rows.splice(rows.indexOf(model),1);card.remove();invalidate();});$('fields').append(card);
+  }
+  function loadPreset(){const state=API.makePreset($('kind').value);for(const [key,id]of Object.entries(bindings))$(id).value=state[key];rows.splice(0);$('fields').replaceChildren();state.fields.forEach(addField);const request=state.kind==='request';$('collection-options').hidden=request;$('request-options').hidden=!request;$('samples-label').textContent=request?'表单初值 initial_values JSON（完整字段对象）':'集合样例 items JSON（id / values 数组）';$('prototype-intro').textContent=request?'单表单 + 草稿 / 已提交 / 待补充 / 已完成。仅页面会话演示，刷新恢复给定初值。':'列表、详情、字面搜索、精确筛选与会话新增/编辑；刷新恢复给定样例。';$('errors').hidden=true;invalidate();$('export-status').textContent='合成起点已载入；默认待定，尚未导出。';}
+  function numeric(raw){if(raw.trim()==='')return null;if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(raw.trim()))throw new Error('数值范围须填写有效十进制数或留空。');const value=Number(raw);if(!Number.isFinite(value)||Math.abs(value)>Number.MAX_SAFE_INTEGER)throw new Error('数值范围须有限且处于安全数值范围。');return value;}
+  function stateFromUI(){const state={kind:$('kind').value};for(const [key,id]of Object.entries(bindings))state[key]=$(id).value;state.fields=rows.map(row=>{const type=row.type.value,field={key:row.key.value,label:row.label.value,type,required:row.required.checked,choices:['choice','tags'].includes(type)?row.choices.value.split(/\r?\n/).filter(Boolean):[]};if(state.kind==='request'&&type==='number'){field.minimum=numeric(row.minimum.value);field.maximum=numeric(row.maximum.value);}return field;});return state;}
+  $('prepare-form').addEventListener('input',invalidate);$('prepare-form').addEventListener('change',invalidate);
+  $('kind').addEventListener('change',loadPreset);$('reload-preset').addEventListener('click',loadPreset);
+  $('add-field').addEventListener('click',()=>{if(rows.length>=16){$('errors').hidden=false;$('errors').textContent='最多16个字段。';return;}let index=1;while(rows.some(row=>row.key.value==='field_'+index))index++;addField({key:'field_'+index,label:'新字段',type:'text',required:false,choices:[]});invalidate();});
+  $('prepare-form').addEventListener('submit',event=>{event.preventDefault();invalidate();try{const result=API.buildTask(stateFromUI());$('task-output').value=result.raw;$('export-result').hidden=false;url=URL.createObjectURL(new Blob([result.raw],{type:'application/json;charset=utf-8'}));$('download-task').href=url;$('download-task').hidden=false;$('errors').hidden=true;$('export-status').textContent=result.status==='HOLD'?'已导出待定草案 · CLI 将保留 HOLD。':'已导出草案 · 尚未执行或验收。';}catch(error){$('errors').hidden=false;$('errors').textContent=error.message||'填写内容不能构造有效任务，请核对输入合同。';$('export-status').textContent='尚未导出，请处理填写问题。';}});
+  loadPreset();
+})();
+</script></body></html>
