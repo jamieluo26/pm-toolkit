@@ -1,0 +1,39 @@
+{
+  "schema": "pm-task-review/v1",
+  "status": "DECLARED_CHANGE_COVERED",
+  "meaning": "Supplied literal change coverage; not human approval or functional intent proof.",
+  "task_id": "reading_lifecycle",
+  "before_version": "2.0",
+  "after_version": "2.1",
+  "input_sha256": {
+    "before.json": "1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc",
+    "after.json": "f78b544370498a5bdc7dce3c66665d3f54680bed7d45e9e625c1316da9c4998a",
+    "feedback.json": "b1573c4cef48999771959b91f2d64f3bc8c3f7e3ae3a9f688dc81ebd41d94ba7",
+    "decisions.json": "ea1a2d6305160a1e4956058386bfa989369a47d89215851ff9bf4a035b69f9df"
+  },
+  "changed_paths": [
+    "/decisions",
+    "/prototype/layout",
+    "/prototype/requirements",
+    "/requirements",
+    "/rules"
+  ],
+  "coverage": {
+    "/decisions": [
+      "fb_toolbar"
+    ],
+    "/prototype/layout": [
+      "fb_toolbar"
+    ],
+    "/prototype/requirements": [
+      "fb_toolbar"
+    ],
+    "/requirements": [
+      "fb_toolbar"
+    ],
+    "/rules": [
+      "fb_toolbar"
+    ]
+  },
+  "issues": []
+}

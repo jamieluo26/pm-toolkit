@@ -1,0 +1,339 @@
+{
+  "schema": "pm-task/v1",
+  "id": "reading_lifecycle",
+  "version": "2.0",
+  "parent_task_sha256": null,
+  "source_kind": "synthetic",
+  "title": "阅读清单产品任务",
+  "brief": {
+    "audience": "需要整理个人书目的读者；本例人物、讨论和记录均为人工合成。",
+    "problem": "读者可能在主题、进度与零散记录之间反复切换，此痛点尚待访谈验证。",
+    "positioning": "为个人读者整理待读与在读书目；本例全部人工合成。",
+    "value_hypothesis": "用同一页面筛选、查看与维护书目，减少整理成本；价值尚未实测。",
+    "goal": "用一份可追溯任务材料验证列表、筛选、会话维护与交接文档的一致性。",
+    "success_metric": {
+      "statement": "目标读者能独立找到指定主题书目并理解当前阅读进度。",
+      "baseline": "未采集真实用户基线。",
+      "target": "待目标用户试用后确定；本例不预填效率增益。",
+      "measurement": "记录首次使用中的完成情况、阻断点与解释需求；技术检查单独记录。"
+    },
+    "priority_basis": "先完成整理和查找，再讨论云端同步；按核心任务依赖排序。"
+  },
+  "evidence": [
+    {
+      "id": "ev_reading",
+      "kind": "synthetic",
+      "text": "合成讨论提出按进度和主题找书、保留空态恢复入口，并能查看和维护当前页的书目。",
+      "source": "source-notes.md 第1节 E01（人工合成）"
+    },
+    {
+      "id": "ev_layout",
+      "kind": "synthetic",
+      "text": "第二轮合成反馈建议把筛选从左侧移动到顶部，功能意图继续保留。",
+      "source": "source-notes.md 第2节 E02（人工合成）"
+    },
+    {
+      "id": "ev_value",
+      "kind": "hypothesis",
+      "text": "更集中地查看书目可能减少整理成本，尚无真实访谈或效果测量。",
+      "source": "本合成案例的价值假设，不作为实测结论。"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "dec_1",
+      "statement": "按进度和主题整理书目",
+      "status": "declared",
+      "evidence_ids": [
+        "ev_reading"
+      ]
+    },
+    {
+      "id": "dec_2",
+      "statement": "查看与维护当前会话书目",
+      "status": "declared",
+      "evidence_ids": [
+        "ev_reading"
+      ]
+    },
+    {
+      "id": "dec_3",
+      "statement": "侧栏承载筛选",
+      "status": "declared",
+      "evidence_ids": [
+        "ev_reading"
+      ]
+    }
+  ],
+  "scope": {
+    "included": [
+      "个人书目的本地演示与同源交接。",
+      "进度/主题交集筛选、空态与恢复、详情、会话新增和编辑。"
+    ],
+    "excluded": [
+      "云端同步、删除、登录、多人协作、真实书目采集。",
+      "真实业务审批、生产执行和效率收益声明。"
+    ],
+    "consumers": [
+      {
+        "id": "consumer_reader",
+        "included": true,
+        "reason": "本例唯一目标使用者，覆盖整理与查看路径。",
+        "evidence_ids": [
+          "ev_reading"
+        ]
+      },
+      {
+        "id": "consumer_team",
+        "included": false,
+        "reason": "团队协作不在个人本地演示范围。",
+        "evidence_ids": [
+          "ev_reading"
+        ]
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "rule_1",
+      "statement": "按进度和主题整理书目",
+      "default": "默认显示全部3条；进度与主题均不限制。",
+      "exception": "无命中显示空态，仍可重置。",
+      "boundary": "本地合成演示，不持久化、不访问网络。",
+      "evidence_ids": [
+        "ev_reading"
+      ],
+      "requirement_ids": [
+        "browse"
+      ]
+    },
+    {
+      "id": "rule_2",
+      "statement": "查看与维护当前会话书目",
+      "default": "详情从给定样例显示；改动仅当前页会话保留。",
+      "exception": "必填为空或数值非法时阻止保存。",
+      "boundary": "本地合成演示，不持久化、不访问网络。",
+      "evidence_ids": [
+        "ev_reading"
+      ],
+      "requirement_ids": [
+        "maintain"
+      ]
+    },
+    {
+      "id": "rule_3",
+      "statement": "侧栏承载筛选",
+      "default": "筛选位于左侧。",
+      "exception": "空态保留筛选与重置入口。",
+      "boundary": "本地合成演示，不持久化、不访问网络。",
+      "evidence_ids": [
+        "ev_reading"
+      ],
+      "requirement_ids": [
+        "layout"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "browse",
+      "statement": "按进度和主题整理书目",
+      "priority": "must",
+      "priority_reason": "先验证阅读整理和修改需求表达的核心路径，收益仍待用户试用。",
+      "evidence_ids": [
+        "ev_reading"
+      ],
+      "decision_ids": [
+        "dec_1"
+      ],
+      "rule_ids": [
+        "rule_1"
+      ],
+      "checks": [
+        {
+          "id": "browse_c1",
+          "condition": "默认显示全部3本；筛选进度与主题取交集。",
+          "expected": "与给定条件一致，筛选/恢复结果可观察。",
+          "evidence_level": "browser"
+        },
+        {
+          "id": "browse_c2",
+          "condition": "筛选历史显示空态；重置恢复全部；重复筛选稳定。",
+          "expected": "与给定条件一致，筛选/恢复结果可观察。",
+          "evidence_level": "browser"
+        }
+      ]
+    },
+    {
+      "id": "maintain",
+      "statement": "查看与维护当前会话书目",
+      "priority": "must",
+      "priority_reason": "先验证阅读整理和修改需求表达的核心路径，收益仍待用户试用。",
+      "evidence_ids": [
+        "ev_reading"
+      ],
+      "decision_ids": [
+        "dec_2"
+      ],
+      "rule_ids": [
+        "rule_2"
+      ],
+      "checks": [
+        {
+          "id": "maintain_c1",
+          "condition": "打开详情能看到全部字段。",
+          "expected": "保存与刷新行为符合当前会话边界。",
+          "evidence_level": "browser"
+        },
+        {
+          "id": "maintain_c2",
+          "condition": "必填缺失阻止保存；有效新增/编辑仅当前页面保留，刷新恢复样例。",
+          "expected": "保存与刷新行为符合当前会话边界。",
+          "evidence_level": "browser"
+        }
+      ]
+    },
+    {
+      "id": "layout",
+      "statement": "侧栏承载筛选",
+      "priority": "must",
+      "priority_reason": "先验证阅读整理和修改需求表达的核心路径，收益仍待用户试用。",
+      "evidence_ids": [
+        "ev_reading"
+      ],
+      "decision_ids": [
+        "dec_3"
+      ],
+      "rule_ids": [
+        "rule_3"
+      ],
+      "checks": [
+        {
+          "id": "layout_c1",
+          "condition": "筛选在左侧，空态时仍保留重置入口。",
+          "expected": "筛选区域在左侧，空态保留重置。",
+          "evidence_level": "browser"
+        }
+      ]
+    }
+  ],
+  "prototype": {
+    "schema": "pm-collection/v1",
+    "id": "reading_lifecycle",
+    "version": "2.0",
+    "parent_sha256": null,
+    "title": "阅读清单",
+    "positioning": "为个人读者整理待读与在读书目；本例全部人工合成。",
+    "pain": "读者可能在主题、进度与零散记录之间反复切换，此痛点尚待访谈验证。",
+    "value": "用同一页面筛选、查看与维护书目，减少整理成本；价值尚未实测。",
+    "fields": [
+      {
+        "key": "title",
+        "label": "书名",
+        "type": "text",
+        "required": true,
+        "choices": []
+      },
+      {
+        "key": "stage",
+        "label": "阅读进度",
+        "type": "choice",
+        "required": true,
+        "choices": [
+          "待读",
+          "在读",
+          "已读"
+        ]
+      },
+      {
+        "key": "topics",
+        "label": "主题",
+        "type": "tags",
+        "required": false,
+        "choices": [
+          "设计",
+          "历史",
+          "写作"
+        ]
+      },
+      {
+        "key": "pages",
+        "label": "页数",
+        "type": "number",
+        "required": false,
+        "choices": []
+      }
+    ],
+    "search_fields": [
+      "title",
+      "topics"
+    ],
+    "filters": [
+      "stage",
+      "topics"
+    ],
+    "layout": "sidebar",
+    "items": [
+      {
+        "id": "book_a",
+        "values": {
+          "title": "灯塔笔记",
+          "stage": "在读",
+          "topics": [
+            "设计"
+          ],
+          "pages": 180
+        }
+      },
+      {
+        "id": "book_b",
+        "values": {
+          "title": "河岸手册",
+          "stage": "待读",
+          "topics": [
+            "设计",
+            "写作"
+          ],
+          "pages": 240
+        }
+      },
+      {
+        "id": "book_c",
+        "values": {
+          "title": "纸上旅人",
+          "stage": "已读",
+          "topics": [
+            "写作"
+          ],
+          "pages": 96
+        }
+      }
+    ],
+    "requirements": [
+      {
+        "id": "browse",
+        "statement": "按进度和主题整理书目",
+        "acceptance": [
+          "默认显示全部3本；筛选进度与主题取交集。；预期：与给定条件一致，筛选/恢复结果可观察。",
+          "筛选历史显示空态；重置恢复全部；重复筛选稳定。；预期：与给定条件一致，筛选/恢复结果可观察。"
+        ]
+      },
+      {
+        "id": "maintain",
+        "statement": "查看与维护当前会话书目",
+        "acceptance": [
+          "打开详情能看到全部字段。；预期：保存与刷新行为符合当前会话边界。",
+          "必填缺失阻止保存；有效新增/编辑仅当前页面保留，刷新恢复样例。；预期：保存与刷新行为符合当前会话边界。"
+        ]
+      },
+      {
+        "id": "layout",
+        "statement": "侧栏承载筛选",
+        "acceptance": [
+          "筛选在左侧，空态时仍保留重置入口。；预期：筛选区域在左侧，空态保留重置。"
+        ]
+      }
+    ]
+  },
+  "pending": []
+}
