@@ -1,0 +1,104 @@
+{
+  "schema": "pm-request/v1",
+  "id": "request_demo",
+  "version": "v1",
+  "parent_sha256": null,
+  "title": "协作请求表",
+  "positioning": "用一张本地表单讨论协作内容与处理状态，不接入真实流程。",
+  "pain": "合成背景：请求内容与补充理由分散，交接时不易看清当前状态。",
+  "value": "价值假设：把内容、补充理由和状态放在一起，减少理解差异；尚无真实用户效果数据。",
+  "fields": [
+    {
+      "key": "request_title",
+      "label": "请求标题",
+      "type": "text",
+      "required": true,
+      "choices": []
+    },
+    {
+      "key": "category",
+      "label": "请求类型",
+      "type": "choice",
+      "required": true,
+      "choices": [
+        "资料整理",
+        "界面验证",
+        "文档协作"
+      ]
+    },
+    {
+      "key": "effort_hours",
+      "label": "预计投入（小时）",
+      "type": "number",
+      "required": false,
+      "choices": [],
+      "minimum": 0,
+      "maximum": 80
+    },
+    {
+      "key": "audiences",
+      "label": "相关角色",
+      "type": "tags",
+      "required": false,
+      "choices": [
+        "产品",
+        "设计",
+        "研发"
+      ]
+    },
+    {
+      "key": "description",
+      "label": "内容说明",
+      "type": "text",
+      "required": true,
+      "choices": []
+    }
+  ],
+  "initial_values": {
+    "request_title": "核对两份示例材料",
+    "category": "资料整理",
+    "effort_hours": 2,
+    "audiences": [
+      "产品"
+    ],
+    "description": "只核对虚构资料的引用与交接要点，不接触真实业务数据。"
+  },
+  "initial_state": "draft",
+  "requirements": [
+    {
+      "id": "r_fields",
+      "statement": "按给定类型、必填与范围核对表单值。",
+      "acceptance": [
+        "清空请求标题后提交被阻止，状态仍为草稿。",
+        "超出0至80小时或非法选项的输入不能提交。",
+        "可选数值留空仍可提交，有效数值零按零保留。"
+      ]
+    },
+    {
+      "id": "r_states",
+      "statement": "演示提交、退回补充、重提与完成的有限转换。",
+      "acceptance": [
+        "草稿提交后为已提交且字段只读。",
+        "退回缺理由被阻止；给出理由后进入待补充并可编辑。",
+        "待补充满足必填后可重提，已提交可完成，终态只读。"
+      ]
+    },
+    {
+      "id": "r_session",
+      "statement": "所有数据与状态变化只在本页面会话中保留。",
+      "acceptance": [
+        "刷新恢复这份规格的给定初值与草稿状态。",
+        "恢复源样例会清空会话记录并重新载入源状态，不是业务回退。"
+      ]
+    },
+    {
+      "id": "r_configuration",
+      "statement": "可填写字段配置并导出新版本规格。",
+      "acceptance": [
+        "调整字段名称、选项或数值范围后可生成新规格JSON。",
+        "新规格parent绑定当前源SHA且版本不同，当前演示仍保持原版本和SHA。",
+        "保存新JSON后build/check形成新的同源原型、PRD与待执行计划。"
+      ]
+    }
+  ]
+}
