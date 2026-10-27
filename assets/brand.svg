@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="title desc">
+  <title id="title">PM Toolkit 把需求 原型与交付接起来</title>
+  <desc id="desc">原创概念主视觉。左侧为产品定位，右侧用规格、原型与PRD、评审三张卡片表达现有工具路径，不是运行截图。</desc>
+  <defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M 32 0 L 0 0 0 32" fill="none" stroke="#dce5d9" stroke-width="1"/></pattern></defs>
+  <rect width="1280" height="560" rx="18" fill="#f5f6ee"/>
+  <rect x="690" width="590" height="560" fill="url(#grid)"/>
+  <path d="M690 0V560" stroke="#d8e1d4"/>
+  <g font-family="system-ui,-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+    <rect x="60" y="54" width="48" height="48" rx="10" fill="#28573f"/>
+    <text x="84" y="87" text-anchor="middle" fill="#fff" font-size="27" font-weight="700">P/</text>
+    <text x="124" y="85" font-size="21" fill="#36513e" font-weight="600">PRODUCT MANAGEMENT / WORKING KIT</text>
+    <text x="60" y="209" font-size="67" fill="#203e2e" font-weight="700" letter-spacing="-2">PM Toolkit</text>
+    <text x="60" y="279" font-size="37" fill="#203e2e" font-weight="600">把需求、原型与交付接起来。</text>
+    <text x="60" y="339" font-size="21" fill="#5c705f">讲清问题，做出原型，留下每次改变的依据。</text>
+    <path d="M60 393H618" stroke="#cbd7c5"/>
+    <text x="60" y="432" font-size="16" fill="#586f5c" letter-spacing="2">TEMPLATES</text><circle cx="190" cy="426" r="3" fill="#9cae96"/>
+    <text x="211" y="432" font-size="16" fill="#586f5c" letter-spacing="2">LOCAL TOOLS</text><circle cx="358" cy="426" r="3" fill="#9cae96"/>
+    <text x="379" y="432" font-size="16" fill="#586f5c" letter-spacing="2">TEXT REVIEWS</text>
+    <text x="60" y="496" font-size="15" fill="#7c8b77">明确输入 · 同源产物 · 人工决定</text>
+    <rect x="751" y="65" width="399" height="119" rx="12" fill="#fff" stroke="#c8d8c1"/>
+    <text x="775" y="97" font-size="12" fill="#7e9077" letter-spacing="2">01 / SPECIFICATION</text>
+    <text x="775" y="132" font-size="25" fill="#294b35" font-weight="650">一份明确的规格</text>
+    <text x="775" y="160" font-size="15" fill="#73816b">字段、样例、交互与需求</text>
+    <path d="M950 185V213" stroke="#75966b" stroke-width="2"/><path d="m945 207 5 6 5-6" fill="none" stroke="#75966b" stroke-width="2"/>
+    <rect x="787" y="219" width="399" height="119" rx="12" fill="#2d5e43"/>
+    <text x="811" y="251" font-size="12" fill="#c9ddbf" letter-spacing="2">02 / SAME SOURCE</text>
+    <text x="811" y="286" font-size="25" fill="#fff" font-weight="650">原型 + PRD + 检查计划</text>
+    <text x="811" y="314" font-size="15" fill="#d0dfc6">工具生成，实际检查另行记录</text>
+    <path d="M987 339V367" stroke="#75966b" stroke-width="2"/><path d="m982 361 5 6 5-6" fill="none" stroke="#75966b" stroke-width="2"/>
+    <rect x="751" y="373" width="399" height="119" rx="12" fill="#fff" stroke="#c8d8c1"/>
+    <text x="775" y="405" font-size="12" fill="#7e9077" letter-spacing="2">03 / REVIEW A CHANGE</text>
+    <text x="775" y="440" font-size="25" fill="#294b35" font-weight="650">让修改有承接</text>
+    <text x="775" y="468" font-size="15" fill="#73816b">给定反馈与决定，保留未决问题</text>
+  </g>
+</svg>

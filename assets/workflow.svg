@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+  <title id="title">PM Toolkit 六步工作路径</title>
+  <desc id="desc">本地候选的六步工作组织方式。人提供来源与产品决定；同一任务生成原型、PRD与Word，工具核对给定评审及观察并汇总复盘。实际检查与人工验收分别记录。</desc>
+  <rect width="1200" height="470" rx="14" fill="#f5f6ee"/>
+  <g font-family="system-ui,-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+    <text x="28" y="38" font-size="17" fill="#3a5c43" font-weight="650">六步组织一个产品任务</text>
+    <text x="1172" y="38" text-anchor="end" font-size="13" fill="#798a73">当前方式 · 人工 + 有限工具</text>
+    <g fill="#fff" stroke="#c9d7c2"><rect x="28" y="64" width="354" height="150" rx="9"/><rect x="423" y="64" width="354" height="150" rx="9"/><rect x="818" y="64" width="354" height="150" rx="9"/><rect x="28" y="256" width="354" height="150" rx="9"/><rect x="423" y="256" width="354" height="150" rx="9"/><rect x="818" y="256" width="354" height="150" rx="9"/></g>
+    <g font-size="13" fill="#8a9a82"><text x="50" y="94">01 / FRAME</text><text x="445" y="94">02 / DECIDE</text><text x="840" y="94">03 / MAKE</text><text x="50" y="286">04 / REVIEW</text><text x="445" y="286">05 / HAND OVER</text><text x="840" y="286">06 / LEARN</text></g>
+    <g font-size="25" fill="#284d36" font-weight="650"><text x="50" y="134">问题与价值</text><text x="445" y="134">决定与范围</text><text x="840" y="134">原型与 PRD</text><text x="50" y="326">评审与修订</text><text x="445" y="326">验证与交付</text><text x="840" y="326">复盘与资产</text></g>
+    <g font-size="15" fill="#6a7d62"><text x="50" y="165">定位、痛点、目标、假设</text><text x="445" y="165">来源、规则、待定项</text><text x="840" y="165">集合 / 表单、PRD、检查计划</text><text x="50" y="357">反馈、人工决定、增量核对</text><text x="445" y="357">实际观察、Word、交接记录</text><text x="840" y="357">当前态、变化原因、下一步</text></g>
+    <g font-size="12" fill="#496c4a"><text x="50" y="195">人工填写</text><text x="445" y="195">人工填写 / 文字审阅辅助</text><text x="840" y="195">规格单向生成</text><text x="50" y="387">有限工具 + 人工判断</text><text x="445" y="387">工具 + 人工检查</text><text x="840" y="387">工具汇总 / 人工复核</text></g>
+    <g fill="none" stroke="#97ad8d" stroke-width="2"><path d="M390 139H414m-6-5 6 5-6 5"/><path d="M785 139H809m-6-5 6 5-6 5"/><path d="M390 331H414m-6-5 6 5-6 5"/><path d="M785 331H809m-6-5 6 5-6 5"/></g>
+    <text x="28" y="446" font-size="13" fill="#7c8b75">工具执行与材料生成，不代替来源核实、真实审批或业务验收。同版制作过程见生命周期使用说明。</text>
+  </g>
+</svg>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>单表单与状态演示 · PM Toolkit</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f5ef;color:#263d32;font:15px/1.7 system-ui,-apple-system,"PingFang SC",sans-serif}button,input,select,textarea{font:inherit}button,a,input,select,textarea{outline-offset:4px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #b88143}button{cursor:pointer;border:1px solid #cad7c7;background:#fffdf8;color:#31533c;border-radius:7px;padding:10px 16px;font-weight:600}button:hover{border-color:#65906e}button:disabled{cursor:not-allowed;opacity:.5}button.primary{background:#2c6045;border-color:#2c6045;color:white}button.quiet{border:0;background:transparent;padding:6px;color:#61745f}input,select,textarea{width:100%;border:1px solid #cbd7c7;background:#fffefb;border-radius:7px;padding:11px 12px;color:#243b2e;min-width:0}textarea{resize:vertical}input:disabled,select:disabled,textarea:disabled{background:#eff1e9;color:#576850;opacity:1}input[type=checkbox]{width:17px;height:17px;accent-color:#397650;padding:0}.bar{padding:20px max(26px,calc((100vw - 1480px)/2));display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #dce3d5;background:#fafaf4;gap:18px}.brand{font-weight:750;font-size:16px;display:flex;gap:10px;align-items:center}.brand b{display:inline-grid;place-items:center;background:#2f6449;color:#fff;width:32px;height:32px;border-radius:6px;font-size:13px}.bar small{color:#71816b;font-size:12px}.bar-actions{display:flex;gap:12px;align-items:center}.bar-actions button{font-size:12px}.wrap{max-width:1480px;margin:auto;padding:40px 26px 30px}.heading{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:28px}.eyebrow{font-size:10px;letter-spacing:.17em;color:#789071;font-weight:700;margin:0 0 10px}h1{font-size:35px;line-height:1.3;letter-spacing:-.035em;margin:0 0 10px}h2{font-size:18px;line-height:1.4;margin:0 0 13px}.heading p{color:#6c7e63;font-size:13px;max-width:720px;margin:0}.status-pill{white-space:nowrap;padding:6px 13px;border-radius:30px;font-size:12px;border:1px solid #c6d6be;background:#edf3e5;color:#386443}.status-pill[data-state=needs_info]{background:#fcf0d9;border-color:#e6d1a5;color:#8a6230}.status-pill[data-state=done]{background:#dfeee3;border-color:#a8ccb2}.grid{display:grid;grid-template-columns:220px minmax(420px,1fr) 280px;gap:24px;align-items:start}.card{background:#fffefa;border:1px solid #d7e1d0;border-radius:10px;box-shadow:0 4px 18px #264b3004}.side{padding:23px 20px}.state-list{list-style:none;padding:0;margin:18px 0 22px;display:grid;gap:0}.state-list li{position:relative;display:flex;align-items:center;gap:12px;padding:13px 0;color:#8b9781;font-size:13px}.state-list li:after{content:"";position:absolute;top:45px;left:12px;height:20px;width:1px;background:#e0e6da}.state-list li:last-child:after{display:none}.state-list .circle{border:1px solid #d2ddca;background:#fafbf6;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;font:11px ui-monospace,monospace;flex-shrink:0}.state-list li.current{font-weight:750;color:#315f3e}.state-list li.current .circle{background:#2d6545;color:white;border-color:#2d6545}.state-list li.visited:not(.current){color:#597651}.state-list li.visited:not(.current) .circle{background:#edf3e7;border-color:#b8d1ac}.side-note{font-size:11px;color:#829077;border-top:1px solid #e4e9de;padding-top:16px}.form-head{padding:24px 28px 19px;border-bottom:1px solid #e3e8dc;display:flex;justify-content:space-between;align-items:start;gap:20px}.form-head h2{margin:0 0 5px}.form-head p{font-size:12px;color:#7a8971;margin:0}.form-head .counter{font:11px ui-monospace,monospace;color:#8c9c81;padding-top:5px}.form-body{padding:26px 28px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:22px 20px}.field{min-width:0}.field.full{grid-column:1/-1}.field-label{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:650;margin-bottom:7px}.required{color:#b46d36}.hint{font-size:10px;color:#85927a;margin:6px 0 0}.error{font-size:11px;color:#9c4530;margin:6px 0 0;min-height:0}.field.invalid input,.field.invalid select,.field.invalid .tag-options{border-color:#b8755a}.tag-options{border:1px solid #cbd7c7;border-radius:7px;padding:12px;display:flex;flex-wrap:wrap;gap:12px;background:#fffefb;min-height:49px}.tag-options label{display:flex;align-items:center;gap:7px;font-size:12px}.tag-options.disabled{background:#eff1e9;color:#6a7b61}.return-panel{margin-top:24px;padding:16px 17px;background:#f8f0e0;border:1px solid #e7d9b8;border-radius:7px}.return-panel label{font-size:12px;font-weight:650;display:block;margin-bottom:8px}.return-panel p{font-size:10px;color:#927b54;margin:7px 0 0}.summary{border:1px solid #e4c8b5;background:#fff4ed;padding:12px 15px;color:#98533b;border-radius:6px;font-size:12px;margin:0 0 22px}.summary ul{margin:4px 0;padding-left:18px}.actions{padding:18px 28px;border-top:1px solid #e1e7d8;display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#fbfcf6;border-radius:0 0 10px 10px}.actions small{font-size:10px;color:#89967f;margin-right:auto}.message{font-size:12px;color:#52764b;margin:16px 0 0;min-height:20px}.info{padding:22px}.info h3{font-size:12px;color:#6d8362;margin:20px 0 7px}.info h3:first-child{margin-top:0}.info p{font-size:12px;color:#6d7e64;margin:0}.info .sha{font:10px/1.7 ui-monospace,monospace;overflow-wrap:anywhere;color:#8a977f}.info details{font-size:11px;color:#74846a}.info summary{cursor:pointer;font-weight:650;margin:14px 0 8px}.timeline{list-style:none;padding:0;margin:0;max-height:290px;overflow:auto}.timeline li{border-left:2px solid #dbe6d0;margin-left:3px;padding:0 0 13px 12px;font-size:11px;color:#73836b}.timeline li strong{font-size:11px;font-weight:650;display:block;color:#4c6e47}.notice{margin-top:23px;border-top:1px solid #dbe4d1;padding:18px 0;display:flex;justify-content:space-between;gap:25px;font-size:10px;color:#829274}.notice strong{color:#657b59}.config{margin-top:32px;border:1px solid #cddbc4;border-radius:9px;background:#fafcf6;padding:25px 28px}.config h2{font-size:21px}.config .intro{font-size:12px;color:#71846a;max-width:950px}.config-meta{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:22px 0}.config-meta label{font-size:12px}.config-meta label span{display:block;margin-bottom:5px;color:#667c5e}.config-row{margin:14px 0;padding:19px;background:#fffefa;border:1px solid #d9e3d1;border-radius:8px}.config-row-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px}.config-row-grid{display:grid;grid-template-columns:1fr 1fr 150px;gap:12px}.config-row label{font-size:10px;color:#71856a}.config-row label span{display:block;margin-bottom:5px}.config-row input,.config-row select,.config-row textarea{padding:8px 9px;font-size:12px}.config-row .check-label{display:flex;align-items:center;gap:8px}.config-row .check-label span{margin:0}.config-row .wide{grid-column:span 2}.config-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:20px 0 12px}.download{display:inline-block;padding:10px 16px;background:#2d6545;color:white;border-radius:7px;font-size:12px;text-decoration:none;font-weight:650}.config-output{font:11px/1.6 ui-monospace,monospace;min-height:240px;background:#f1f5eb}.empty{color:#93a28b;font-size:12px}#fatal{max-width:800px;padding:32px;margin:40px auto;color:#9b513c}footer{padding:14px 0;color:#96a28e;font-size:10px;display:flex;justify-content:space-between}[hidden]{display:none!important}@media(max-width:1150px){.grid{grid-template-columns:190px 1fr}.info{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:20px}.info details{grid-column:1/-1}.heading{align-items:start}.config-row-grid{grid-template-columns:1fr 1fr}}@media(max-width:740px){.bar{padding:16px 20px}.bar small{display:none}.wrap{padding:25px 18px}.heading{display:block}h1{font-size:28px}.heading .status-pill{display:inline-block;margin-top:14px}.grid{display:block}.side{margin-bottom:18px;padding:18px}.state-list{display:flex;justify-content:space-between;margin:0;gap:8px}.state-list li{display:grid;justify-items:center;padding:4px;font-size:10px}.state-list li:after{display:none}.side h2,.side-note{display:none}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.form-head,.form-body,.actions{padding-left:19px;padding-right:19px}.info{display:block;margin-top:18px}.info>div{margin:12px 0}.config{padding:20px 18px}.config-meta,.config-row-grid{grid-template-columns:1fr}.config-row .wide{grid-column:auto}.notice{display:block}.notice span{display:block;margin-bottom:8px}.bar-actions{gap:5px}.bar-actions button{padding:8px;font-size:10px}}
+</style></head><body>
+<header class="bar"><div class="brand"><b>P/</b> PM Toolkit <small>LOCAL REQUEST / FORM + STATES</small></div><div class="bar-actions"><button id="open-config" type="button">配置字段与导出规格</button><button id="reset-session" type="button" class="quiet">恢复源样例</button></div></header>
+<div id="fatal" role="alert" hidden></div><main class="wrap" id="app"><div class="heading"><div><p class="eyebrow">ONE FORM / FOUR EXPLICIT STATES</p><h1 id="page-title"></h1><p id="page-description"></p></div><span id="state-pill" class="status-pill"></span></div>
+<div class="grid"><aside class="card side"><h2>处理路径</h2><ol class="state-list" id="state-list"></ol><p class="side-note">这里只演示本地状态转换。没有后台、账号或真实审批。</p></aside>
+<section class="card"><div class="form-head"><div><h2 id="form-heading">填写请求</h2><p id="edit-note"></p></div><span class="counter" id="field-counter"></span></div><form id="request-form" novalidate><div class="form-body"><div class="summary" id="error-summary" role="alert" hidden></div><div class="fields" id="fields"></div><div id="return-panel" class="return-panel" hidden><label for="return-reason">退回补充理由</label><input id="return-reason" type="text" maxlength="1000" placeholder="说明还需要补充什么"><p>此理由仅进入当前页面的演示记录，不会发送给任何人。</p></div><p class="message" id="message" role="status" aria-live="polite"></p></div><div class="actions" id="actions"></div></form></section>
+<aside class="card info"><div><h3>为什么做</h3><p id="context"></p><h3>价值假设</h3><p id="value"></p></div><div><h3>当前会话记录</h3><ol class="timeline" id="history"></ol></div><details><summary>版本与同源信息</summary><p>版本 <strong id="source-version"></strong></p><p>源SHA-256</p><p class="sha" id="source-sha"></p><p>当前演示、PRD和检查计划绑定这份源材料。编辑会话数据不会修改源文件。</p></details></aside></div>
+<div class="notice"><span><strong>当前内容由调用者提供。</strong>来源、脱敏和真实适用性未经工具核验；字段值会被保留。</span><span>会话内操作 · 刷新恢复源样例 · 状态不代表真人审批</span></div>
+<section id="config" class="config" hidden><h2>把这张表单换成自己的</h2><p class="intro">修改字段、选项、范围和初值后，先生成一份新规格。这里不会改变上方演示或现有PRD；需要保存JSON，再用 pm_form.py build / check 生成同源新版本。生成规格不证明来源或脱敏已核验。</p><div id="config-meta" class="config-meta"></div><div id="config-fields"></div><button id="add-field" type="button">＋ 新增字段</button><p class="hint">选项每行一个，文本初值直接填写；数值留空表示null；标签初值使用JSON数组，例如 ["产品"]。改变类型时请核对初值。</p><div id="config-errors" class="summary" role="alert" hidden></div><div class="config-actions"><button type="button" id="export-config" class="primary">生成新规格</button><a id="download-config" class="download" hidden>下载规格 JSON</a><button type="button" id="close-config" class="quiet">收起配置</button></div><textarea id="config-output" class="config-output" aria-label="导出的新规格JSON" readonly hidden></textarea><p class="hint">新规格的 parent_sha256 绑定当前源SHA，必须使用不同版本号。当前演示始终保留原版本与SHA，直到重新生成。</p></section>
+<footer><span>PM Toolkit · 本地单表单与有限状态</span><span>无网络请求 · 无存储 · 需人工验证真实需求</span></footer></main>
+<script id="request-payload" type="application/json">__REQUEST_PAYLOAD__</script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const make = (tag, cls, text) => { const el = document.createElement(tag); if (cls) el.className = cls; if (text !== undefined) el.textContent = text; return el; };
+  const copy = value => JSON.parse(JSON.stringify(value));
+  const safeNumber = value => typeof value === 'number' && Number.isFinite(value) && Math.abs(value) <= Number.MAX_SAFE_INTEGER;
+  const text = (value, max = 1000, empty = false) => typeof value === 'string' && [...value].length <= max && (empty || value.trim().length > 0) && !/[\u0000-\u001f\u2028\u2029\uD800-\uDFFF]/u.test(value);
+  const ident = value => typeof value === 'string' && /^[a-z][a-z0-9_]{0,39}$/.test(value);
+  const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+  const exact = (value, names) => object(value) && Object.keys(value).length === names.length && names.every(name => Object.hasOwn(value, name));
+  const list = (value, max, empty = false) => Array.isArray(value) && value.length <= max && (empty || value.length > 0) && value.every(item => text(item)) && new Set(value).size === value.length;
+  const numberText = value => value.trim() === '' ? null : /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(value.trim()) ? Number(value) : NaN;
+  const stateLabels = {draft:'草稿',submitted:'已提交',needs_info:'待补充',done:'已完成'};
+  const rules = [{from:'draft',action:'submit',to:'submitted',label:'提交'},{from:'submitted',action:'return',to:'needs_info',label:'退回补充'},{from:'needs_info',action:'resubmit',to:'submitted',label:'重新提交'},{from:'submitted',action:'complete',to:'done',label:'完成'}];
+  function valueErrors(spec, values, complete) {
+    if (!object(values) || Object.keys(values).length !== spec.fields.length || !spec.fields.every(f => Object.hasOwn(values, f.key))) return [{field:'',message:'值必须与给定字段逐项对应。'}];
+    const errors = [];
+    for (const field of spec.fields) {
+      const value = values[field.key];
+      const missing = field.type === 'number' ? value === null : field.type === 'tags' ? Array.isArray(value) && value.length === 0 : typeof value === 'string' && value.trim() === '';
+      if (complete && field.required && missing) { errors.push({field:field.key,message:'请填写此必填项。'}); continue; }
+      let message = null;
+      if (field.type === 'number') {
+        if (value !== null && !safeNumber(value)) message = '请输入有限数值，绝对值不能超过 ' + Number.MAX_SAFE_INTEGER + '。';
+        else if (value !== null && field.minimum != null && value < field.minimum) message = '数值不能小于 ' + field.minimum + '。';
+        else if (value !== null && field.maximum != null && value > field.maximum) message = '数值不能大于 ' + field.maximum + '。';
+      } else if (field.type === 'tags') {
+        if (!list(value,30,true)) message = '标签须为不重复的单行文字，最多30项，每项最多1000字符。';
+        else if (!value.every(item => field.choices.includes(item))) message = '请仅使用此字段声明的标签选项。';
+      } else if (!text(value,1000,true)) message = '请输入最多1000字符的单行文字，不含控制字符。';
+      else if (field.type === 'choice' && value !== '' && !field.choices.includes(value)) message = '请选择此字段声明的允许值。';
+      if (message) errors.push({field:field.key,message});
+    }
+    return errors;
+  }
+  function specErrors(spec) {
+    const errors = [];
+    const top = 'schema id version parent_sha256 title positioning pain value fields initial_values initial_state requirements'.split(' ');
+    if (!exact(spec,top)) return ['规格必须包含规定的全部字段，且不能有额外字段。'];
+    if (spec.schema !== 'pm-request/v1' || !ident(spec.id)) errors.push('schema或id不符合合同。');
+    if (!['version','title','positioning','pain','value'].every(key => text(spec[key]))) errors.push('版本、标题、定位、痛点和价值须为有限单行文字。');
+    if (!(spec.parent_sha256 === null || typeof spec.parent_sha256 === 'string' && /^[a-f0-9]{64}$/.test(spec.parent_sha256))) errors.push('parent_sha256不合法。');
+    if (!Object.hasOwn(stateLabels,spec.initial_state)) errors.push('初始状态不在四个固定状态中。');
+    if (!Array.isArray(spec.fields) || spec.fields.length < 1 || spec.fields.length > 16) return [...errors,'字段数量须为1–16。'];
+    const names = new Set(); let fieldsValid = true;
+    spec.fields.forEach((field,index) => {
+      const fail = message => { fieldsValid = false; errors.push('字段'+(index+1)+'：'+message); };
+      if (!object(field) || !'key label type required choices'.split(' ').every(key => Object.hasOwn(field,key)) || !Object.keys(field).every(key => 'key label type required choices minimum maximum'.split(' ').includes(key))) return fail('结构不合法。');
+      if (!ident(field.key) || names.has(field.key)) fail('key须唯一，且只用小写字母、数字和下划线。');
+      names.add(field.key);
+      if (!text(field.label,80) || !['text','number','choice','tags'].includes(field.type) || typeof field.required !== 'boolean') fail('名称、类型或必填标记不合法。');
+      if (!list(field.choices,30,true) || (field.choices.length > 0) !== ['choice','tags'].includes(field.type)) fail('选项须唯一；单选和标签必须有选项，其他类型不带选项。');
+      if (field.type === 'number') {
+        if (!(field.minimum == null || safeNumber(field.minimum)) || !(field.maximum == null || safeNumber(field.maximum)) || field.minimum != null && field.maximum != null && field.minimum > field.maximum) fail('数值范围不合法。');
+      } else if (Object.hasOwn(field,'minimum') || Object.hasOwn(field,'maximum')) fail('只有数值字段可以声明范围。');
+    });
+    if (fieldsValid) valueErrors(spec,spec.initial_values,['submitted','done'].includes(spec.initial_state)).forEach(item => errors.push((item.field ? item.field+'：' : '')+item.message));
+    if (!Array.isArray(spec.requirements) || spec.requirements.length < 1 || spec.requirements.length > 30) errors.push('需求数量须为1–30。');
+    else { const ids = new Set(); spec.requirements.forEach(row => { if (!exact(row,['id','statement','acceptance']) || !ident(row.id) || ids.has(row.id) || !text(row.statement) || !list(row.acceptance,20)) errors.push('需求id、声明或检查项不合法。'); else ids.add(row.id); }); }
+    return errors;
+  }
+  let SOURCE;
+  try { SOURCE = JSON.parse($('request-payload').textContent); if (specErrors(SOURCE.spec).length) throw new Error('invalid source'); }
+  catch (_) { $('fatal').hidden=false; $('fatal').textContent='给定规格不符合本地表单合同。请用CLI检查源文件并重新生成。'; $('app').hidden=true; return; }
+  const spec = SOURCE.spec;
+  let state = spec.initial_state, values = copy(spec.initial_values), visited = new Set([state]), history = [], attempted = false;
+  const controls = new Map(), configRows = [];
+  let configUrl = null;
+  document.title = spec.title + ' · 本地状态演示';
+  $('page-title').textContent = spec.title; $('page-description').textContent = spec.positioning;
+  $('context').textContent = spec.pain; $('value').textContent = spec.value;
+  $('source-version').textContent = spec.version; $('source-sha').textContent = SOURCE.source_sha256;
+  function addHistory(label, detail) { history.unshift({label,detail}); renderHistory(); }
+  function renderHistory() { $('history').replaceChildren(...history.map(row => { const li=make('li');li.append(make('strong','',row.label),make('span','',row.detail));return li; })); }
+  function getValues() {
+    const result = Object.create(null);
+    for (const field of spec.fields) {
+      const input = controls.get(field.key).input;
+      if (field.type === 'tags') result[field.key] = [...input.querySelectorAll('input:checked')].map(node => node.value);
+      else if (field.type === 'number') result[field.key] = numberText(input.value);
+      else result[field.key] = input.value;
+    }
+    return result;
+  }
+  function showErrors(errors) {
+    for (const row of controls.values()) { row.wrapper.classList.remove('invalid');row.error.textContent=''; }
+    const summary = $('error-summary');summary.hidden=errors.length===0;summary.replaceChildren();
+    if (!errors.length) return;
+    summary.append(make('strong','','请先处理以下内容：'));const ul=make('ul');summary.append(ul);
+    for (const error of errors) {
+      const field=spec.fields.find(item=>item.key===error.field), row=controls.get(error.field);
+      if (row) {row.wrapper.classList.add('invalid');row.error.textContent=error.message;}
+      ul.append(make('li','',(field ? field.label+'：' : '')+error.message));
+    }
+  }
+  function renderFields() {
+    controls.clear();$('fields').replaceChildren();
+    spec.fields.forEach((field,index) => {
+      const wrapper=make('div','field'+(field.type==='tags' ? ' full' : ''));
+      const label=make('label','field-label',field.label);label.htmlFor='field-'+field.key;
+      if (field.required) label.append(make('span','required','*'));
+      let input;
+      if (field.type==='tags') { input=make('div','tag-options');input.id='field-'+field.key;input.setAttribute('role','group');input.setAttribute('aria-label',field.label);field.choices.forEach((choice,i)=>{const item=make('label');const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.id='tag-'+field.key+'-'+i;checkbox.value=choice;checkbox.checked=values[field.key].includes(choice);item.append(checkbox,make('span','',choice));input.append(item);}); }
+      else if (field.type==='choice') { input=make('select');const empty=make('option','','请选择');empty.value='';input.append(empty);field.choices.forEach(choice=>{const option=make('option','',choice);option.value=choice;input.append(option);});input.value=values[field.key]; }
+      else { input=make('input');input.type='text';input.value=values[field.key]===null ? '' : String(values[field.key]);input.maxLength=field.type==='number' ? 80 : 1000;if(field.type==='number') input.inputMode='decimal'; }
+      input.id='field-'+field.key;if(field.type!=='tags')input.setAttribute('aria-label',field.label);
+      const hint=make('p','hint',field.type==='number' ? '有限数值'+(field.minimum!=null ? ' · 最小'+field.minimum : '')+(field.maximum!=null ? ' · 最大'+field.maximum : '')+' · 绝对值≤9007199254740991' : field.type==='text' ? '单行文本，最多1000字符' : field.type==='tags' ? '可多选；仅接受给定标签' : '只接受给定选项');
+      const error=make('p','error');error.id='error-'+field.key;input.setAttribute('aria-describedby',error.id);
+      wrapper.append(label,input,hint,error);$('fields').append(wrapper);controls.set(field.key,{input,wrapper,error});
+      input.addEventListener('input',()=>{if(attempted)showErrors(valueErrors(spec,getValues(),true));$('message').textContent='字段变化仅在当前页面会话中保留。';});
+    });
+  }
+  function renderState() {
+    const editable=['draft','needs_info'].includes(state);
+    $('state-pill').textContent=stateLabels[state]+' · 演示';$('state-pill').dataset.state=state;
+    $('state-list').replaceChildren(...Object.keys(stateLabels).map((key,i)=>{const li=make('li',(key===state?'current':visited.has(key)?'visited':''));li.append(make('span','circle',String(i+1)),make('span','',stateLabels[key]));return li;}));
+    $('edit-note').textContent=editable ? (state==='needs_info' ? '补充内容后可重新提交；当前仍为本地演示。' : '填写并核对后提交；没有后台接收本次内容。') : state==='done' ? '演示终态只读。恢复源样例会重新开始会话，不是业务回退。' : '已提交状态只读。可填写退回理由，或演示完成。';
+    $('form-heading').textContent=editable ? '填写请求' : '请求内容';$('field-counter').textContent=spec.fields.length+' 个字段';
+    for(const field of spec.fields){const input=controls.get(field.key).input;if(field.type==='tags'){input.classList.toggle('disabled',!editable);input.querySelectorAll('input').forEach(node=>node.disabled=!editable);}else input.disabled=!editable;}
+    $('return-panel').hidden=state!=='submitted';$('actions').replaceChildren(make('small','','所有动作仅修改本次页面会话'));
+    if(editable){const save=make('button','','保存会话草稿');save.type='button';save.id='save-draft';save.addEventListener('click',()=>{const next=getValues(),errors=valueErrors(spec,next,false);showErrors(errors);if(errors.length)return;values=copy(next);$('message').textContent='已保留在当前页面会话。刷新会恢复源样例。';});$('actions').append(save);}
+    for(const row of rules.filter(item=>item.from===state)){const button=make('button',row.action==='submit'||row.action==='resubmit'||row.action==='complete'?'primary':'',row.label);button.type='button';button.id='action-'+row.action;button.addEventListener('click',()=>doAction(row.action));$('actions').append(button);}
+    if(state==='done')$('actions').append(make('span','status-pill','演示终态 · 只读'));
+  }
+  function doAction(action) {
+    const rule=rules.find(row=>row.from===state&&row.action===action);
+    if(!rule){$('message').textContent='当前状态不支持这个转换。';return;}
+    const next=getValues(),errors=valueErrors(spec,next,['submitted','done'].includes(state)||['submitted','done'].includes(rule.to));attempted=true;
+    const reason=$('return-reason').value;
+    if(action==='return'&&!text(reason))errors.push({field:'',message:'请填写单行的退回补充理由。'});
+    showErrors(errors);if(errors.length){const first=controls.get(errors[0].field);if(first&&first.input.focus)first.input.focus();return;}
+    const previous=state;values=copy(next);state=rule.to;visited.add(state);attempted=false;$('return-reason').value='';
+    addHistory(rule.label+'（本地演示）',stateLabels[previous]+' → '+stateLabels[state]+(action==='return'?'；'+reason:''));
+    renderState();$('message').textContent='本地演示状态已更新，没有发送、存储或执行真实审批。';
+  }
+  function resetSession(){state=spec.initial_state;values=copy(spec.initial_values);visited=new Set([state]);history=[];attempted=false;$('return-reason').value='';showErrors([]);renderFields();renderState();addHistory('载入给定初始状态',stateLabels[state]+'；不证明此前发生过真实处理。');$('message').textContent='已恢复源样例与给定初始状态。';}
+  $('request-form').addEventListener('submit',event=>{event.preventDefault();if(state==='draft')doAction('submit');else if(state==='needs_info')doAction('resubmit');});
+  $('reset-session').addEventListener('click',resetSession);
+  const metaInputs=new Map();
+  for(const [key,label] of [['title','标题'],['version','新版本号'],['positioning','定位'],['pain','痛点'],['value','价值假设']]){const wrap=make('label');wrap.append(make('span','',label));const input=make('input');input.id='config-'+key;input.value=key==='version'? (spec.version.length<990?spec.version+'-next':'configured-next'):spec[key];wrap.append(input);$('config-meta').append(wrap);metaInputs.set(key,input);}
+  function configControl(label,value,type='text'){const wrap=make('label');wrap.append(make('span','',label));const input=make(type==='textarea'?'textarea':'input');if(type!=='textarea')input.type=type;input.value=value;wrap.append(input);return {wrap,input};}
+  function addConfigField(field,value){
+    const row=make('article','config-row'),head=make('div','config-row-head');const title=make('strong','','字段配置');const remove=make('button','quiet','移除此配置字段');remove.type='button';head.append(title,remove);row.append(head);const grid=make('div','config-row-grid');row.append(grid);
+    const key=configControl('字段key',field.key),label=configControl('字段名称',field.label);grid.append(key.wrap,label.wrap);
+    const typeWrap=make('label');typeWrap.append(make('span','','类型'));const type=make('select');for(const kind of ['text','number','choice','tags']){const option=make('option','',kind);option.value=kind;type.append(option);}type.value=field.type;typeWrap.append(type);grid.append(typeWrap);
+    const requiredWrap=make('label','check-label'),required=document.createElement('input');required.type='checkbox';required.checked=field.required;requiredWrap.append(required,make('span','','必填（提交时检查）'));grid.append(requiredWrap);
+    const choices=configControl('选项（每行一个）',field.choices.join('\n'),'textarea');choices.wrap.classList.add('wide');choices.input.rows=2;grid.append(choices.wrap);
+    const minimum=configControl('数值最小值（空为不另限）',field.minimum==null?'':String(field.minimum)),maximum=configControl('数值最大值（空为不另限）',field.maximum==null?'':String(field.maximum));grid.append(minimum.wrap,maximum.wrap);
+    const initial=configControl('初值：文本/单选直接填；标签填JSON数组',field.type==='tags'?JSON.stringify(value):value===null?'':String(value));initial.wrap.classList.add('wide');grid.append(initial.wrap);
+    const model={row,key:key.input,label:label.input,type,required,choices:choices.input,minimum:minimum.input,maximum:maximum.input,initial:initial.input};configRows.push(model);
+    const update=()=>{choices.wrap.hidden=!['choice','tags'].includes(type.value);minimum.wrap.hidden=maximum.wrap.hidden=type.value!=='number';};type.addEventListener('change',update);update();
+    remove.addEventListener('click',()=>{const i=configRows.indexOf(model);if(i>=0)configRows.splice(i,1);row.remove();invalidateConfig();});
+    row.addEventListener('input',invalidateConfig);row.addEventListener('change',invalidateConfig);$('config-fields').append(row);
+  }
+  function invalidateConfig(){if(configUrl){URL.revokeObjectURL(configUrl);configUrl=null;}$('download-config').hidden=true;$('config-output').hidden=true;$('config-output').value='';}
+  spec.fields.forEach(field=>addConfigField(field,spec.initial_values[field.key]));
+  $('add-field').addEventListener('click',()=>{if(configRows.length>=16){showConfigErrors(['最多16个字段。']);return;}let i=1;while(configRows.some(row=>row.key.value==='field_'+i))i++;addConfigField({key:'field_'+i,label:'新字段',type:'text',required:false,choices:[]},'');invalidateConfig();});
+  function showConfigErrors(errors){const target=$('config-errors');target.hidden=!errors.length;target.replaceChildren();if(errors.length){target.append(make('strong','','配置尚不能导出：'));const ul=make('ul');errors.forEach(message=>ul.append(make('li','',message)));target.append(ul);}}
+  $('export-config').addEventListener('click',()=>{
+    invalidateConfig();const draft=copy(spec);for(const [key,input]of metaInputs)draft[key]=input.value;draft.parent_sha256=SOURCE.source_sha256;draft.initial_state='draft';draft.fields=[];draft.initial_values=Object.create(null);
+    try {for(const row of configRows){const kind=row.type.value,field={key:row.key.value,label:row.label.value,type:kind,required:row.required.checked,choices:['choice','tags'].includes(kind)?row.choices.value.split('\n').filter(item=>item.length>0):[]};if(kind==='number'){field.minimum=numberText(row.minimum.value);field.maximum=numberText(row.maximum.value);}draft.fields.push(field);draft.initial_values[field.key]=kind==='number'?numberText(row.initial.value):kind==='tags'?JSON.parse(row.initial.value):row.initial.value;}
+      const errors=specErrors(draft);if(draft.version===spec.version)errors.push('请使用不同于当前源规格的新版本号。');if(errors.length){showConfigErrors(errors);return;}
+      const raw=JSON.stringify(draft,null,2)+'\n';$('config-output').value=raw;$('config-output').hidden=false;configUrl=URL.createObjectURL(new Blob([raw],{type:'application/json;charset=utf-8'}));$('download-config').href=configUrl;$('download-config').download=draft.id+'-'+draft.version.replace(/[^A-Za-z0-9._-]/g,'_').slice(0,80)+'.json';$('download-config').hidden=false;showConfigErrors([]);
+    }catch(_){showConfigErrors(['初值或选项无法解析；标签初值需要有效JSON数组，数值须符合给定范围。']);}
+  });
+  for(const input of metaInputs.values())input.addEventListener('input',invalidateConfig);
+  $('open-config').addEventListener('click',()=>{$('config').hidden=false;$('config').scrollIntoView({behavior:'smooth',block:'start'});});$('close-config').addEventListener('click',()=>{$('config').hidden=true;});
+  resetSession();$('message').textContent='可以直接体验给定样例；内容只在当前页面会话中变化。';
+})();
+</script></body></html>
