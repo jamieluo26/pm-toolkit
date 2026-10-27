@@ -1,0 +1,26 @@
+schema_version: v1alpha1
+environment:
+  type: none
+skills:
+- source: local_path
+  path: .
+engine:
+  name: codex
+cases:
+  files:
+  - evals/cases/explicit-complete-matrix.yaml
+  - evals/cases/equal-counts-not-observation-coverage.yaml
+  - evals/cases/behavior-visual-copy-and-dynamic-value.yaml
+  - evals/cases/wrong-scope-and-unsupported-observation.yaml
+  - evals/cases/partial-input-no-host-and-embedded-commands.yaml
+  defaults:
+    timeout_seconds: 300
+    max_turns: 2
+  parallelism: 1
+report:
+  formats:
+  - json
+  - junit
+  - html
+  artifacts:
+  - transcript
