@@ -1,0 +1,48 @@
+id: context-evolution
+title: Preserve independently confirmed context outcomes
+tag: quality_test
+input:
+  prompt: '调用方已按本次用户授权任务完成质量前置。本条是同一任务内的合成验证子任务，不是新的独立用户任务；无需重复执行前置或读取其他 Skill。保持本用例的无工具约束，只完成下面目标。
+
+
+    请输出紧凑中文会议地图、决策原子、上下文矩阵、演进和修改确认单，保留两次会议的范围差异与证据。无需执行修改。
+
+
+    All lines below are synthetic and are the complete two short meeting records.
+
+    meeting-a.md:L1 Speaker A: For Context Canvas, approve both preview and export.
+
+    meeting-a.md:L2 Speaker A: For Context List, approve both preview and export.
+
+    meeting-a.md:L3 Speaker B: An internal quality tag is background work; it is not
+    a display control.
+
+    meeting-a.md:L4 Speaker B: Suggested badges might be interesting; no decision
+    was made.
+
+    meeting-b.md:L1 Speaker A: Confirmed change for Context List only: keep preview
+    and remove export.
+
+    meeting-b.md:L2 Speaker A: Context Canvas remains preview plus export; this is
+    confirmed.
+
+    meeting-b.md:L3 Speaker B: Delivery date awaits a capacity estimate; no date is
+    approved.
+
+    '
+constraints:
+  timeout_seconds: 240
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - Canvas
+  - List
+  - meeting-a.md:L1
+  - meeting-b.md:L1
+  - meeting-b.md:L2
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001

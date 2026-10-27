@@ -1,0 +1,43 @@
+id: unresolved-conflict
+title: Later opposition does not resolve a conflict
+tag: quality_test
+input:
+  prompt: '调用方已按本次用户授权任务完成质量前置。本条是同一任务内的合成验证子任务，不是新的独立用户任务；无需重复执行前置或读取其他 Skill。保持本用例的无工具约束，只完成下面目标。
+
+
+    请解释该主题在当前材料下的实际状态、演进与需确认事项；不猜谁是用户或谁有权拍板。
+
+
+    All lines below are synthetic and the complete supplied record.
+
+    meeting-a.md:L1 Speaker A: I favor automatic ordering for Context Canvas; this
+    is a suggestion.
+
+    meeting-a.md:L2 Speaker B: I oppose automatic ordering for Context Canvas; this
+    is not a final decision.
+
+    meeting-b.md:L1 Speaker B: I still oppose it; no final decision or authorized
+    resolution has been recorded.
+
+    meeting-b.md:L2 Speaker labels have no supplied identity or role mapping.
+
+    '
+constraints:
+  timeout_seconds: 240
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - HOLD
+  - UNKNOWN
+  - Speaker A
+  - Speaker B
+  - meeting-b.md:L1
+  must_not_contain:
+  - 最终确认取消自动排序
+  - Speaker A就是用户
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001
