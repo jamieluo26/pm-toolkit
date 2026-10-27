@@ -1,0 +1,98 @@
+{
+  "schema": "pm-task-trace/v1",
+  "task_id": "reading_lifecycle",
+  "version": "2.1",
+  "task_sha256": "f78b544370498a5bdc7dce3c66665d3f54680bed7d45e9e625c1316da9c4998a",
+  "spec_sha256": "01ca6870c60e3dfa2a5e14da364d3a78b7d0622fa92da44ca5d4cc8781286095",
+  "checks": [
+    {
+      "requirement_id": "browse",
+      "id": "browse_c1",
+      "condition": "默认显示全部3本；筛选进度与主题取交集。",
+      "expected": "与给定条件一致，筛选/恢复结果可观察。",
+      "prototype_check_id": "browse-c1",
+      "evidence_level": "browser",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "requirement_id": "browse",
+      "id": "browse_c2",
+      "condition": "筛选历史显示空态；重置恢复全部；重复筛选稳定。",
+      "expected": "与给定条件一致，筛选/恢复结果可观察。",
+      "prototype_check_id": "browse-c2",
+      "evidence_level": "browser",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "requirement_id": "maintain",
+      "id": "maintain_c1",
+      "condition": "打开详情能看到全部字段。",
+      "expected": "保存与刷新行为符合当前会话边界。",
+      "prototype_check_id": "maintain-c1",
+      "evidence_level": "browser",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "requirement_id": "maintain",
+      "id": "maintain_c2",
+      "condition": "必填缺失阻止保存；有效新增/编辑仅当前页面保留，刷新恢复样例。",
+      "expected": "保存与刷新行为符合当前会话边界。",
+      "prototype_check_id": "maintain-c2",
+      "evidence_level": "browser",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "requirement_id": "layout",
+      "id": "layout_c1",
+      "condition": "打开原型，检查筛选区域与空态入口。",
+      "expected": "筛选位于顶部，空态保留重置入口。",
+      "prototype_check_id": "layout-c1",
+      "evidence_level": "browser",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "browse",
+      "priority": "must",
+      "priority_reason": "先验证阅读整理和修改需求表达的核心路径，收益仍待用户试用。",
+      "evidence_ids": [
+        "ev_reading"
+      ],
+      "decision_ids": [
+        "dec_1"
+      ],
+      "rule_ids": [
+        "rule_1"
+      ]
+    },
+    {
+      "id": "maintain",
+      "priority": "must",
+      "priority_reason": "先验证阅读整理和修改需求表达的核心路径，收益仍待用户试用。",
+      "evidence_ids": [
+        "ev_reading"
+      ],
+      "decision_ids": [
+        "dec_2"
+      ],
+      "rule_ids": [
+        "rule_2"
+      ]
+    },
+    {
+      "id": "layout",
+      "priority": "must",
+      "priority_reason": "先验证阅读整理和修改需求表达的核心路径，收益仍待用户试用。",
+      "evidence_ids": [
+        "ev_reading"
+      ],
+      "decision_ids": [
+        "dec_3"
+      ],
+      "rule_ids": [
+        "rule_3"
+      ]
+    }
+  ]
+}

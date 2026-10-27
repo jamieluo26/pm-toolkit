@@ -1,0 +1,118 @@
+{
+  "schema": "pm-collection/v1",
+  "id": "reading_lifecycle",
+  "version": "2.1",
+  "parent_sha256": "0f9acbd47e05b48c5bc706c95a34d9fba856ad0eed5381b38a8af8baefea9290",
+  "title": "阅读清单",
+  "positioning": "为个人读者整理待读与在读书目；本例全部人工合成。",
+  "pain": "读者可能在主题、进度与零散记录之间反复切换，此痛点尚待访谈验证。",
+  "value": "用同一页面筛选、查看与维护书目，减少整理成本；价值尚未实测。",
+  "fields": [
+    {
+      "key": "title",
+      "label": "书名",
+      "type": "text",
+      "required": true,
+      "choices": []
+    },
+    {
+      "key": "stage",
+      "label": "阅读进度",
+      "type": "choice",
+      "required": true,
+      "choices": [
+        "待读",
+        "在读",
+        "已读"
+      ]
+    },
+    {
+      "key": "topics",
+      "label": "主题",
+      "type": "tags",
+      "required": false,
+      "choices": [
+        "设计",
+        "历史",
+        "写作"
+      ]
+    },
+    {
+      "key": "pages",
+      "label": "页数",
+      "type": "number",
+      "required": false,
+      "choices": []
+    }
+  ],
+  "search_fields": [
+    "title",
+    "topics"
+  ],
+  "filters": [
+    "stage",
+    "topics"
+  ],
+  "layout": "toolbar",
+  "items": [
+    {
+      "id": "book_a",
+      "values": {
+        "title": "灯塔笔记",
+        "stage": "在读",
+        "topics": [
+          "设计"
+        ],
+        "pages": 180
+      }
+    },
+    {
+      "id": "book_b",
+      "values": {
+        "title": "河岸手册",
+        "stage": "待读",
+        "topics": [
+          "设计",
+          "写作"
+        ],
+        "pages": 240
+      }
+    },
+    {
+      "id": "book_c",
+      "values": {
+        "title": "纸上旅人",
+        "stage": "已读",
+        "topics": [
+          "写作"
+        ],
+        "pages": 96
+      }
+    }
+  ],
+  "requirements": [
+    {
+      "id": "browse",
+      "statement": "按进度和主题整理书目",
+      "acceptance": [
+        "默认显示全部3本；筛选进度与主题取交集。；预期：与给定条件一致，筛选/恢复结果可观察。",
+        "筛选历史显示空态；重置恢复全部；重复筛选稳定。；预期：与给定条件一致，筛选/恢复结果可观察。"
+      ]
+    },
+    {
+      "id": "maintain",
+      "statement": "查看与维护当前会话书目",
+      "acceptance": [
+        "打开详情能看到全部字段。；预期：保存与刷新行为符合当前会话边界。",
+        "必填缺失阻止保存；有效新增/编辑仅当前页面保留，刷新恢复样例。；预期：保存与刷新行为符合当前会话边界。"
+      ]
+    },
+    {
+      "id": "layout",
+      "statement": "顶部工具栏承载筛选",
+      "acceptance": [
+        "打开原型，检查筛选区域与空态入口。；预期：筛选位于顶部，空态保留重置入口。"
+      ]
+    }
+  ]
+}
