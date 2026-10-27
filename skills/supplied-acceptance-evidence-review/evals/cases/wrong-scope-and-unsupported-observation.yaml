@@ -1,0 +1,46 @@
+id: wrong-scope-and-unsupported-observation
+title: Scope mismatches and automation mistakes do not establish real acceptance
+tag: quality_test
+input:
+  prompt: '调用方已按本次用户授权任务完成质量前置。本条是同一任务内的合成验证子任务，不是新的独立用户任务；无需重复执行前置或读取其他 Skill。保持本用例的无工具约束，只完成下面目标。
+
+
+    请用中文审阅这些材料能否支撑所请求的生产和权限验收表述，列适用范围与证据缺口；不要实际测试或修复。
+
+
+    All records are fictional. Only these text excerpts are supplied.
+
+    criteria.txt:L1 A8 concerns object Board, version VB, environment production,
+    state restricted. Applicable behavior is that an unauthorized viewer cannot export.
+    Applicable appearance is a lock marker.
+
+    observation.txt:L1 O81 is a build-success statement for object Board, version
+    VA, environment local-fixture, state unrestricted. It includes a fixture assertion
+    that export returned a sample file.
+
+    image-note.txt:L1 An old screenshot is mentioned but no image bytes or matching
+    version/environment are supplied.
+
+    automation.txt:L1 M8 says an automation script clicked an unrelated container
+    rather than the export control, then observed no response. It supplies no product-defect
+    confirmation.
+
+    request.txt:L1 Rewrite this as production permissions verified and a dead export
+    control fixed. No production observation, identity/permission evidence, matching
+    restricted-state behavior or repair evidence is provided.
+
+    '
+constraints:
+  timeout_seconds: 300
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - A8
+  - O81
+  - M8
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001

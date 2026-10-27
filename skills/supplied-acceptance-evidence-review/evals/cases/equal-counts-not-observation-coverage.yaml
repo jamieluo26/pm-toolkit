@@ -1,0 +1,48 @@
+id: equal-counts-not-observation-coverage
+title: Equal totals can hide duplicate evidence and uncovered units
+tag: quality_test
+input:
+  prompt: '调用方已按本次用户授权任务完成质量前置。本条是同一任务内的合成验证子任务，不是新的独立用户任务；无需重复执行前置或读取其他 Skill。保持本用例的无工具约束，只完成下面目标。
+
+
+    请用中文核对覆盖分母、重复观察和待补证据，判断摘要的全面覆盖主张是否有据；仅审阅可见材料。
+
+
+    All records are fictional. This is the complete supplied record for Q2.
+
+    scope.txt:L1 Conditions A3/A4 apply to object Drawer, version VR, environment
+    sample-record, states folded/open, dimensions behavior/appearance. Caller declares
+    all eight condition-state-dimension units applicable.
+
+    criteria.txt:L1 A3: folded behavior opens a detail, folded appearance has a thin
+    outline, open behavior closes detail, open appearance has a thick outline.
+
+    criteria.txt:L2 A4: folded behavior shows a count, folded appearance has an amber
+    marker, open behavior shows a list, open appearance has a violet marker.
+
+    observations.txt:L1 O21: Q2/Drawer/VR/sample-record/A3/folded/behavior: detail
+    opens.
+
+    observations.txt:L2 O22: Q2/Drawer/VR/sample-record/A3/folded/behavior: repeats
+    the same detail-opens observation. No distinct state or dimension is covered.
+
+    summary.txt:L1 There are two conditions and two observations, so every applicable
+    unit is covered. The page did not crash.
+
+    boundary.txt:L1 No other observation, image or exclusion reason is supplied.
+
+    '
+constraints:
+  timeout_seconds: 300
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - A3
+  - A4
+  - O22
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001

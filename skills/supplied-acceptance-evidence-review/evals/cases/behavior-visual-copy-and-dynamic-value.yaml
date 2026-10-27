@@ -1,0 +1,61 @@
+id: behavior-visual-copy-and-dynamic-value
+title: Behavior, visible copy and scoped numerical standards have separate evidence
+tag: quality_test
+input:
+  prompt: '调用方已按本次用户授权任务完成质量前置。本条是同一任务内的合成验证子任务，不是新的独立用户任务；无需重复执行前置或读取其他 Skill。保持本用例的无工具约束，只完成下面目标。
+
+
+    请用中文分别审阅行为、外观、逐字文字和数值证据。按已给范围、单位、容差与版本处理有据违反和缺标准项；只分析材料，不运行产品计算。
+
+
+    All records are fictional. Review Q3 is object Card, version VA, environment supplied-record.
+    All following records concern this scope unless stated otherwise.
+
+    criteria.txt:L1 C5 in state summary: behavior request opens the summary; appearance
+    must use a compact frame. Behavior and appearance are separately applicable.
+
+    baseline.txt:L1 B5 is the caller-selected visible-copy baseline for C5: caption
+    is "Measured flow".
+
+    intent.txt:L1 I5 explains the intended message as "Forecast flow"; this explanatory
+    sentence is not selected as the visible-copy baseline.
+
+    observation.txt:L1 O51 reports C5 summary request opens the summary, while its
+    reported frame is wide. Observed caption is "Expected flow".
+
+    criteria.txt:L2 N5 for VA: recorded latency must be within 10 to 20 ms inclusive
+    with an allowed tolerance of 1 ms; observation O52 records 26 ms.
+
+    sample.txt:L1 N6 static illustration shows count 120; observation O53 records
+    count 135. No applicable target, range, formula, tolerance or correctness standard
+    for N6 is supplied.
+
+    standard-a.txt:L1 N7 standard S7A for VA says the label reports raw totals. It
+    claims authority for Q3.
+
+    standard-b.txt:L1 N7 standard S7B for VA says the label reports normalized totals.
+    Its timestamp is later and it also claims authority for Q3. Caller supplies no
+    precedence or approval relationship between S7A/S7B.
+
+    observation.txt:L2 O54 only says N7 displays a total; it does not settle raw versus
+    normalized meaning.
+
+    boundary.txt:L1 These are text records only; no actual image or executable formula
+    is available, and no new observation is authorized.
+
+    '
+constraints:
+  timeout_seconds: 300
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - C5
+  - N5
+  - N6
+  - N7
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001
