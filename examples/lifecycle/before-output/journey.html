@@ -1,0 +1,83 @@
+<!doctype html><html lang='zh-CN'><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><link rel='icon' href='data:,'><title>产品任务工作包</title><style>body{font:16px/1.8 system-ui;background:#f7f7f2;color:#263a31;max-width:1100px;margin:40px auto;padding:24px}h1{font-size:38px}nav{display:flex;gap:12px;flex-wrap:wrap}a{color:#2d6247;padding:12px;border:1px solid #cbd5c7;border-radius:8px}details{margin:24px 0;border:1px solid #ccd5c7;border-radius:8px;padding:18px}summary{cursor:pointer;font-weight:650}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.8 system-ui}small{overflow-wrap:anywhere}</style><p>PM TOOLKIT / TASK WORKPACK</p><h1>阅读清单产品任务</h1><p>任务 reading_lifecycle · 2.0</p><p>先读需求与规则，再体验原型、核对文档；按检查计划记录实际观察。这里的生成结果尚未获得业务验收。</p><nav><a href='prototype.html'>体验当前原型 ↗</a><a href='handoff.docx'>带走同版 Word ↓</a><a href='PRD.md' download>PRD ↓</a><a href='acceptance.md' download>待执行检查计划 ↓</a><a href='trace.json' download>关系与版本 ↓</a></nav><details><summary>01 需求澄清</summary><pre># 阅读清单产品任务
+
+任务：reading_lifecycle；版本：2.0
+任务源 SHA-256：1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc
+规格 SHA-256：0f9acbd47e05b48c5bc706c95a34d9fba856ad0eed5381b38a8af8baefea9290
+
+来源类型仅为调用者声明；工具不核验来源或脱敏。价值与收益仍是待证假设，给定决定不证明真人审批。
+
+## 定位与目标
+
+目标用户：需要整理个人书目的读者；本例人物、讨论和记录均为人工合成。
+问题：读者可能在主题、进度与零散记录之间反复切换，此痛点尚待访谈验证。
+定位：为个人读者整理待读与在读书目；本例全部人工合成。
+价值假设：用同一页面筛选、查看与维护书目，减少整理成本；价值尚未实测。
+目标：用一份可追溯任务材料验证列表、筛选、会话维护与交接文档的一致性。
+优先级依据：先完成整理和查找，再讨论云端同步；按核心任务依赖排序。
+## 成功指标与待验证项
+
+statement：目标读者能独立找到指定主题书目并理解当前阅读进度。
+baseline：未采集真实用户基线。
+target：待目标用户试用后确定；本例不预填效率增益。
+measurement：记录首次使用中的完成情况、阻断点与解释需求；技术检查单独记录。
+## 本轮范围
+
+个人书目的本地演示与同源交接。
+进度/主题交集筛选、空态与恢复、详情、会话新增和编辑。
+## 排除范围
+
+云端同步、删除、登录、多人协作、真实书目采集。
+真实业务审批、生产执行和效率收益声明。
+</pre></details><details><summary>02 范围与规则</summary><pre># 阅读清单产品任务
+
+任务：reading_lifecycle；版本：2.0
+任务源 SHA-256：1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc
+规格 SHA-256：0f9acbd47e05b48c5bc706c95a34d9fba856ad0eed5381b38a8af8baefea9290
+
+## 给定消费者与排除理由
+
+consumer\_reader：纳入；本例唯一目标使用者，覆盖整理与查看路径。；依据 ev\_reading
+consumer\_team：排除；团队协作不在个人本地演示范围。；依据 ev\_reading
+## rule_1 按进度和主题整理书目
+
+默认：默认显示全部3条；进度与主题均不限制。
+异常：无命中显示空态，仍可重置。
+边界：本地合成演示，不持久化、不访问网络。
+需求：browse
+依据：ev\_reading
+## rule_2 查看与维护当前会话书目
+
+默认：详情从给定样例显示；改动仅当前页会话保留。
+异常：必填为空或数值非法时阻止保存。
+边界：本地合成演示，不持久化、不访问网络。
+需求：maintain
+依据：ev\_reading
+## rule_3 侧栏承载筛选
+
+默认：筛选位于左侧。
+异常：空态保留筛选与重置入口。
+边界：本地合成演示，不持久化、不访问网络。
+需求：layout
+依据：ev\_reading
+</pre></details><details><summary>03 决定与依据</summary><pre># 阅读清单产品任务
+
+任务：reading_lifecycle；版本：2.0
+任务源 SHA-256：1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc
+规格 SHA-256：0f9acbd47e05b48c5bc706c95a34d9fba856ad0eed5381b38a8af8baefea9290
+
+来源类型仅为调用者声明；工具不核验来源或脱敏。价值与收益仍是待证假设，给定决定不证明真人审批。
+
+## 给定证据
+
+ev\_reading \[synthetic\] 合成讨论提出按进度和主题找书、保留空态恢复入口，并能查看和维护当前页的书目。 来源：source-notes.md 第1节 E01（人工合成）
+ev\_layout \[synthetic\] 第二轮合成反馈建议把筛选从左侧移动到顶部，功能意图继续保留。 来源：source-notes.md 第2节 E02（人工合成）
+ev\_value \[hypothesis\] 更集中地查看书目可能减少整理成本，尚无真实访谈或效果测量。 来源：本合成案例的价值假设，不作为实测结论。
+## 给定决定
+
+dec\_1 \[declared\] 按进度和主题整理书目 依据：ev\_reading
+dec\_2 \[declared\] 查看与维护当前会话书目 依据：ev\_reading
+dec\_3 \[declared\] 侧栏承载筛选 依据：ev\_reading
+## 未决事项
+
+本输入没有声明未决项；不证明真实项目不存在未知项。
+</pre></details><details><summary>04 评审到复盘</summary><p>按 docs/lifecycle.md 从反馈与人工决定生成修订核对；每次生成新目录。用当前任务SHA绑定观察记录，再生成交付说明、问题复验、版本说明、产品手册与复盘。</p><p>无法确定的结论保持待定，失败或未执行不升级成通过。</p></details><small>任务源 SHA-256：1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc。输入来自调用者，工具不核验来源或脱敏；本地会话操作不等于业务审批。</small></html>

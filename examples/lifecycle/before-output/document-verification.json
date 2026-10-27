@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "task_sha256": "1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc",
+  "spec_sha256": "0f9acbd47e05b48c5bc706c95a34d9fba856ad0eed5381b38a8af8baefea9290",
+  "document_source_sha256": "2e2979d3d45502148ec95f04822c6620fe72140e3c6a12aea69ea13c278f4e47",
+  "docx_sha256": "61c313050be01f0864536ffb270ef690c19d0d81aa7a1604a4e36399b1941c0a",
+  "ordered_content_items": 139,
+  "visual_render": "NOT_RUN_BY_GENERATOR"
+}

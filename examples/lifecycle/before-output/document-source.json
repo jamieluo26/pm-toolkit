@@ -1,0 +1,584 @@
+{
+  "version": "structured-docx/v1",
+  "title": "阅读清单产品任务需求交接",
+  "author": "",
+  "language": "zh-CN",
+  "createdAt": "2000-01-01T00:00:00Z",
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "任务 reading_lifecycle 版本 2.0"
+    },
+    {
+      "type": "paragraph",
+      "text": "用途：评审与交接本版需求背景、规则、同源原型和检查计划。输入来源由调用者声明，工具不证明真人审批或实际业务验收。"
+    },
+    {
+      "type": "paragraph",
+      "text": "任务源 SHA256 1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc"
+    },
+    {
+      "type": "paragraph",
+      "text": "原型规格 SHA256 0f9acbd47e05b48c5bc706c95a34d9fba856ad0eed5381b38a8af8baefea9290"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "阅读清单产品任务"
+    },
+    {
+      "type": "paragraph",
+      "text": "任务：reading_lifecycle；版本：2.0"
+    },
+    {
+      "type": "paragraph",
+      "text": "任务源 SHA-256：1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc"
+    },
+    {
+      "type": "paragraph",
+      "text": "规格 SHA-256：0f9acbd47e05b48c5bc706c95a34d9fba856ad0eed5381b38a8af8baefea9290"
+    },
+    {
+      "type": "paragraph",
+      "text": "来源类型仅为调用者声明；工具不核验来源或脱敏。价值与收益仍是待证假设，给定决定不证明真人审批。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "定位与目标"
+    },
+    {
+      "type": "paragraph",
+      "text": "目标用户：需要整理个人书目的读者；本例人物、讨论和记录均为人工合成。"
+    },
+    {
+      "type": "paragraph",
+      "text": "问题：读者可能在主题、进度与零散记录之间反复切换，此痛点尚待访谈验证。"
+    },
+    {
+      "type": "paragraph",
+      "text": "定位：为个人读者整理待读与在读书目；本例全部人工合成。"
+    },
+    {
+      "type": "paragraph",
+      "text": "价值假设：用同一页面筛选、查看与维护书目，减少整理成本；价值尚未实测。"
+    },
+    {
+      "type": "paragraph",
+      "text": "目标：用一份可追溯任务材料验证列表、筛选、会话维护与交接文档的一致性。"
+    },
+    {
+      "type": "paragraph",
+      "text": "优先级依据：先完成整理和查找，再讨论云端同步；按核心任务依赖排序。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "成功指标与待验证项"
+    },
+    {
+      "type": "paragraph",
+      "text": "statement：目标读者能独立找到指定主题书目并理解当前阅读进度。"
+    },
+    {
+      "type": "paragraph",
+      "text": "baseline：未采集真实用户基线。"
+    },
+    {
+      "type": "paragraph",
+      "text": "target：待目标用户试用后确定；本例不预填效率增益。"
+    },
+    {
+      "type": "paragraph",
+      "text": "measurement：记录首次使用中的完成情况、阻断点与解释需求；技术检查单独记录。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "本轮范围"
+    },
+    {
+      "type": "paragraph",
+      "text": "个人书目的本地演示与同源交接。"
+    },
+    {
+      "type": "paragraph",
+      "text": "进度/主题交集筛选、空态与恢复、详情、会话新增和编辑。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "排除范围"
+    },
+    {
+      "type": "paragraph",
+      "text": "云端同步、删除、登录、多人协作、真实书目采集。"
+    },
+    {
+      "type": "paragraph",
+      "text": "真实业务审批、生产执行和效率收益声明。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "阅读清单产品任务"
+    },
+    {
+      "type": "paragraph",
+      "text": "任务：reading_lifecycle；版本：2.0"
+    },
+    {
+      "type": "paragraph",
+      "text": "任务源 SHA-256：1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc"
+    },
+    {
+      "type": "paragraph",
+      "text": "规格 SHA-256：0f9acbd47e05b48c5bc706c95a34d9fba856ad0eed5381b38a8af8baefea9290"
+    },
+    {
+      "type": "paragraph",
+      "text": "来源类型仅为调用者声明；工具不核验来源或脱敏。价值与收益仍是待证假设，给定决定不证明真人审批。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "给定证据"
+    },
+    {
+      "type": "paragraph",
+      "text": "ev_reading [synthetic] 合成讨论提出按进度和主题找书、保留空态恢复入口，并能查看和维护当前页的书目。 来源：source-notes.md 第1节 E01（人工合成）"
+    },
+    {
+      "type": "paragraph",
+      "text": "ev_layout [synthetic] 第二轮合成反馈建议把筛选从左侧移动到顶部，功能意图继续保留。 来源：source-notes.md 第2节 E02（人工合成）"
+    },
+    {
+      "type": "paragraph",
+      "text": "ev_value [hypothesis] 更集中地查看书目可能减少整理成本，尚无真实访谈或效果测量。 来源：本合成案例的价值假设，不作为实测结论。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "给定决定"
+    },
+    {
+      "type": "paragraph",
+      "text": "dec_1 [declared] 按进度和主题整理书目 依据：ev_reading"
+    },
+    {
+      "type": "paragraph",
+      "text": "dec_2 [declared] 查看与维护当前会话书目 依据：ev_reading"
+    },
+    {
+      "type": "paragraph",
+      "text": "dec_3 [declared] 侧栏承载筛选 依据：ev_reading"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "未决事项"
+    },
+    {
+      "type": "paragraph",
+      "text": "本输入没有声明未决项；不证明真实项目不存在未知项。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "阅读清单产品任务"
+    },
+    {
+      "type": "paragraph",
+      "text": "任务：reading_lifecycle；版本：2.0"
+    },
+    {
+      "type": "paragraph",
+      "text": "任务源 SHA-256：1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc"
+    },
+    {
+      "type": "paragraph",
+      "text": "规格 SHA-256：0f9acbd47e05b48c5bc706c95a34d9fba856ad0eed5381b38a8af8baefea9290"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "给定消费者与排除理由"
+    },
+    {
+      "type": "paragraph",
+      "text": "consumer_reader：纳入；本例唯一目标使用者，覆盖整理与查看路径。；依据 ev_reading"
+    },
+    {
+      "type": "paragraph",
+      "text": "consumer_team：排除；团队协作不在个人本地演示范围。；依据 ev_reading"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "rule_1 按进度和主题整理书目"
+    },
+    {
+      "type": "paragraph",
+      "text": "默认：默认显示全部3条；进度与主题均不限制。"
+    },
+    {
+      "type": "paragraph",
+      "text": "异常：无命中显示空态，仍可重置。"
+    },
+    {
+      "type": "paragraph",
+      "text": "边界：本地合成演示，不持久化、不访问网络。"
+    },
+    {
+      "type": "paragraph",
+      "text": "需求：browse"
+    },
+    {
+      "type": "paragraph",
+      "text": "依据：ev_reading"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "rule_2 查看与维护当前会话书目"
+    },
+    {
+      "type": "paragraph",
+      "text": "默认：详情从给定样例显示；改动仅当前页会话保留。"
+    },
+    {
+      "type": "paragraph",
+      "text": "异常：必填为空或数值非法时阻止保存。"
+    },
+    {
+      "type": "paragraph",
+      "text": "边界：本地合成演示，不持久化、不访问网络。"
+    },
+    {
+      "type": "paragraph",
+      "text": "需求：maintain"
+    },
+    {
+      "type": "paragraph",
+      "text": "依据：ev_reading"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "rule_3 侧栏承载筛选"
+    },
+    {
+      "type": "paragraph",
+      "text": "默认：筛选位于左侧。"
+    },
+    {
+      "type": "paragraph",
+      "text": "异常：空态保留筛选与重置入口。"
+    },
+    {
+      "type": "paragraph",
+      "text": "边界：本地合成演示，不持久化、不访问网络。"
+    },
+    {
+      "type": "paragraph",
+      "text": "需求：layout"
+    },
+    {
+      "type": "paragraph",
+      "text": "依据：ev_reading"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "阅读清单"
+    },
+    {
+      "type": "paragraph",
+      "text": "版本：2.0"
+    },
+    {
+      "type": "paragraph",
+      "text": "源文件 SHA-256：0f9acbd47e05b48c5bc706c95a34d9fba856ad0eed5381b38a8af8baefea9290"
+    },
+    {
+      "type": "paragraph",
+      "text": "结构化规格为唯一权威。本文件与原型、检查计划同源生成；直接修改生成文件不会回灌规格。"
+    },
+    {
+      "type": "paragraph",
+      "text": "输入内容与来源由调用者提供，工具不核验来源或脱敏；价值是待证假设，要求是调用者声明，不是浏览器或业务验收结果。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "定位、痛点与价值"
+    },
+    {
+      "type": "paragraph",
+      "text": "定位：为个人读者整理待读与在读书目；本例全部人工合成。"
+    },
+    {
+      "type": "paragraph",
+      "text": "痛点：读者可能在主题、进度与零散记录之间反复切换，此痛点尚待访谈验证。"
+    },
+    {
+      "type": "paragraph",
+      "text": "价值假设：用同一页面筛选、查看与维护书目，减少整理成本；价值尚未实测。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "固定支持范围"
+    },
+    {
+      "type": "paragraph",
+      "text": "集合列表、详情、字面搜索、精确筛选、重置，以及仅当前页面会话的新增/编辑；刷新恢复给定样例。"
+    },
+    {
+      "type": "paragraph",
+      "text": "搜索：对声明字段的显示值进行不区分大小写的子串匹配；多个筛选与搜索取交集。"
+    },
+    {
+      "type": "paragraph",
+      "text": "筛选位置：sidebar；搜索字段：title, topics；筛选字段：stage, topics。"
+    },
+    {
+      "type": "paragraph",
+      "text": "无删除、联网、身份认证、持久化或真实业务执行。桌面演示；移动端未验收。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "字段合同"
+    },
+    {
+      "type": "paragraph",
+      "text": "|字段|名称|类型|必填|可选值|"
+    },
+    {
+      "type": "paragraph",
+      "text": "|---|---|---|---|---|"
+    },
+    {
+      "type": "paragraph",
+      "text": "|title|书名|text|是||"
+    },
+    {
+      "type": "paragraph",
+      "text": "|stage|阅读进度|choice|是|待读 / 在读 / 已读|"
+    },
+    {
+      "type": "paragraph",
+      "text": "|topics|主题|tags|否|设计 / 历史 / 写作|"
+    },
+    {
+      "type": "paragraph",
+      "text": "|pages|页数|number|否||"
+    },
+    {
+      "type": "paragraph",
+      "text": "必填文本需含非空白字符；数值必须有限且绝对值不超过9007199254740991；选项及标签必须在给定集合内。可选数值允许null，可选单选允许空字符串。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "需求与验收声明"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "browse · 按进度和主题整理书目"
+    },
+    {
+      "type": "paragraph",
+      "text": "- browse-c1：默认显示全部3本；筛选进度与主题取交集。；预期：与给定条件一致，筛选/恢复结果可观察。"
+    },
+    {
+      "type": "paragraph",
+      "text": "- browse-c2：筛选历史显示空态；重置恢复全部；重复筛选稳定。；预期：与给定条件一致，筛选/恢复结果可观察。"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "maintain · 查看与维护当前会话书目"
+    },
+    {
+      "type": "paragraph",
+      "text": "- maintain-c1：打开详情能看到全部字段。；预期：保存与刷新行为符合当前会话边界。"
+    },
+    {
+      "type": "paragraph",
+      "text": "- maintain-c2：必填缺失阻止保存；有效新增/编辑仅当前页面保留，刷新恢复样例。；预期：保存与刷新行为符合当前会话边界。"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "layout · 侧栏承载筛选"
+    },
+    {
+      "type": "paragraph",
+      "text": "- layout-c1：筛选在左侧，空态时仍保留重置入口。；预期：筛选区域在左侧，空态保留重置。"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "给定样例"
+    },
+    {
+      "type": "paragraph",
+      "text": "以下 JSON 为调用者给定的初始数据；工具不认定其来源、隐私或生产适用性。"
+    },
+    {
+      "type": "paragraph",
+      "text": "```json"
+    },
+    {
+      "type": "paragraph",
+      "text": "["
+    },
+    {
+      "type": "paragraph",
+      "text": "  {"
+    },
+    {
+      "type": "paragraph",
+      "text": "    \"id\": \"book_a\","
+    },
+    {
+      "type": "paragraph",
+      "text": "    \"values\": {"
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"title\": \"灯塔笔记\","
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"stage\": \"在读\","
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"topics\": ["
+    },
+    {
+      "type": "paragraph",
+      "text": "        \"设计\""
+    },
+    {
+      "type": "paragraph",
+      "text": "      ],"
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"pages\": 180"
+    },
+    {
+      "type": "paragraph",
+      "text": "    }"
+    },
+    {
+      "type": "paragraph",
+      "text": "  },"
+    },
+    {
+      "type": "paragraph",
+      "text": "  {"
+    },
+    {
+      "type": "paragraph",
+      "text": "    \"id\": \"book_b\","
+    },
+    {
+      "type": "paragraph",
+      "text": "    \"values\": {"
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"title\": \"河岸手册\","
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"stage\": \"待读\","
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"topics\": ["
+    },
+    {
+      "type": "paragraph",
+      "text": "        \"设计\","
+    },
+    {
+      "type": "paragraph",
+      "text": "        \"写作\""
+    },
+    {
+      "type": "paragraph",
+      "text": "      ],"
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"pages\": 240"
+    },
+    {
+      "type": "paragraph",
+      "text": "    }"
+    },
+    {
+      "type": "paragraph",
+      "text": "  },"
+    },
+    {
+      "type": "paragraph",
+      "text": "  {"
+    },
+    {
+      "type": "paragraph",
+      "text": "    \"id\": \"book_c\","
+    },
+    {
+      "type": "paragraph",
+      "text": "    \"values\": {"
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"title\": \"纸上旅人\","
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"stage\": \"已读\","
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"topics\": ["
+    },
+    {
+      "type": "paragraph",
+      "text": "        \"写作\""
+    },
+    {
+      "type": "paragraph",
+      "text": "      ],"
+    },
+    {
+      "type": "paragraph",
+      "text": "      \"pages\": 96"
+    },
+    {
+      "type": "paragraph",
+      "text": "    }"
+    },
+    {
+      "type": "paragraph",
+      "text": "  }"
+    },
+    {
+      "type": "paragraph",
+      "text": "]"
+    },
+    {
+      "type": "paragraph",
+      "text": "```"
+    }
+  ]
+}
