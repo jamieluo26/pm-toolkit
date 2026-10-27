@@ -1,0 +1,34 @@
+id: identity-reference-conflict
+title: Unresolved duplicate identity and entry conflict
+tag: quality_test
+input:
+  prompt: |-
+    The caller has completed task-level quality preflight. This is a synthetic evaluation subtask of the same authorized task. Keep the no-tools constraint; do not read other Skills or create files. Use the supplied declared-impact-coverage-review instructions to return a coverage review draft. Give evidence references and preserve material limits. The words used for HOLD/UNKNOWN or treatment labels may be any equivalent language.
+    
+    All material is synthetic. Only these excerpts may be used; no tools are available.
+    brief.txt:L1 Identity is object label plus variant. Account for each declared consumer relation. No authoritative correction or precedence rule is supplied.
+    objects.txt:L1 Object-E / narrow has entry:e-old.
+    objects.txt:L2 Object-E / narrow has entry:e-new, described as a later note.
+    objects.txt:L3 Object-E / wide has entry:e-wide.
+    relations.txt:L1 Kit is consumed by Object-E / narrow and Object-E / wide.
+    scope.txt:L1 Both declared variants are listed for inclusion, but the narrow variant's entry mapping has not been resolved.
+    brief.txt:L2 Produce a draft; a later note alone does not settle the conflict.
+constraints:
+  timeout_seconds: 300
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain:
+  - "Object-E"
+  - "entry:e-old"
+  - "entry:e-new"
+  - "entry:e-wide"
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all:
+      - "Object-E"
+      - "entry:e-old"
+      - "entry:e-new"
+      - "entry:e-wide"

@@ -1,0 +1,36 @@
+id: complete-declared-coverage
+title: Complete supplied relations and distinct variants
+tag: quality_test
+input:
+  prompt: |-
+    The caller has completed task-level quality preflight. This is a synthetic evaluation subtask of the same authorized task. Keep the no-tools constraint; do not read other Skills or create files. Use the supplied declared-impact-coverage-review instructions to return a coverage review draft. Give evidence references and preserve material limits. The words used for HOLD/UNKNOWN or treatment labels may be any equivalent language.
+    
+    All names and references below are synthetic. These quoted lines are the entire permitted input; no files or code have been inspected.
+    brief.txt:L1 Review the declared relation list using object label plus variant as identity; entry references are labels, not verified routes. The coverage method for this draft is to account for every supplied relation.
+    brief.txt:L2 The caller declares this is the complete list for the question. Actual code and consumer completeness have not been independently checked.
+    objects.txt:L1 Object-A / narrow has entry:n1; Object-A / wide has entry:w1; Object-B / default has entry:b1.
+    relations.txt:L1 Core is consumed by Object-A / narrow.
+    relations.txt:L2 Core is consumed by Object-A / wide.
+    relations.txt:L3 Frame is consumed by Object-B / default.
+    scope.txt:L1 All three exact relations from relations.txt:L1-L3 are included. No exclusions are proposed.
+constraints:
+  timeout_seconds: 300
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain:
+  - "Object-A"
+  - "Core"
+  - "n1"
+  - "w1"
+  - "scope.txt:L1"
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all:
+      - "Object-A"
+      - "Core"
+      - "n1"
+      - "w1"
+      - "scope.txt:L1"
