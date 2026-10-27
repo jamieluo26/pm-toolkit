@@ -1,0 +1,64 @@
+id: complete-handbook
+title: Complete handbook from supplied evidence
+tag: quality_test
+input:
+  prompt: '调用方已按本次用户授权任务完成质量前置。本条是同一任务内的合成验证子任务，不是新的独立用户任务；无需重复执行前置或读取其他 Skill。保持本用例的无工具约束，只完成下面目标。
+
+
+    请仅依据以下完整合成材料，为 Sample Shelf 的 Notes 模块输出紧凑中文产品资产手册，包含0至8共九部分、逐断言来源和版本史。无需实际写文件。
+
+
+    All lines below are synthetic and complete for this exercise.
+
+    brief.md:L1 Product: Sample Shelf; scope: the Notes module only.
+
+    brief.md:L2 Purpose: capture and find private draft notes; users: individual writers.
+
+    brief.md:L3 Includes editor and search pages; excludes collaboration and billing.
+
+    brief.md:L4 Module source map: editor component E; search component S; shared
+    title input T.
+
+    release.md:L1 Version 1.0 added search; reason: reduce finding time; reviewer:
+    Editor A.
+
+    release.md:L2 Version 1.1 added draft labels; reason: distinguish unfinished notes;
+    reviewer: Editor B.
+
+    checks.md:L1 Build, business runtime and user acceptance for version 1.1 passed;
+    receipts B11, R11, U11.
+
+    checks.md:L2 Deployment receipt D11 and production runtime receipt P11 establish
+    version 1.1 for Notes.
+
+    rules.md:L1 Authority rule-index-1 version 1.1: short summary, draft labels distinguish
+    unfinished work; body omitted.
+
+    decisions.md:L1 Editor A confirmed the principle: preserve user text when adding
+    navigation aids.
+
+    gaps.md:L1 Offline search remains a proposed idea, not an approved commitment;
+    evidence not yet collected.
+
+    index.md:L1 Existing resources: brief.md, release.md, checks.md, rules.md, decisions.md,
+    gaps.md.
+
+    index.md:L2 Maintainer: Editor B; update on approved Notes changes or new runtime/deployment
+    evidence.
+
+    '
+constraints:
+  timeout_seconds: 240
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - '1.1'
+  - '1.0'
+  - D11
+  - rule-index-1
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001

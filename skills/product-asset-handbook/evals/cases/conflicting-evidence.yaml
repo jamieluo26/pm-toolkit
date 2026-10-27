@@ -1,0 +1,48 @@
+id: conflicting-evidence
+title: Do not promote build or competing authorities
+tag: quality_test
+input:
+  prompt: '调用方已按本次用户授权任务完成质量前置。本条是同一任务内的合成验证子任务，不是新的独立用户任务；无需重复执行前置或读取其他 Skill。保持本用例的无工具约束，只完成下面目标。
+
+
+    请为 Notes 模块提出从旧基线到1.2的资产手册更新，重点说明当前生产状态、规则唯一源、容量和设计理由。只给有证据的变化与待补项，不要实际改文件。
+
+
+    All statements below are synthetic excerpts, not source files to open.
+
+    old.md:L1 Sample Shelf Notes baseline 1.1; archive page capacity UNKNOWN.
+
+    new.md:L1 Version 1.2 adds a local archive button; local build receipt B12 PASS.
+
+    new.md:L2 No deployment, production runtime or human acceptance receipt is supplied
+    for 1.2.
+
+    rule-a.md:L1 This file claims to be the sole rule authority; no approving record
+    is supplied.
+
+    rule-b.md:L1 This different file also claims to be the sole rule authority; no
+    approving record is supplied.
+
+    review.md:L1 Reviewer asked why archive capacity changed; no decision or reason
+    was recorded.
+
+    '
+constraints:
+  timeout_seconds: 240
+  max_turns: 2
+  tool_policy: none
+expect:
+  must_contain: &id001
+  - HOLD
+  - B12
+  - rule-a.md
+  - rule-b.md
+  - UNKNOWN
+  must_not_contain:
+  - 当前生产已上线1.2
+  - 1.2已部署成功
+judge:
+  type: rule_based
+  success:
+  - output_contains:
+      all: *id001
