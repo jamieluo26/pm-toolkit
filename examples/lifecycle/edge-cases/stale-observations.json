@@ -1,0 +1,57 @@
+{
+  "schema": "pm-task-observations/v1",
+  "task_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "prototype_sha256": "e6f580be77180523ea6891cba3ccc8e40eafdcf5eb955d740fc743304b85afe5",
+  "rows": [
+    {
+      "id": "obs_1",
+      "check_id": "browse_c1",
+      "status": "pass",
+      "level": "browser",
+      "observed": "实际打开版本2.1：默认3/3；选择待读+设计后1/3，显示河岸手册。",
+      "evidence_ref": "browser-observations.md / browse_c1",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_2",
+      "check_id": "browse_c2",
+      "status": "pass",
+      "level": "browser",
+      "observed": "主题历史后0/3且有恢复全部；重置3/3；重复设计筛选仍2/3。",
+      "evidence_ref": "browser-observations.md / browse_c2",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_3",
+      "check_id": "maintain_c1",
+      "status": "pass",
+      "level": "browser",
+      "observed": "灯塔笔记详情显示book_a、书名、在读、设计和180页。",
+      "evidence_ref": "browser-observations.md / maintain_c1",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_4",
+      "check_id": "maintain_c2",
+      "status": "pass",
+      "level": "browser",
+      "observed": "书名为空阻止保存；编辑灯塔笔记修订成功；新增测试合成新书成功；刷新恢复源3条，修改与新增均不保留。",
+      "evidence_ref": "browser-observations.md / maintain_c2",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_5",
+      "check_id": "layout_c1",
+      "status": "pass",
+      "level": "browser",
+      "observed": "当前页面顶部筛选包含进度与主题，空态保留恢复全部；源规格SHA与同版PRD对应。",
+      "evidence_ref": "browser-observations.md / layout_c1",
+      "supersedes": null,
+      "defect": null
+    }
+  ]
+}

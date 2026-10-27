@@ -1,0 +1,57 @@
+{
+  "schema": "pm-task-observations/v1",
+  "task_sha256": "c14ecee33f69a11e8fe724ae0216d8d3cdc6b7995842b5fd90d60375ca1f1597",
+  "prototype_sha256": "a8de8bb7b303adaf3ea10c941bdd7c314cfd3462c4cbf5814a6d9b24d19aecfd",
+  "rows": [
+    {
+      "id": "obs_1",
+      "check_id": "browse_c1",
+      "status": "not_run",
+      "level": "browser",
+      "observed": "",
+      "evidence_ref": "",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_2",
+      "check_id": "browse_c2",
+      "status": "not_run",
+      "level": "browser",
+      "observed": "",
+      "evidence_ref": "",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_3",
+      "check_id": "maintain_c1",
+      "status": "not_run",
+      "level": "browser",
+      "observed": "",
+      "evidence_ref": "",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_4",
+      "check_id": "maintain_c2",
+      "status": "not_run",
+      "level": "browser",
+      "observed": "",
+      "evidence_ref": "",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_5",
+      "check_id": "layout_c1",
+      "status": "not_run",
+      "level": "browser",
+      "observed": "",
+      "evidence_ref": "",
+      "supersedes": null,
+      "defect": null
+    }
+  ]
+}
