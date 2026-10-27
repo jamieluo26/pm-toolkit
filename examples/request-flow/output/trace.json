@@ -1,0 +1,85 @@
+{
+  "schema": "pm-form-trace/v1",
+  "version": "v1",
+  "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919",
+  "meaning": "declared requirements only;not executed acceptance",
+  "rows": [
+    {
+      "requirement": "r_fields",
+      "check": "r_fields-c1",
+      "declared_text": "清空请求标题后提交被阻止，状态仍为草稿。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919"
+    },
+    {
+      "requirement": "r_fields",
+      "check": "r_fields-c2",
+      "declared_text": "超出0至80小时或非法选项的输入不能提交。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919"
+    },
+    {
+      "requirement": "r_fields",
+      "check": "r_fields-c3",
+      "declared_text": "可选数值留空仍可提交，有效数值零按零保留。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919"
+    },
+    {
+      "requirement": "r_states",
+      "check": "r_states-c1",
+      "declared_text": "草稿提交后为已提交且字段只读。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919"
+    },
+    {
+      "requirement": "r_states",
+      "check": "r_states-c2",
+      "declared_text": "退回缺理由被阻止；给出理由后进入待补充并可编辑。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919"
+    },
+    {
+      "requirement": "r_states",
+      "check": "r_states-c3",
+      "declared_text": "待补充满足必填后可重提，已提交可完成，终态只读。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919"
+    },
+    {
+      "requirement": "r_session",
+      "check": "r_session-c1",
+      "declared_text": "刷新恢复这份规格的给定初值与草稿状态。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919"
+    },
+    {
+      "requirement": "r_session",
+      "check": "r_session-c2",
+      "declared_text": "恢复源样例会清空会话记录并重新载入源状态，不是业务回退。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919"
+    },
+    {
+      "requirement": "r_configuration",
+      "check": "r_configuration-c1",
+      "declared_text": "调整字段名称、选项或数值范围后可生成新规格JSON。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919"
+    },
+    {
+      "requirement": "r_configuration",
+      "check": "r_configuration-c2",
+      "declared_text": "新规格parent绑定当前源SHA且版本不同，当前演示仍保持原版本和SHA。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919"
+    },
+    {
+      "requirement": "r_configuration",
+      "check": "r_configuration-c3",
+      "declared_text": "保存新JSON后build/check形成新的同源原型、PRD与待执行计划。",
+      "status": "NOT_EXECUTED",
+      "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919"
+    }
+  ]
+}

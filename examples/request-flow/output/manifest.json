@@ -1,0 +1,16 @@
+{
+  "schema": "pm-form-artifacts/v1",
+  "source_sha256": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919",
+  "generator": {
+    "form_core.py": "527baa849d0b39f2e8ebaee19446bce9e2968fe40c418dbf58e23b72c408de2c",
+    "pm_form.py": "a863773dfe364702de5cacce40606eb24debee7c9fb7d4b29c9de891cdce398d",
+    "assets/request-form.html": "560b4ec06a19593dc5a2940f681b2e22ad2a68f4410cfb23d1e6e599ca7cd59d"
+  },
+  "files": {
+    "PRD.md": "046c12542577bbf23227047437cade4024b959e8779c4d574e1946af4c5c52ba",
+    "acceptance.md": "49113f8bb03c0fc3fa9ddf448335eb21f16f2810a472bfb75dfafe4f2f0916af",
+    "prototype.html": "13e08a089b526fa239434f024b218a13c7dfd68b023db47f4f0fdc708aa11694",
+    "source.json": "652c062648093dc09b4ffe8e1bab1a76133f55fc4836cdc5fd96a55a4595a919",
+    "trace.json": "efa3d1fede12a77c374fc93201902175b88e74bfd28ef9ae0559f6d9a1115d4b"
+  }
+}
