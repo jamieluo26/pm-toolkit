@@ -1,0 +1,25 @@
+schema_version: v1alpha1
+environment:
+  type: none
+skills:
+- source: local_path
+  path: .
+engine:
+  name: codex
+cases:
+  files:
+  - evals/cases/complete-handbook.yaml
+  - evals/cases/conflicting-evidence.yaml
+  - evals/cases/unread-input.yaml
+  - evals/cases/bounded-update.yaml
+  defaults:
+    timeout_seconds: 240
+    max_turns: 2
+  parallelism: 1
+report:
+  formats:
+  - json
+  - junit
+  - html
+  artifacts:
+  - transcript
