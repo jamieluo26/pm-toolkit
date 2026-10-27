@@ -1,0 +1,26 @@
+schema_version: v1alpha1
+environment:
+  type: none
+skills:
+- source: local_path
+  path: .
+engine:
+  name: codex
+cases:
+  files:
+  - evals/cases/complete-declared-coverage.yaml
+  - evals/cases/documented-subset-exclusion.yaml
+  - evals/cases/identity-reference-conflict.yaml
+  - evals/cases/omission-and-orphan.yaml
+  - evals/cases/partial-missing-mode-and-tool.yaml
+  defaults:
+    timeout_seconds: 300
+    max_turns: 2
+  parallelism: 1
+report:
+  formats:
+  - json
+  - junit
+  - html
+  artifacts:
+  - transcript
