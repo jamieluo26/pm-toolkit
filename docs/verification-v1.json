@@ -1,0 +1,173 @@
+{
+  "schema": "pm-toolkit-verification-summary/v1",
+  "as_of": "2026-10-27",
+  "status": "LOCAL_TECHNICAL_AND_PROXY_CORE_EVALUATION_VERIFIED",
+  "candidate_runtime": "Python3.12.14 and host-default3.14.3; python-docx1.2.0; isolated environments",
+  "tests": {
+    "python_methods": 139,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "scope": "76 prior +23 request-form +17 support +16 task lifecycle +7 revision preparation; full current suite"
+  },
+  "independent_input": {
+    "cli_commands": 25,
+    "assertions": 82,
+    "word_ordered_paragraphs": 110,
+    "scope": "New synthetic form task; not a human PM trial"
+  },
+  "browser": {
+    "scope": "Desktop Chrome actual local reading task, request form and task preparer",
+    "reading_conditions": 5,
+    "request_saved_events": 11,
+    "preparer_saved_events": 6,
+    "preparer_export_cli_calls": 8,
+    "form_export_cli_roundtrip": true,
+    "download_path": "PASS actual file matched exported DOM bytes; initial event observation timed out",
+    "warning_error_console_entries": 0
+  },
+  "docx": {
+    "versions": 2,
+    "pages_each": 7,
+    "ordered_content": "PASS",
+    "visual": "ALL_14_PAGES_INSPECTED",
+    "renderer_font_fallback": "isolated local configuration; no fonts distributed"
+  },
+  "review": {
+    "unresolved_functional_P0": 0,
+    "unresolved_functional_P1": 0,
+    "scope": "Bounded task/preparer and numeric-message fix; no P0/P1 found; remote publication acceptance separately recorded"
+  },
+  "skills": {
+    "existing_trees": 2,
+    "new_target_trees": 4,
+    "new_full_suite_pass": [
+      "meeting-decision-evidence",
+      "declared-impact-coverage-review",
+      "supplied-acceptance-evidence-review",
+      "product-asset-handbook"
+    ],
+    "remaining": [],
+    "current_six_host_calls": "6/6 actual final responses; last consumes five new drafts; explicit supplied-text invocation, not automatic discovery or governance replacement",
+    "global_unrelated_holds": 3,
+    "explicit_host_evidence": {
+      "model_requested": "gpt-6.1-sol",
+      "reasoning_effort_process_override": "medium",
+      "global_config_changed": false,
+      "host_receipt_sha256": "d713c4e08b92070500db07f9bc2d0001e03aa3093d235f209c7ab77f1a20ad59",
+      "calls": [
+        {
+          "skill": "meeting-decision-evidence",
+          "tree_sha256": "3c92301afb8236c6bcc9b6b622e00d64cb7bb6adbeec4fb7bb58211d8ec345b2",
+          "draft_sha256": "e50ea372b19f93640c3d5cb07e48312c0ba2e0666d0e31b3284b6f1ac62b2a6c",
+          "zero_tools": true
+        },
+        {
+          "skill": "declared-impact-coverage-review",
+          "tree_sha256": "e999a52102028ce8ca931f81adce4ec9aa60a49831bc68b2c45175e19ace22ac",
+          "draft_sha256": "0fb0f45064a4abc2d9ca1c37c7645868d710c98406269426141edb6c12df1929",
+          "zero_tools": true
+        },
+        {
+          "skill": "requirement-acceptance-trace-review",
+          "tree_sha256": "e08a8044069aa9089e86505b6e95a57cb76e908b287807573e3bd978431b6d1e",
+          "draft_sha256": "dd1586e5bac1dc38a1c585ce9aca49bc04cf924dae6a698da3cafede54a96569",
+          "zero_tools": true
+        },
+        {
+          "skill": "feedback-intent-preservation-review",
+          "tree_sha256": "aee5326dffd31f44fdd8591fb42f1d842089e1ed5b22c079b34f2f344f6a833e",
+          "draft_sha256": "ac5a6092d1e781c14dadaf4f895b51f43c06dee91a6ae43d869355eeb9dc3aa4",
+          "zero_tools": true
+        },
+        {
+          "skill": "supplied-acceptance-evidence-review",
+          "tree_sha256": "5f2da09c3488bf12767bf9d1842853e2949526c58f05b939b4abcff6e22e66ea",
+          "draft_sha256": "d0e1e9720f9b81f9f38b22f89bbcb9cd4007bcfe4a25c870deaec9388d0b1da3",
+          "zero_tools": true
+        },
+        {
+          "skill": "product-asset-handbook",
+          "tree_sha256": "ec714a6a25a6a78f35f03c3e229a0d009df0a40f9c3b3de09cfa923e3c801ec2",
+          "draft_sha256": "9d64f4a1f9448ed7eefc73ce7b739b98594725d0c7006fcff86b5dd04025b9b2",
+          "zero_tools": true
+        }
+      ],
+      "intermediate_drafts_are_primary_evidence": false,
+      "raws_distributed": false,
+      "observed_service_warning": "One successful call logged HTTP429/stream retry; not an attribution of every earlier timeout"
+    },
+    "complete_new_suite_cases": 18,
+    "candidate_gate": {
+      "ok": true,
+      "baseline_skills": 2,
+      "current_skills": 6,
+      "grandfathered": 2,
+      "verified_changes": 4,
+      "unverified_changes": 0,
+      "removed": 0
+    },
+    "governance_receipt_sha256": "c2d3c4103bc48e4ec3dcf383eb42dab0e0b034c18d8f8c169bed5f8070352f70",
+    "handbook_recovery": "Original4-case whole medium r06 PASS after two clean<240second calls; old errors/timeouts retained; no assembled case PASS",
+    "content_ledger": "Bounded seven-item draft reconciliation; no established productP1, one wording ambiguity retained for human review; no extra UI/business acceptance",
+    "global_gate_scope": "Unrelated global trees have openHOLD; candidate six-tree gatePASS; no global tree repaired"
+  },
+  "human_pm_trial": "NOT_RUN",
+  "evidence_limits": [
+    "Only declared finite types and conditions covered",
+    "No business effectiveness measurement",
+    "No production deployment or human approval proof",
+    "No automatic Skill installation or other-host compatibility claim"
+  ],
+  "own_revision": {
+    "cli_commands": 17,
+    "assertions": 50,
+    "manual_hash_edits": false,
+    "input_and_implementation_sha_mtime_unchanged": true,
+    "observations": "synthetic statements; not human/browser acceptance"
+  },
+  "additional_environment": {
+    "python": "3.14.3",
+    "full_suite_methods": 139,
+    "fixed_cli_checks": 5,
+    "source_leaves_unchanged": 335,
+    "source": "Host-default python3 -m venv, officialPyPI binary-only install; no runtime distributed"
+  },
+  "baseline_reference": "v0.3 was the predecessor; release state is recorded in repository history",
+  "publication_evidence": "This local technical snapshot does not certify remote publication; inspect repository history and release acceptance record.",
+  "agent_pm_trial": {
+    "status": "CORE_FULL_CHAIN_COMPLETED_WITH_ASSISTED_WORD_FONT_SUPPLEMENT",
+    "actor": "independent Codex agent, not human",
+    "scenario": "synthetic personal weekend gear request",
+    "first_run": {
+      "conditions": 8,
+      "pass": 7,
+      "fail": 1,
+      "delivery": "HOLD"
+    },
+    "retest": {
+      "conditions": 8,
+      "pass": 8,
+      "fail": 0,
+      "same_input_and_expectations": true,
+      "new_actual_browser_observations": true,
+      "prototype_sha256": "70bb09137725c1d9b9bc3d1a0cbc0483507f4a130808a5dd528fbf851c0ddc41",
+      "task_sha256": "006b739d4e0060bd46c011826db0e0edc70f14a093f05809cd3fee1507b04642"
+    },
+    "pending_and_undecided_paths": "HOLD retained",
+    "review_feedback": "two adopted, one declined",
+    "core_cli_and_delivery": "PASS given observations; actual execution evidence separate",
+    "word_content_items": 114,
+    "word_first_render": "HOLD_MISSING_CJK_GLYPHS_5_PAGES",
+    "word_supplement": "Root isolated existing fonts, same DOCX, all6pages visually inspected; assisted environment evidence",
+    "no_assistance_word_visual_pass": false,
+    "human_feedback": "NOT_COLLECTED",
+    "business_effect": "NOT_COLLECTED"
+  },
+  "form_error_fix": {
+    "python_methods": 139,
+    "runtime_pure_validator_cases": 28,
+    "fresh_copy_fixed_cli_checks": 6,
+    "browser_retest": "PASS_8_ORIGINAL_CONDITIONS"
+  }
+}

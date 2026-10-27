@@ -1,4 +1,4 @@
-# 通用集合原型与同源 PRD（v0.3 本地候选）
+# 通用集合原型与同源 PRD（已发布 v0.3）
 
 适合个人清单、任务板、轻量记录库的桌面方向讨论。它把明确的结构化规格生成可点击原型、PRD、待执行检查计划和追踪表。它不是任意应用开发器：只支持下面列出的集合交互。
 
@@ -48,6 +48,6 @@ feedback 单独保存原始反馈。decisions 单独保存调用者给定的 ado
 
 对象递归按键比较，数组整体为一个路径（例如 `/requirements`），不猜测条目语义身份。除 `/version` 与 `/parent_sha256` 外，每条变更路径必须由恰好一条 adopted 决定精确覆盖；不接受上层路径代替子路径。declined/pending 不携带变更路径。缺失决定、pending、重叠、未承接变更、无实际变更、陈旧 SHA 均为 HOLD；错误结构为 ERROR。
 
-数组整体覆盖只证明声明关系，不能检验每一句意图是否被保留。继续使用原有[反馈意图审阅 Skill](../skills/feedback-intent-preservation-review/SKILL.md)和[需求验收追踪 Skill](../skills/requirement-acceptance-trace-review/SKILL.md)辅助逐条审阅，再由人判断。没有新增 Skill 名称；反馈审阅 Skill 仅补强给定记录编号的引用保留要求。该新增说明将列入本次准确公开范围，既有内容资格不重复询问。
+数组整体覆盖只证明声明关系，不能检验每一句意图是否被保留。继续使用原有[反馈意图审阅 Skill](../skills/feedback-intent-preservation-review/SKILL.md)和[需求验收追踪 Skill](../skills/requirement-acceptance-trace-review/SKILL.md)辅助逐条审阅，再由人判断。没有新增 Skill 名称；反馈审阅 Skill 仅补强给定记录编号的引用保留要求。该新增说明已随 v0.3 的准确公开范围发布；当前能力与历史变化分别见[能力地图](../MODULES.md)和[版本记录](../CHANGELOG.md)。
 
 输入协议与失败示例见 [规格合同](prototype-spec.md)，完整操作见 [闭环说明](../playbooks/prototype-loop.md)。
