@@ -1,0 +1,16 @@
+{
+  "schema": "pm-task-feedback/v1",
+  "before_task_sha256": "1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc",
+  "items": [
+    {
+      "id": "fb_toolbar",
+      "text": "将左侧筛选移至顶部，但保留进度/主题交集、空态恢复和重复选择行为。",
+      "source": "source-notes.md E02，合成反馈。"
+    },
+    {
+      "id": "fb_cloud",
+      "text": "是否加入云端同步？",
+      "source": "source-notes.md E03，合成提议。"
+    }
+  ]
+}

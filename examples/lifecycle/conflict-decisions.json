@@ -1,0 +1,26 @@
+{
+  "schema": "pm-task-decisions/v1",
+  "before_task_sha256": "1063894a54ffee5dd8acfd920876fa23184337bd772e5b00278d55844ea136fc",
+  "after_task_sha256": "f78b544370498a5bdc7dce3c66665d3f54680bed7d45e9e625c1316da9c4998a",
+  "feedback_sha256": "b1573c4cef48999771959b91f2d64f3bc8c3f7e3ae3a9f688dc81ebd41d94ba7",
+  "items": [
+    {
+      "feedback_id": "fb_toolbar",
+      "status": "adopted",
+      "rationale": "合成处理决定：改变筛选载体，保留原功能意图和检查。",
+      "paths": [
+        "/decisions",
+        "/prototype/layout",
+        "/prototype/requirements",
+        "/requirements",
+        "/rules"
+      ]
+    },
+    {
+      "feedback_id": "fb_cloud",
+      "status": "conflict",
+      "rationale": "合成反例：该提议尚未形成一致处理决定。",
+      "paths": []
+    }
+  ]
+}
