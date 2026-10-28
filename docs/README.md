@@ -9,9 +9,13 @@
 3. 想准备自己的输入，可以打开[任务准备页面](../prepare.html)，或用 `pm_task.py init` 创建待填写材料。
 4. 本地依赖不齐时看[环境诊断](support-tools.md)；失败/升级看[维护说明](maintenance.md)和[FAQ](faq.md)。
 
-## 工作台交互原型
+## 本地可运行工作台候选
 
-打开[工作台交互原型](../prototypes/workbench/index.html)，结合[原型说明](workbench-prototype.md)审阅。这是用于设计验证的工作台交互原型；浏览器草案不调用 Python、不生成 DOCX，尚未接入 v1.0 生成器。产品目标与适用对象见[产品定位](product-positioning.md)，运行条件与支持边界见[支持范围](support-scope.md)。
+[启动与操作说明](local-workbench.md)提供可视化创建、真实 Python 生成、准确差异修订、逐项观察和交接下载。此候选尚未公开；原核心、固定组件和 Skill 内容保持公开基线。[本地验证记录](verification-local-workbench.md)单独报告实际条件。
+
+## 保留的工作台交互原型
+
+打开[工作台交互原型](../prototypes/workbench/index.html)，结合[原型说明](workbench-prototype.md)审阅。这是用于设计验证的工作台交互原型；浏览器草案不调用 Python、不生成 DOCX，这个旧入口与新的本地运行入口分开保留。产品目标与适用对象见[产品定位](product-positioning.md)，运行条件与支持边界见[支持范围](support-scope.md)。
 
 ## 按任务找说明
 
