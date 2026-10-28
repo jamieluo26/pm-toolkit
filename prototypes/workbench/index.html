@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="workbench.css">
+  <title>产品任务工作台 · PM Toolkit</title>
+  <script src="workbench.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#main" aria-label="PM Toolkit 产品任务工作台"><span class="brand-mark" aria-hidden="true">P<span>/</span></span><span>PM Toolkit<small>产品任务工作台</small></span></a>
+      <span class="prototype-label"><i aria-hidden="true"></i>交互原型 · 本地草案</span>
+      <div class="top-actions"><span id="save-status" class="save-status" role="status">尚未保存</span><button id="save-draft" class="button small primary" type="button"><span aria-hidden="true">↓</span> 保存草案</button></div>
+    </div>
+  </header>
+  <div class="page-shell">
+    <nav class="steps" aria-label="任务阶段">
+      <button type="button" data-stage="create" class="step active" aria-current="step"><span class="step-number">01</span><span><strong>创建任务</strong><small>说清问题与范围</small></span><span class="step-state" id="step-create-state">进行中</span></button>
+      <div class="step-connector" aria-hidden="true"></div>
+      <button type="button" data-stage="revise" class="step"><span class="step-number">02</span><span><strong>修订</strong><small>每条反馈都有去向</small></span><span class="step-state" id="step-revise-state">待开始</span></button>
+      <div class="step-connector" aria-hidden="true"></div>
+      <button type="button" data-stage="handoff" class="step"><span class="step-number">03</span><span><strong>交接</strong><small>带上变更与待补项</small></span><span class="step-state" id="step-handoff-state">待开始</span></button>
+    </nav>
+    <main id="main" tabindex="-1">
+      <div class="page-heading"><div><p class="eyebrow" id="stage-eyebrow">YOUR NEXT PRODUCT DECISION</p><h1 id="stage-title">先把问题，说清楚。</h1><p class="stage-description" id="stage-description">不用先想完整。把确定的写下来，没确定的留作待补充。</p></div><button class="text-button sample-button" type="button" id="load-sample"><span aria-hidden="true">✧</span> 试填一个合成样例</button></div>
+      <p class="boundary-note"><span aria-hidden="true">◉</span> 仅在浏览器内模拟任务流程；不调用现有 Python，不生成真实 Word，也不代表实际审批或业务验收。<button type="button" class="inline-button" id="show-details">查看原型说明 ↗</button></p>
+      <div id="persistent-notice" class="notice" role="status" hidden></div>
+      <div class="workspace-layout">
+        <div class="main-column"><div id="validation-errors" class="error-box" role="alert" hidden></div><div id="stage-content"></div></div>
+        <aside class="summary-column" aria-label="当前任务摘要">
+          <section class="task-summary"><div class="summary-label"><span>这份任务</span><span class="tiny-pill" id="summary-version">草案</span></div><div class="document-glyph" aria-hidden="true"><span></span><span></span><span></span><i>p/</i></div><h2 id="summary-title">你的下一份产品任务</h2><p id="summary-kind" class="summary-kind">从一个具体问题开始</p><dl class="summary-metrics"><div><dt>信息字段</dt><dd id="summary-fields">0 个</dd></div><div><dt>本轮变化</dt><dd id="summary-changes">—</dd></div><div><dt>待补 / 未决</dt><dd id="summary-pending">6 项</dd></div></dl><div class="version-trail" id="version-trail"></div><div class="summary-rule"></div><p class="summary-note" id="summary-note">先形成首版，再讨论修改。后续修订会保留首版内容。</p><div class="export-actions"><button type="button" class="button full" id="export-json">导出草案 JSON <span aria-hidden="true">↓</span></button><button type="button" class="button full" id="import-json">从文件恢复 <span aria-hidden="true">↗</span></button></div><input type="file" accept=".json,application/json" id="import-file" hidden></section>
+          <section class="storage-note"><div><span class="storage-dot" id="storage-dot" aria-hidden="true"></span><strong id="storage-title">浏览器留存已开启</strong></div><p id="storage-description">点击「保存草案」后，可在这个浏览器中恢复。导出文件能帮助你另外留一份。</p><div class="storage-actions"><button type="button" class="text-button" id="toggle-storage">关闭留存</button><button type="button" class="text-button" id="reset-task">清除并新建</button></div></section>
+        </aside>
+      </div>
+    </main>
+    <footer class="page-footer"><span>PM Toolkit <span class="footer-divider">/</span> 把想法讲清楚，让下一位接得住。</span><span>本地交互原型 · 人工合成样例</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status" hidden><span id="toast-text"></span><button type="button" id="toast-undo" hidden>撤销</button><button type="button" id="toast-close" aria-label="关闭提示">×</button></div>
+  <dialog id="confirm-dialog" class="confirm-dialog"><form method="dialog"><p class="eyebrow">A SMALL CHECK</p><h2 id="confirm-title">确认这次操作</h2><p id="confirm-message"></p><div class="dialog-actions"><button class="button" value="cancel" autofocus>取消</button><button class="button primary" id="confirm-action" value="confirm">继续</button></div></form></dialog>
+  <dialog id="details-dialog" class="details-dialog"><div class="details-head"><p class="eyebrow">ABOUT THIS PROTOTYPE</p><button type="button" class="icon-button" id="close-details" aria-label="关闭原型说明">×</button></div><h2>先体验一条完整的工作路径。</h2><p>这是独立的浏览器交互草案，用来讨论「创建任务 → 修订 → 交接」是否顺手。</p><ul><li>内容只在当前页面与本浏览器留存中处理；不使用账号、云存储、模型或网络接口。</li><li>保存依赖浏览器允许本地存储。同一浏览器的本地文件与其他地址可能无法共享草案；导出文件可另行留存。</li><li>导出的 JSON 是此原型自己的草案格式，不能直接作为现有 pm_task 的输入。</li><li>首版快照保留，差异由本页面的字段比较得出；这不是现有命令行工具的精确审计结果。</li><li>Markdown 是文字交接草案，不是实际 DOCX。观察由人填写，不认证真实检查、审批或业务效果。</li><li>导出文件含 prototype_demo 和 not_runtime_verified 标记。样例全部为新建人工合成材料。</li></ul><p class="detail-footnote">格式：pm-toolkit-workbench-draft · 版本 1.0<br>导入上限 256 KB；字段最多 16 个，反馈最多 30 条。</p><button type="button" id="details-done" class="button primary">知道了</button></dialog>
+  <noscript><div class="noscript">请允许本地 JavaScript 运行，以使用任务编辑、保存与导出。</div></noscript>
+</body>
+</html>
