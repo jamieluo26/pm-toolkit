@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/workbench.css">
+  <script src="/workbench.js" defer></script>
+  <title>产品任务工作台 · PM Toolkit</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到任务内容</a>
+  <header class="topbar"><div class="topbar-inner">
+    <a class="brand" href="#main"><span class="brand-mark" aria-hidden="true">P<span>/</span></span><span>PM Toolkit<small>产品任务工作台</small></span></a>
+    <span id="connection-status" class="connection offline" role="status">需启动本地服务</span>
+    <div class="top-actions"><span id="save-status" class="save-status" role="status">草案尚未保存</span><button id="save-draft" type="button" class="button small primary" disabled>保存草案</button></div>
+  </div></header>
+  <div class="page-shell">
+    <nav class="steps" aria-label="任务阶段">
+      <button type="button" data-stage="create" class="step active" aria-current="step"><span class="step-number">01</span><span><strong>创建任务</strong><small>说清问题与范围</small></span></button><span class="step-connector" aria-hidden="true"></span>
+      <button type="button" data-stage="revise" class="step"><span class="step-number">02</span><span><strong>修订</strong><small>每条反馈都有去向</small></span></button><span class="step-connector" aria-hidden="true"></span>
+      <button type="button" data-stage="handoff" class="step"><span class="step-number">03</span><span><strong>交接</strong><small>逐条观察再交接</small></span></button>
+    </nav>
+    <main id="main" tabindex="-1">
+      <div class="page-heading"><div><p class="eyebrow" id="stage-eyebrow">YOUR NEXT PRODUCT DECISION</p><h1 id="stage-title">先把问题，说清楚。</h1><p id="stage-description" class="stage-description">确定的写下来，未决的保留。保存后生成真实原型与需求文档。</p></div><button id="load-sample" class="text-button" type="button">✧ 试填一个合成样例</button></div>
+      <p class="boundary-note">本地 Python 实际生成与核对 · 不调用模型 · 生成结果仍需人工观察和业务确认</p>
+      <div id="service-notice" class="notice warning" role="status">需启动本地服务。连接成功前可编辑材料，生成与保存不可用。<button type="button" id="reconnect" class="inline-button">重新连接</button></div>
+      <div id="notice" class="notice" role="status" hidden></div>
+      <div id="validation-errors" class="error-box" role="alert" hidden></div>
+      <div class="workspace-layout">
+        <div class="main-column"><div id="stage-content"></div><section id="operation-result" class="result-card" aria-label="实际运行结果" hidden></section></div>
+        <aside class="summary-column" aria-label="项目与当前任务摘要">
+          <section class="project-switcher"><label for="project-select">恢复已保存项目</label><div class="project-picker"><select id="project-select"><option value="">选择本地项目</option></select><button id="refresh-projects" type="button" class="icon-button" aria-label="刷新项目列表">↻</button></div><button id="new-project" type="button" class="text-button">＋ 新建一份任务</button></section>
+          <section class="task-summary"><div class="summary-label"><span>这份任务</span><span id="summary-version" class="tiny-pill">草案</span></div><div class="document-glyph" aria-hidden="true"><span></span><span></span><span></span><i>p/</i></div><h2 id="summary-title">你的下一份产品任务</h2><p id="summary-kind" class="muted">从一个具体问题开始</p><dl class="summary-metrics"><div><dt>信息字段</dt><dd id="summary-fields">0 个</dd></div><div><dt>验收检查</dt><dd id="summary-checks">1 条</dd></div><div><dt>待补 / 未决</dt><dd id="summary-pending">待确认</dd></div></dl><p id="summary-evidence" class="summary-note">生成与检查状态将由本地服务返回。</p><div id="version-trail" class="version-trail"></div><div class="summary-rule"></div><button id="export-json" type="button" class="button full" style="margin-bottom:8px">导出原生草案 JSON <span aria-hidden="true">↓</span></button><button id="import-json" type="button" class="button full">导入已有草案 <span aria-hidden="true">↗</span></button><input id="import-file" type="file" accept=".json,application/json" hidden><p class="small-note">草案保存到本地项目目录。旧原型的全局观察仅转为待核验备注。</p></section>
+          <section class="storage-note"><strong>一次走完的路径</strong><p>① 试填合成样例 → 保存 → 生成首版<br>② 编辑当前草案 → 准备变化 → 逐条处理反馈<br>③ 打开真实原型 → 逐检查记录 → 生成交接包</p><p>本轮支持集合或表单、一个主需求与一组规则、1–20 条检查。字段支持文本、数值、单选、标签。</p></section>
+        </aside>
+      </div>
+    </main>
+    <footer class="page-footer"><span>PM Toolkit / 把想法讲清楚，让下一位接得住。</span><span>本地工作台 · 真实文件与独立版本</span></footer>
+  </div>
+  <dialog id="preview-dialog"><div class="dialog-heading"><h2>真实原型预览</h2><button id="close-preview" type="button" class="button small">关闭预览</button></div><p class="small-note">此预览仅运行生成页面自身的脚本。观察仍需逐条记录。</p><iframe id="prototype-frame" title="生成的产品原型" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe></dialog>
+  <dialog id="replace-dialog"><form method="dialog"><p class="eyebrow">KEEP YOUR CURRENT WORK</p><h2 id="replace-title">切换当前材料？</h2><p>当前未保存的材料会被替换；已保存项目与历史版本都会保留。</p><div class="dialog-actions"><button class="button" value="cancel" autofocus>留在当前</button><button class="button primary" value="replace">替换当前材料</button></div></form></dialog>
+  <noscript><p class="notice warning">请允许本地 JavaScript 运行以编辑任务并连接本地服务。</p></noscript>
+</body>
+</html>
