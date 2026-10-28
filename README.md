@@ -18,6 +18,8 @@ PM Toolkit 把产品简报、范围规则、原型、PRD、Word、评审和交�
 
 ## 快速开始
 
+**本地工作台候选：** 如果你拿到的是包含 `pm_workbench.py` 的本地运行候选，可以在可视化界面完成创建、修订与交接，真实生成原型、PRD 和 Word。先按[本地启动与操作说明](docs/local-workbench.md)启动 Python 服务；这部分尚未发布到 GitHub，旧公开基线和原 CLI 继续保留。
+
 **先看结果：** 在完整副本中双击 `index.html`，进入阅读任务，体验原型并查看 PRD 和 Word。预制页面和文档无需 Python、账号或模型。[三帧实际操作短演示](demo.html)记录筛选、空态与恢复。
 
 **再生成同一版交接：** 在工具包根目录的终端中运行：
@@ -112,7 +114,7 @@ python3 pm_flow.py check --source examples/personal-tasks/spec.json --output ../
 
 - [任务导航](START-HERE.md)：从当前问题选择入口。
 - [产品定位](docs/product-positioning.md)：目标用户、优先任务与待验证的价值。
-- [支持范围](docs/support-scope.md)：公开 v1.0 与工作台交互原型的能力和证据边界。
+- [支持范围](docs/support-scope.md)：公开基线与本地工作台候选的能力和证据边界。
 - [文档中心](docs/README.md)：完整任务、独立模块、规格与验证边界。
 - [FAQ](docs/faq.md)：运行失败、输出目录、同步、`HOLD` 和 Skill 调用。
 - [维护与升级](docs/maintenance.md)：保留输入、重建新目录、检查版本与恢复。
