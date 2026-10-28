@@ -111,10 +111,12 @@ python3 pm_flow.py check --source examples/personal-tasks/spec.json --output ../
 ## 文档与常见问题
 
 - [任务导航](START-HERE.md)：从当前问题选择入口。
+- [产品定位](docs/product-positioning.md)：目标用户、优先任务与待验证的价值。
+- [支持范围](docs/support-scope.md)：公开 v1.0 与工作台交互原型的能力和证据边界。
 - [文档中心](docs/README.md)：完整任务、独立模块、规格与验证边界。
 - [FAQ](docs/faq.md)：运行失败、输出目录、同步、`HOLD` 和 Skill 调用。
 - [维护与升级](docs/maintenance.md)：保留输入、重建新目录、检查版本与恢复。
-- [CHANGELOG](CHANGELOG.md)与[ROADMAP](ROADMAP.md)：已发布历史、本地候选及剩余收口。
+- [CHANGELOG](CHANGELOG.md)与[ROADMAP](ROADMAP.md)：v1.0 已发布范围、历史版本与后续独立范围。
 
 ## 来源与使用说明
 
