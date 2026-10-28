@@ -1,39 +1,31 @@
-# 从你手头的任务开始
+# 从这里开始
 
-这份目录是 **PM Toolkit v1.0 本地工作包**。使用完整副本，打开本地 `index.html`。GitHub 的 HTML 链接展示源码，交互在本地体验。四项新增 Skill 的完整治理和六次显式调用已通过；实际验证与代理使用评测见[验证记录](docs/verification-v1.md)。真人反馈及业务效果未采集。
+PM Toolkit 的本地工作台已经公开，发布基线为 `d54e658`（2026-10-28）。本目录提供完整操作演示和首批试用任务。工具用一份任务材料生成同版原型、PRD、Word，并把修改和检查记录带进交接。
 
-## 先体验一个案例
+## 先选一个目的
 
-| 想先看看什么 | 入口 | 重点看 |
-|---|---|---|
-| 一次完整产品迭代 | [阅读任务](examples/lifecycle/README.md) · [前版](examples/lifecycle/before-output/journey.html) · [后版](examples/lifecycle/after-output/prototype.html) | 同任务的简报/规则、原型/PRD/Word、评审、观察、交接和复盘 |
-| 有限表单流程 | [请求表单](examples/request-flow/output/prototype.html) · [使用说明](docs/form-cli.md) | 必填/数值、提交、退回、重提、只读终态，配置后导出新规格 |
-| 自己的集合 | [个人任务板](examples/personal-tasks/output/prototype.html) · [规格](examples/personal-tasks/spec.json) | 字段、搜索、交集筛选、详情与当前会话编辑 |
+1. **先看一遍**：打开完整副本的 [walkthrough.html](walkthrough.html)，跟随同一个全新合成任务看创建、修订、实际观察、交接与恢复。[文字版](docs/walkthrough.md)可直接在 GitHub 阅读。
+2. **自己动手**：打开 [start.html](start.html)，按说明启动真实 Python 工作台，再在 Chrome 使用终端显示的本机地址。[详细启动说明](docs/local-workbench.md)
 
-案例全部人工合成。先看[实际操作短演示](demo.html)，再到原型里自己操作。阅读案例的[实际观察摘要](examples/lifecycle/browser-observations.md)有明确覆盖条件，不代表真实业务效果或独立用户试用。
+GitHub 的 HTML 链接显示源码；下载并解压完整副本后，从 `index.html` 进入。静态首页不能代替 Python 服务。只有预制案例浏览不需要 Python。
 
-## 把任务换成自己的
+## 首次试用
 
-| 你现在的问题 | 从哪里开始 | 拿到什么 |
-|---|---|---|
-| 还没讲清楚为什么做 | [需求澄清](playbooks/workpacks/01-discover.md) · [简报模板](templates/product-brief.md) | 定位、痛点、价值假设、目标、优先级与待定项 |
-| 讨论多，决定混在一起 | [决定模板](templates/decision-evidence.md) · [会议 Skill](docs/skills-v1.md) | 有引用的决定、分歧和上下文 |
-| 范围、默认、异常和规则不清楚 | [范围与规格](playbooks/workpacks/02-specify.md) · [任务合同](docs/task-spec.md) | 给定消费者、规则、需求和检查关系 |
-| 想做同源原型与文档 | [任务准备页面](prepare.html) · [完整步骤](docs/lifecycle.md) | 自己的 task.json，再生成原型、PRD、Word |
-| 评审后需要修改 | [评审修订](playbooks/workpacks/04-review.md) | 反馈与处理决定分开、准确差异与未决项 |
-| 要核对需求关系或功能承接 | [六项 Skill 使用说明](docs/skills-v1.md) | 给定范围内带引用的文字审阅草案 |
-| 要验证并交接 | [验证交付](playbooks/workpacks/05-deliver.md) | 实际观察、失败/复验、交接与版本说明 |
-| 要复盘或交给下一位 | [复盘资产](playbooks/workpacks/06-retrospect.md) | 需求声明、当前观察、决定状态及下一轮问题 |
+按 [首批 PM 试用包](trial/README.md)完成一个合成的个人灵感收集任务：导入 → 保存生成 → 修改筛选位置 → 逐条处理反馈 → 实际操作与记录 → 下载交接 → 重启恢复。辅助预期结果不等于已经实测通过。
 
-## 选一条运行路径
+当前实际验证 macOS + Chrome；服务器需要 Python 3.10+ 和 `fcntl`。Windows 不支持本服务器，Linux 首次安装及其他浏览器未验收。工作目录在源码外，单进程写入；启动后保持终端运行。
 
-1. **只浏览：** 在本地打开 `index.html`，选择预制案例，无需 Python 或账号。
-2. **整轮任务：** 按[完整步骤](docs/lifecycle.md)准备环境，使用 `pm_task.py init/build/check/review/deliver`。
-3. **独立集合：** 用 `pm_flow.py build/check` 生成轻量集合，仅需标准库。[说明](docs/prototype-loop.md)
-4. **独立表单：** 用 `pm_form.py build/check` 生成单表单与有限状态流，仅需标准库。[说明](docs/form-cli.md)
-5. **辅助文字审阅：** 向自己的助手提供完整 Skill 和指定材料，人工核对引用与结论。[说明](docs/skills-v1.md)
+## 进阶与历史路径
 
-输出选择新目录。整轮任务包含 Word，需按 `requirements.txt` 安装依赖；先用 `python3 pm_doctor.py` 查看本地声明条件。工具保留内容，不自动脱敏。
+| 需要 | 入口 |
+|---|---|
+| 直接使用 CLI 完成一轮任务 | [生命周期说明](docs/lifecycle.md)，`pm_task.py init/build/check/review/deliver` |
+| 只生成有限集合 | [集合说明](docs/prototype-loop.md)，`pm_flow.py build/check` |
+| 只生成有限表单 | [表单说明](docs/form-cli.md)，`pm_form.py build/check` |
+| 向自己的助手提供文字审阅材料 | [六项 Skill 使用说明](docs/skills-v1.md) |
+| 只看预制结果 | [阅读任务](examples/lifecycle/README.md)、[表单](examples/request-flow/output/prototype.html)、[个人任务板](examples/personal-tasks/output/prototype.html) |
+
+工具不调用模型、不替人作决定；内容保留调用者输入，本身不脱敏。代理技术验证与真人采用分开记录，当前未采集真人使用效果。
 
 ## 保留的旧版入口
 

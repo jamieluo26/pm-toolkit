@@ -2,25 +2,36 @@
 
 <p align="center"><strong>A local working kit for product managers: clarify the problem, build a prototype, hand over the same version.</strong></p>
 
-<p align="center"><a href="README.md">简体中文</a> · English<br><a href="#quick-start">Quick start</a> · <a href="#three-worked-scenarios">Examples</a> · <a href="#six-workpacks">Workflow</a> · <a href="#available-capabilities">Capabilities</a> · <a href="#ai-skills">Skills</a> · <a href="docs/README.md">Documentation</a></p>
+<p align="center"><a href="README.md">简体中文</a> · English<br><a href="walkthrough.html">See the workflow</a> · <a href="start.html">Try your own task</a></p>
 
 PM Toolkit connects a brief, scope and rules, prototype, PRD, Word document, review and delivery records to one task version. You supply evidence, make product decisions and run the checks. The tools generate matching artifacts, inspect supplied relationships and retain unresolved items.
 
-**v1.0 · A local product working kit.** Six workpacks, two bounded prototype families and six text Skills connect one task iteration. The 139-method regression suite, four new complete Skill suites and six explicit supplied-text calls passed. The [verification record](docs/verification-v1.md) states the tested scope and use evaluation.
+**Local workbench · Publicly verified on 2026-10-28.** The verified runtime baseline is [d54e6586f4a173dea73155f8564aafbcfb5d9d25](https://github.com/jamieluo26/pm-toolkit/commit/d54e6586f4a173dea73155f8564aafbcfb5d9d25), with 356 files and 147 passing tests in a fresh anonymous Git copy. The browser workbench runs Python locally to create, revise and hand over matching prototype, PRD and Word files. See the [workbench guide](docs/local-workbench.md) and [verification record](docs/verification-local-workbench.md). The earlier v1.0/139-test evidence remains in the [historical record](docs/verification-v1.md).
 
-| Start here | What you get | What you need |
+The walkthrough explains one synthetic task from creation through revision and handoff. The guided trial helps you record your own observations. Their checks are recorded separately in [walkthrough and trial verification](docs/verification-promotion.md).
+
+| Start here | What you get | Read on GitHub |
 |---|---|---|
-| [Explore an example](START-HERE.md#先体验一个案例) | A full reading task, request flow and personal task board | Download the complete copy; open `index.html` locally |
-| [Use your own task](#use-your-own-task) | A matching prototype, PRD, Word and handoff package | Task inputs, Python 3.10+ and the Word dependency |
-| [Use an AI Skill](#ai-skills) | Cited scope, trace or evidence-review drafts | Your AI host, a complete Skill and explicit materials |
+| [See the workflow](walkthrough.html) | Follow one synthetic task and its human decision points; no model or Python needed to read | [Text walkthrough](docs/walkthrough.md) |
+| [Try your own task](start.html) | Set up the local workbench, then create, revise and hand over matching files | [Local setup and operations](docs/local-workbench.md) |
 
 > GitHub displays HTML source. Open the complete copy's local `index.html` for interactions. [Download the complete repository ZIP](https://github.com/jamieluo26/pm-toolkit/archive/refs/heads/main.zip), extract it, and check its CHANGELOG for the version. No hosted interactive demo is provided.
 
 ## Quick start
 
-Explore prepared artifacts by opening `index.html` in the complete copy. HTML and prepared Word documents need no Python, account or model. The [short demonstration](demo.html) uses three actual browser frames showing filtering, an empty result and recovery.
+Start with the [local workbench guide](docs/local-workbench.md). From the toolkit root:
 
-To regenerate a handoff for one task version, run from the toolkit root:
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python pm_workbench.py --workspace ../my-pm-workspace --port 8841
+```
+
+Open `http://127.0.0.1:8841` in Chrome and keep the terminal running. The server was actually verified on macOS. It requires Unix `fcntl`; Linux first use has not been verified, and Windows is unsupported for this server. Store your workspace outside the repository.
+
+To read prepared artifacts, open `index.html` in the complete copy. HTML and prepared Word documents need no Python, account or model. The [older short demonstration](demo.html) uses three actual browser frames showing filtering, an empty result and recovery.
+
+For the CLI alternative, regenerate a handoff for one task version from the toolkit root:
 
 ```sh
 python3 -m venv .venv
@@ -31,7 +42,7 @@ python3 -m venv .venv
 
 Open `journey.html`, then `prototype.html`, `PRD.md` and `handoff.docx`. They correspond to one `task.json`. Word projects the complete ordered PRD content. The generated acceptance plan still needs execution.
 
-Use a **new output directory** whose parent exists. On Windows, substitute `.venv\Scripts\python.exe`; this is a command substitution, not a Windows acceptance claim. See the [lifecycle guide](docs/lifecycle.md) and [local diagnostics](docs/support-tools.md).
+Use a **new output directory** whose parent exists. Windows CLI first use has not been verified; the workbench server above is unsupported on Windows. See the [lifecycle guide](docs/lifecycle.md) and [local diagnostics](docs/support-tools.md).
 
 For a lightweight collection using only the Python 3.10+ standard library:
 
@@ -39,6 +50,16 @@ For a lightweight collection using only the Python 3.10+ standard library:
 python3 pm_flow.py build --source examples/personal-tasks/spec.json --output ../my-task-board
 python3 pm_flow.py check --source examples/personal-tasks/spec.json --output ../my-task-board
 ```
+
+## Advanced and retained paths
+
+| Purpose | Entry |
+|---|---|
+| Follow the guided trial | [Trial materials and observation prompts](trial/README.md) |
+| Browse prepared examples | [Retained examples](START-HERE.md#进阶与历史路径) or local `index.html` |
+| Use the CLI | [Prepare your own task](#use-your-own-task) and [lifecycle commands](docs/lifecycle.md) |
+| Use an AI Skill | [Explicit materials and Skill entries](#ai-skills) |
+| Find a module or contract | [Documentation](docs/README.md) |
 
 ## Three worked scenarios
 
@@ -69,7 +90,7 @@ Generation is one-way from an explicit task specification. Editing HTML, PRD or 
 
 ## Use your own task
 
-The local [task preparation page](prepare.html) prepares JSON from bounded presets. It does not generate a handoff itself; use the CLI afterward. Alternatively:
+Use the [local workbench](docs/local-workbench.md) to fill in your task and generate matching files from the browser. The older [task preparation page](prepare.html) prepares JSON from bounded presets; it does not generate a handoff itself and needs the CLI afterward. To create CLI inputs instead:
 
 ```sh
 .venv/bin/python pm_task.py init --output ../my-task-input
@@ -81,6 +102,7 @@ Fill in users, pain, positioning, value hypothesis, scope, sources, rules and ch
 
 | Capability | How to use it | Boundary |
 |---|---|---|
+| Local workbench | Browser forms call actual local Python generation and checks | macOS verified; localhost only; one operator and explicit observations |
 | Six workpacks | Blank materials, synthetic examples and connected steps | Source truth, trade-offs and decisions require people |
 | Collection prototype | List, search, intersecting filters, empty state, detail and session edits | Bounded collections; reload restores examples |
 | Request-form prototype | Text/number/choice/tags, submit/return/resubmit/complete | One local form; labels do not establish real approval |
@@ -108,7 +130,10 @@ The [current Skill guide](docs/skills-v1.md) lists inputs and human decision poi
 
 ## Documentation and help
 
-- [Start here](START-HERE.md): choose a task entry.
+- [Local workbench](docs/local-workbench.md): the recommended run path.
+- [Text walkthrough](docs/walkthrough.md) and [trial guide](trial/README.md): workflow explanation and bounded trial materials.
+- [Walkthrough and trial verification](docs/verification-promotion.md): evidence for these entries, separate from the runtime release.
+- [Start here](START-HERE.md): retained example and CLI entries.
 - [Documentation](docs/README.md): lifecycle, modules, contracts and verification boundaries.
 - [FAQ](docs/faq.md): dependencies, directories, synchronization, `HOLD` and Skills.
 - [Maintenance](docs/maintenance.md): preserve inputs, rebuild and recover.
@@ -120,4 +145,4 @@ The fixed mindmap and Word distributions come from [Product Mindmap](https://git
 
 The tools retain caller-provided content and do not anonymize it. Input consistency, code execution, browser behavior, Word rendering and human acceptance need their own evidence. See [NOTICE](NOTICE.md). No new open-source license has been added.
 
-[Current verification and scope limits](docs/verification-v1.md)
+[Current workbench verification and scope limits](docs/verification-local-workbench.md)

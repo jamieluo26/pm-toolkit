@@ -1,46 +1,43 @@
 <p align="center"><img src="assets/brand.svg" alt="PM Toolkit 把需求、原型与交付接起来" width="100%"></p>
 
-<p align="center"><strong>给产品经理的本地工作包：讲清问题，做出原型，把同一版交出去。</strong></p>
+<p align="center"><strong>给产品经理的本地工作台：讲清问题，做出原型，把同一版交出去。</strong></p>
 
 <p align="center">简体中文 · <a href="README.en.md">English</a><br><a href="#快速开始">快速开始</a> · <a href="#三个可以动手的场景">案例</a> · <a href="#六步完成一轮迭代">工作路径</a> · <a href="#当前可以使用什么">能力</a> · <a href="#使用-ai-skill">Skills</a> · <a href="docs/README.md">文档</a> · <a href="docs/faq.md">FAQ</a></p>
 
 PM Toolkit 把产品简报、范围规则、原型、PRD、Word、评审和交付记录接到同一个任务版本。你提供材料、作产品决定、实际检查；工具生成对应产物，核对给定关系，把待定与冲突留在明处。
 
-**v1.0 · 本地产品工作包。** 六个工作包、两类有限原型与六项文字 Skill 连接同一轮任务。139 项技术回归、四项新增 Skill 的完整治理和六次显式供料调用已通过；[验证记录](docs/verification-v1.md)说明实测范围与使用评测。
+**本地工作台已公开。** 已验收运行功能基线为 [`d54e658`](https://github.com/jamieluo26/pm-toolkit/commit/d54e6586f4a173dea73155f8564aafbcfb5d9d25)（2026-10-28）。你可以在可视化界面创建任务、调用真实 Python 生成、处理修订并下载交接材料。本目录提供完整操作演示与首次试用任务，帮助你从查看案例走到实际交接。
 
-| 从这里开始 | 得到什么 | 需要什么 |
+## 从这里开始
+
+| 你的目的 | 唯一推荐入口 | 会得到什么 |
 |---|---|---|
-| **[体验合成案例](START-HERE.md#先体验一个案例)** | 完整阅读任务、请求流程、个人任务板 | 下载完整副本，打开 `index.html` |
-| **[用于自己的项目](#用于自己的项目)** | 同任务的原型、PRD、Word 与交接材料 | 填写任务；Python 3.10+ 与 Word 依赖 |
-| **[使用 AI Skill](#使用-ai-skill)** | 有引用的范围、追踪或证据审阅草案 | 自己的 AI 宿主、完整 Skill 和明确材料 |
+| **先看完整过程** | [完整操作演示](walkthrough.html) · [文字版](docs/walkthrough.md) | 一个合成任务从创建、修订、实际观察到交接与恢复 |
+| **开始自己的任务** | [本地启动页](start.html) · [启动说明](docs/local-workbench.md) | 在浏览器操作，由本机 Python 生成原型、PRD、Word 和交接包 |
 
-> GitHub 的 HTML 链接展示源码。交互体验请在本地打开完整副本的 `index.html`。[下载完整仓库 ZIP](https://github.com/jamieluo26/pm-toolkit/archive/refs/heads/main.zip)后先解压，版本以包内 CHANGELOG 为准；当前没有在线托管演示。
+GitHub 的 HTML 链接会显示源码。请[下载完整仓库 ZIP](https://github.com/jamieluo26/pm-toolkit/archive/refs/heads/main.zip)并解压，再打开 `index.html`。当前没有在线托管演示。
+
+[![实际生成的同版交接页面](assets/walkthrough/13-handoff.png)](assets/walkthrough/pm-toolkit-walkthrough.mp4)
+
+[观看／下载90秒带字幕回放](assets/walkthrough/pm-toolkit-walkthrough.mp4) · 由实际操作截图组成，非连续录屏；[完整文字步骤](docs/walkthrough.md)可直接阅读。
 
 ## 快速开始
 
-**本地工作台候选：** 如果你拿到的是包含 `pm_workbench.py` 的本地运行候选，可以在可视化界面完成创建、修订与交接，真实生成原型、PRD 和 Word。先按[本地启动与操作说明](docs/local-workbench.md)启动 Python 服务；这部分尚未发布到 GitHub，旧公开基线和原 CLI 继续保留。
+**实际验证环境为 macOS + Chrome。** 本地服务器要求 Python 3.10+ 和 `fcntl`，Windows 当前不支持此服务器入口；Linux 首次使用与其他浏览器尚未验收。
 
-**先看结果：** 在完整副本中双击 `index.html`，进入阅读任务，体验原型并查看 PRD 和 Word。预制页面和文档无需 Python、账号或模型。[三帧实际操作短演示](demo.html)记录筛选、空态与恢复。
-
-**再生成同一版交接：** 在工具包根目录的终端中运行：
+在工具包根目录的终端运行：
 
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python pm_task.py build --source examples/lifecycle/before.json --output ../my-reading-task
-.venv/bin/python pm_task.py check --source examples/lifecycle/before.json --output ../my-reading-task
+.venv/bin/python pm_workbench.py --workspace ../my-pm-workspace --port 8841
 ```
 
-打开新目录的 `journey.html`，再看 `prototype.html`、`PRD.md` 和 `handoff.docx`。它们对应同一份 `task.json`；Word 完整投影本版 PRD 的有序内容。检查计划仍需你实际执行。
+在 Chrome 打开终端给出的 `http://127.0.0.1:8841`，保持终端运行。工作目录放在源码外；同一工作目录只能由一个服务写入。界面依次完成 **创建任务 → 修订 → 交接**，未确认和未检查的内容保留待办。
 
-输出目录须是**尚不存在的新目录**，父目录须已存在。Windows 虚拟环境使用 `.venv\Scripts\python.exe`；这只是命令替换说明，不代表 Windows 已验收。完整步骤见[生命周期说明](docs/lifecycle.md)，环境缺失先看[本地诊断](docs/support-tools.md)。
+**第一次建议使用[PM 试用任务](trial/README.md)**：导入全新合成材料，改一次筛选位置，实际操作原型，再生成交接包。试用卡与反馈表供自愿试用；当前没有真人试用结果。
 
-只想先生成一个轻量集合？以下路径仅需 Python 3.10+ 标准库：
-
-```sh
-python3 pm_flow.py build --source examples/personal-tasks/spec.json --output ../my-task-board
-python3 pm_flow.py check --source examples/personal-tasks/spec.json --output ../my-task-board
-```
+只想离线查看结果时，打开 `index.html` 中的预制案例，不需要 Python。已有 CLI 和 Skill 入口保留在[进阶路径](START-HERE.md#进阶与历史路径)，不影响原有命令。
 
 ## 三个可以动手的场景
 
@@ -71,7 +68,7 @@ python3 pm_flow.py check --source examples/personal-tasks/spec.json --output ../
 
 ## 用于自己的项目
 
-先打开[任务准备页面](prepare.html)，按有限预设填写背景与规格，导出自己的任务 JSON；页面只准备材料，之后仍需用 CLI 生成产物。也可以创建一份带待定项的空白任务：
+推荐先按[本地启动说明](docs/local-workbench.md)进入可视化工作台，填写、保存并生成自己的任务。偏好 CLI 时仍可使用[任务准备页面](prepare.html)导出材料，再运行生成命令。也可以创建一份带待定项的空白任务：
 
 ```sh
 .venv/bin/python pm_task.py init --output ../my-task-input
@@ -110,11 +107,13 @@ python3 pm_flow.py check --source examples/personal-tasks/spec.json --output ../
 
 [当前调用说明](docs/skills-v1.md)列出材料和人工停点。完整树治理、指定宿主实际调用、组合工作包回放分别记录；本轮技术层已闭合，草案仍需人工核对。CLI 本身不调用模型或修改宿主配置。使用自己的助手时，账号、材料处理与费用由该宿主决定。
 
+本次入口、演示与试用包的实际条件见[本地验证](docs/verification-promotion.md)。
+
 ## 文档与常见问题
 
 - [任务导航](START-HERE.md)：从当前问题选择入口。
 - [产品定位](docs/product-positioning.md)：目标用户、优先任务与待验证的价值。
-- [支持范围](docs/support-scope.md)：公开基线与本地工作台候选的能力和证据边界。
+- [支持范围](docs/support-scope.md)：已公开本地工作台的能力、环境和证据边界。
 - [文档中心](docs/README.md)：完整任务、独立模块、规格与验证边界。
 - [FAQ](docs/faq.md)：运行失败、输出目录、同步、`HOLD` 和 Skill 调用。
 - [维护与升级](docs/maintenance.md)：保留输入、重建新目录、检查版本与恢复。

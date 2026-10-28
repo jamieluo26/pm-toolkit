@@ -2,15 +2,23 @@
 
 本记录描述各版本的内容变化；公开分发版本以仓库当前提交为准。实际支持范围见 [README](README.md) 和 [MODULES](MODULES.md)。
 
-## 未发布 · 2026-10-28 · 本地工作台候选
+## 2026-10-28 · 使用导览与首批试用材料
+
+新增[走读演示](walkthrough.html)与[文字版](docs/walkthrough.md)，说明一个合成任务的创建、修订、实际观察、交接与恢复；新增[开始体验](start.html)及[首批 PM 试用包](trial/README.md)。推荐实际运行路径为[本地工作台](docs/local-workbench.md)。演示与试用材料的验收见[独立记录](docs/verification-promotion.md)，不沿用下述运行版验收结论。
+
+## 已公开并远端验收 · 2026-10-28 · 本地运行工作台
+
+公开提交为 [`d54e6586f4a173dea73155f8564aafbcfb5d9d25`](https://github.com/jamieluo26/pm-toolkit/commit/d54e6586f4a173dea73155f8564aafbcfb5d9d25)，356 文件；匿名 Git 新副本安装与 147 项回归通过。该发布是在 `92919fbe` 的 344 文件基线上完成准确 19 项差量（7 修改、12 新增）。
 
 - 新增只监听本机的 Python 工作台，保存项目与草案，调用既有核心生成同版原型、PRD、Word 并核对。
 - 新增准确差异准备、反馈处理、版本绑定与修订生成；逐项观察保留失败及复验历史。
 - 新增实际交接与单文件/ZIP 下载、保存恢复、有限旧草案迁移及错误提示。
-- 保留公开 344 文件基线的核心、固定组件、六项 Skill 和旧交互原型；新增内容尚未公开。
-- 当前支持和实测条件见[启动说明](docs/local-workbench.md)及[本地验证记录](docs/verification-local-workbench.md)。
+- 保留原核心、固定组件、六项 Skill 和旧交互原型；337 个沿用文件的字节、模式与 Git blob 已核对不变。
+- 远端真实生成/核对、缺观察 HOLD、Chrome 实际操作与下载、Word 逐页视觉均按记录通过；命名最终 SHA 的 HTTP ZIP 只核对 356 文件内容，未单独运行。
+- 实际验证为 macOS；Unix 需 `fcntl`，Linux 首用未验，Windows 不支持该服务器。无在线托管、安装包或新许可证。
+- 当前支持和实测条件见[启动说明](docs/local-workbench.md)及[工作台验证记录](docs/verification-local-workbench.md)。
 
-## v1.0 · 2026-10-27 · 本地产品工作包
+## 历史 v1.0 · 2026-10-27 · 本地产品工作包
 
 - 新增统一 task.json 任务与版本合同，关联需求背景、范围、规则、检查及嵌入原型规格。
 - 新增同任务原型/PRD/Word 适配；保留固定上游组件，通过本包适配器生成完整有序交接内容。
