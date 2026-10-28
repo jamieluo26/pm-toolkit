@@ -1,0 +1,16 @@
+{
+  "schema": "pm-task-decisions/v1",
+  "before_task_sha256": "fa2c3df9e6b078c434d1e35a609d54b94a3aed76d82551fcca8be35e566535bc",
+  "after_task_sha256": "817c83da7219a249937a112762f1bb62a94797b99a438394afb3d9a50d763999",
+  "feedback_sha256": "3f1355b7e0f4147005bb8235d0a2713b6f80a19d5cc162050ec3091815f080e8",
+  "items": [
+    {
+      "feedback_id": "feedback_mvrr41ug_1",
+      "status": "adopted",
+      "rationale": "本次合成练习明确采纳：仅移动筛选位置，不改字段、数据或交集规则；关联实际布局变化后再核对。",
+      "paths": [
+        "/prototype/layout"
+      ]
+    }
+  ]
+}

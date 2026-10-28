@@ -1,0 +1,11 @@
+{
+  "schema": "pm-task-feedback/v1",
+  "before_task_sha256": "fa2c3df9e6b078c434d1e35a609d54b94a3aed76d82551fcca8be35e566535bc",
+  "items": [
+    {
+      "id": "feedback_mvrr41ug_1",
+      "text": "把类别与整理状态筛选从侧栏移到顶部工具栏，方便同时看到两个条件；搜索与交集规则不变。",
+      "source": "trial/TASK-CARD.md · 人工合成修订任务，不是真人访谈"
+    }
+  ]
+}

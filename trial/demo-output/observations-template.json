@@ -1,0 +1,37 @@
+{
+  "schema": "pm-task-observations/v1",
+  "task_sha256": "817c83da7219a249937a112762f1bb62a94797b99a438394afb3d9a50d763999",
+  "prototype_sha256": "970b5a5243f7de63d5f3d4b9cdf3254d3f7fcecd109e8d3ed4477c42a66fb4ea",
+  "rows": [
+    {
+      "id": "obs_1",
+      "check_id": "main_c1",
+      "status": "not_run",
+      "level": "browser",
+      "observed": "",
+      "evidence_ref": "",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_2",
+      "check_id": "main_c2",
+      "status": "not_run",
+      "level": "browser",
+      "observed": "",
+      "evidence_ref": "",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_3",
+      "check_id": "main_c3",
+      "status": "not_run",
+      "level": "browser",
+      "observed": "",
+      "evidence_ref": "",
+      "supersedes": null,
+      "defect": null
+    }
+  ]
+}

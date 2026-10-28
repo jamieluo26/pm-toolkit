@@ -1,0 +1,67 @@
+{
+  "schema": "pm-task-observations/v1",
+  "task_sha256": "817c83da7219a249937a112762f1bb62a94797b99a438394afb3d9a50d763999",
+  "prototype_sha256": "970b5a5243f7de63d5f3d4b9cdf3254d3f7fcecd109e8d3ed4477c42a66fb4ea",
+  "rows": [
+    {
+      "id": "obs_1",
+      "check_id": "main_c1",
+      "status": "not_run",
+      "level": "browser",
+      "observed": "",
+      "evidence_ref": "",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_2",
+      "check_id": "main_c2",
+      "status": "not_run",
+      "level": "browser",
+      "observed": "",
+      "evidence_ref": "",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_3",
+      "check_id": "main_c3",
+      "status": "not_run",
+      "level": "browser",
+      "observed": "",
+      "evidence_ref": "",
+      "supersedes": null,
+      "defect": null
+    },
+    {
+      "id": "obs_fe507f021d48483f8cf1436ad25825e7",
+      "check_id": "main_c1",
+      "status": "pass",
+      "level": "browser",
+      "observed": "代理在1.1实际预览看到顶部筛选、默认3/3与三条指定合成灵感；实际下载的本版PRD写明筛选位置toolbar。",
+      "evidence_ref": "assets/walkthrough/07-after-prototype.png；trial/demo-output/PRD.md 第87行",
+      "defect": null,
+      "supersedes": "obs_1"
+    },
+    {
+      "id": "obs_88487dc5773f4205a50423e5b04c9d15",
+      "check_id": "main_c2",
+      "status": "pass",
+      "level": "browser",
+      "observed": "代理在1.1输入晨间，实际只显示晨间阅读角1/3；清空后选择阅读+已归档，实际只显示口袋书摘卡1/3。",
+      "evidence_ref": "assets/walkthrough/08-search.png；assets/walkthrough/09-intersection.png",
+      "defect": null,
+      "supersedes": "obs_2"
+    },
+    {
+      "id": "obs_a2314ae66cff4618895d35beb8f7d5fd",
+      "check_id": "main_c3",
+      "status": "pass",
+      "level": "browser",
+      "observed": "代理重置后搜索月面花园，实际显示0/3和恢复全部；恢复后3/3，周末步行路线详情显示生活、已归档、沿河散步并记录休息点。",
+      "evidence_ref": "assets/walkthrough/10-empty.png；assets/walkthrough/11-detail.png",
+      "defect": null,
+      "supersedes": "obs_3"
+    }
+  ]
+}

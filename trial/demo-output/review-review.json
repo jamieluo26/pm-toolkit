@@ -1,0 +1,23 @@
+{
+  "schema": "pm-task-review/v1",
+  "status": "DECLARED_CHANGE_COVERED",
+  "meaning": "Supplied literal change coverage; not human approval or functional intent proof.",
+  "task_id": "p_dc2fd8014bf54936b7287a90518b016c",
+  "before_version": "1.0",
+  "after_version": "1.1",
+  "input_sha256": {
+    "before.json": "fa2c3df9e6b078c434d1e35a609d54b94a3aed76d82551fcca8be35e566535bc",
+    "after.json": "817c83da7219a249937a112762f1bb62a94797b99a438394afb3d9a50d763999",
+    "feedback.json": "3f1355b7e0f4147005bb8235d0a2713b6f80a19d5cc162050ec3091815f080e8",
+    "decisions.json": "4e333ae1eb2ad46cf0195e93b434792a0139b256809d51942a99ad8153df2867"
+  },
+  "changed_paths": [
+    "/prototype/layout"
+  ],
+  "coverage": {
+    "/prototype/layout": [
+      "feedback_mvrr41ug_1"
+    ]
+  },
+  "issues": []
+}

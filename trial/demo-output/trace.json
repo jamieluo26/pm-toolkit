@@ -1,0 +1,52 @@
+{
+  "schema": "pm-task-trace/v1",
+  "task_id": "p_dc2fd8014bf54936b7287a90518b016c",
+  "version": "1.1",
+  "task_sha256": "817c83da7219a249937a112762f1bb62a94797b99a438394afb3d9a50d763999",
+  "spec_sha256": "07dcb93cfd484d9e5cf68916d08a11cfe045ed547d9e9f9bc872f5d4c1be7d06",
+  "checks": [
+    {
+      "requirement_id": "main",
+      "id": "main_c1",
+      "condition": "打开本版真实原型，保持默认检索与筛选，对照本版PRD核对筛选位置。",
+      "expected": "显示3 / 3条：晨间阅读角、周末步行路线、口袋书摘卡；筛选位置与本版PRD一致，首版为sidebar侧栏，修订版为toolbar顶部工具栏。",
+      "prototype_check_id": "main-c1",
+      "evidence_level": "browser",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "requirement_id": "main",
+      "id": "main_c2",
+      "condition": "在名称搜索框输入“晨间”；清空搜索后，将类别设为“阅读”，整理状态设为“已归档”。",
+      "expected": "搜索“晨间”时仅显示晨间阅读角，计数1 / 3；清空搜索并同时选择两个筛选后仅显示口袋书摘卡，计数1 / 3。",
+      "prototype_check_id": "main-c2",
+      "evidence_level": "browser",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "requirement_id": "main",
+      "id": "main_c3",
+      "condition": "点“重置筛选”，搜索“月面花园”；出现空结果后点“恢复全部”，再打开周末步行路线详情。",
+      "expected": "无匹配时显示0 / 3和空结果；恢复后显示全部三条，详情显示类别生活、整理状态已归档、描述“沿河散步并记录休息点”。",
+      "prototype_check_id": "main-c3",
+      "evidence_level": "browser",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "main",
+      "priority": "must",
+      "priority_reason": "先验证最小的查找与整理路径，再讨论提醒、协作等扩展能力；本次只做一次筛选位置修订。",
+      "evidence_ids": [
+        "source_note"
+      ],
+      "decision_ids": [
+        "decision_main"
+      ],
+      "rule_ids": [
+        "rule_main"
+      ]
+    }
+  ]
+}

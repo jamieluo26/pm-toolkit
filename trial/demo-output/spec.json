@@ -1,0 +1,94 @@
+{
+  "schema": "pm-collection/v1",
+  "id": "p_dc2fd8014bf54936b7287a90518b016c",
+  "version": "1.1",
+  "parent_sha256": "1d7d522788cd87b7b353bac492af4670197ce83f6b94cdeea8f870e5f9549694",
+  "title": "个人灵感收集箱",
+  "positioning": "用于个人回看与整理灵感的桌面列表原型",
+  "pain": "零散灵感放在不同便签中，回看时难以按类别与整理状态找到想继续处理的条目。",
+  "value": "把灵感放在同一列表并提供搜索与交集筛选，可能减少重复翻找；价值尚未经过真人使用验证。",
+  "fields": [
+    {
+      "key": "name",
+      "label": "灵感名称",
+      "type": "text",
+      "required": true,
+      "choices": []
+    },
+    {
+      "key": "category",
+      "label": "类别",
+      "type": "choice",
+      "required": true,
+      "choices": [
+        "阅读",
+        "生活"
+      ]
+    },
+    {
+      "key": "status",
+      "label": "整理状态",
+      "type": "choice",
+      "required": true,
+      "choices": [
+        "待整理",
+        "已归档"
+      ]
+    },
+    {
+      "key": "note",
+      "label": "灵感描述",
+      "type": "text",
+      "required": true,
+      "choices": []
+    }
+  ],
+  "requirements": [
+    {
+      "id": "main",
+      "statement": "个人使用者能够浏览灵感列表，用名称关键词及类别、整理状态交集筛选找到指定灵感，无结果时恢复全部，并打开详情；筛选位置以当前生成版本的PRD为准。",
+      "acceptance": [
+        "打开本版真实原型，保持默认检索与筛选，对照本版PRD核对筛选位置。；预期：显示3 / 3条：晨间阅读角、周末步行路线、口袋书摘卡；筛选位置与本版PRD一致，首版为sidebar侧栏，修订版为toolbar顶部工具栏。",
+        "在名称搜索框输入“晨间”；清空搜索后，将类别设为“阅读”，整理状态设为“已归档”。；预期：搜索“晨间”时仅显示晨间阅读角，计数1 / 3；清空搜索并同时选择两个筛选后仅显示口袋书摘卡，计数1 / 3。",
+        "点“重置筛选”，搜索“月面花园”；出现空结果后点“恢复全部”，再打开周末步行路线详情。；预期：无匹配时显示0 / 3和空结果；恢复后显示全部三条，详情显示类别生活、整理状态已归档、描述“沿河散步并记录休息点”。"
+      ]
+    }
+  ],
+  "search_fields": [
+    "name"
+  ],
+  "filters": [
+    "category",
+    "status"
+  ],
+  "layout": "toolbar",
+  "items": [
+    {
+      "id": "idea_a",
+      "values": {
+        "name": "晨间阅读角",
+        "category": "阅读",
+        "status": "待整理",
+        "note": "试着把窗边变成安静阅读位"
+      }
+    },
+    {
+      "id": "idea_b",
+      "values": {
+        "name": "周末步行路线",
+        "category": "生活",
+        "status": "已归档",
+        "note": "沿河散步并记录休息点"
+      }
+    },
+    {
+      "id": "idea_c",
+      "values": {
+        "name": "口袋书摘卡",
+        "category": "阅读",
+        "status": "已归档",
+        "note": "按主题收集喜欢的句子"
+      }
+    }
+  ]
+}
