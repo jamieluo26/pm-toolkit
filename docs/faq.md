@@ -1,18 +1,18 @@
 # 常见问题
 
-本说明对应 2026-10-27 已公开的 v1.0 本地工作包。该版固定声明范围的公开发布与最终远端验收已闭合；真人反馈和真实业务效果未采集。
+本地工作台已于2026-10-28公开并远端验收；已验收运行功能基线为 [`d54e6586f4a173dea73155f8564aafbcfb5d9d25`](https://github.com/jamieluo26/pm-toolkit/commit/d54e6586f4a173dea73155f8564aafbcfb5d9d25)，356 文件、147 项回归通过。走读与试用材料的证据见[独立验收记录](verification-promotion.md)；真人反馈和真实业务效果未采集。
 
 ## GitHub 上点开 HTML，为什么看到代码？
 
-仓库页面展示源码。使用完整副本，解压后打开本地 `index.html`，再进入案例。公开仓库已包含 v1.0 的已发布内容，下载后核对[版本记录](../CHANGELOG.md)。当前没有在线托管演示；验收中的 Chrome 直接下载 ZIP 客户端拦截仍保留，未记为下载通过。
+仓库页面展示源码。推荐使用完整副本，按[本地工作台说明](local-workbench.md)安装依赖、启动本机服务，再用 Chrome 操作。只看预制案例可打开本地 `index.html`。公开仓库已包含 `d54e6586` 的本地运行版，下载后核对[版本记录](../CHANGELOG.md)。当前没有在线托管演示。[走读演示](../walkthrough.html)与[文字版](walkthrough.md)说明操作过程；[开始体验](../start.html)引导启动，[试用包](../trial/README.md)提供任务和观察提示。历史 v1.0 的 Chrome 直接下载 ZIP 客户端拦截继续保留为当时证据；10 月 28 日 HTTP ZIP 仅证明 356 文件内容一致，未单独运行。
 
 ## 哪些操作需要 Python 或依赖？
 
-浏览预制 HTML、Markdown 和 Word 不需要 Python。独立集合、独立表单需 Python 3.10+ 标准库；完整 `pm_task.py` 路径包含 Word，需要 `requirements.txt` 中的 `python-docx==1.2.0`。在独立虚拟环境安装，再运行 `python3 pm_doctor.py` 检查声明条件。doctor 不自动安装依赖，不证明 Skill 治理或宿主安装成功。
+浏览预制 HTML、Markdown 和 Word 不需要 Python。本地工作台需 Python 3.10+、`requirements.txt` 中的固定 Word 依赖与一次终端启动。实际验证环境是 macOS；服务器依赖 Unix `fcntl`，Linux 安装首用未验，Windows 不支持此服务器。独立集合、独立表单需 Python 3.10+ 标准库；完整 `pm_task.py` 路径包含 Word，需要 `python-docx==1.2.0`。在独立虚拟环境安装，再运行 `python3 pm_doctor.py` 检查声明条件。doctor 不自动安装依赖，不证明 Skill 治理或宿主安装成功。
 
 ## 怎样准备自己的任务？
 
-从[任务准备页面](../prepare.html)填写有限预设，或用 `pm_task.py init --output ../my-task-input` 创建 task.json。填写定位、用户问题、价值假设、目标、优先级、来源、范围、规则与检查。源合同见 [task-spec](task-spec.md)；未确定内容继续保留。准备页面只导出任务材料，之后还要 build/check。
+推荐从[本地工作台](local-workbench.md)填写任务、保存草案并生成同版文件。CLI 备选可从[任务准备页面](../prepare.html)填写有限预设，或用 `pm_task.py init --output ../my-task-input` 创建 task.json。填写定位、用户问题、价值假设、目标、优先级、来源、范围、规则与检查。源合同见 [task-spec](task-spec.md)；未确定内容继续保留。准备页面只导出任务材料，之后还要 build/check。
 
 ## 支持什么原型？
 
@@ -36,11 +36,11 @@ check 从源输入重新推导预期产物，证明该范围内的内容一致�
 
 ## 原型里的新增、编辑和状态能保存多久？
 
-只保留在当前页面会话；刷新恢复规格中的样例和状态。长期材料应存入自己的源规格，再生成对应版本。配置页面生成的新 JSON 不会当场改写当前页面的版本或已有 PRD。
+生成原型里的数据操作只保留在当前页面会话；刷新恢复规格中的样例和状态。本地工作台的任务草案与运行记录另存于本机 `--workspace`，重新启动时使用同一路径可恢复项目；请完整备份。长期原型材料应写入源规格，再生成对应版本。配置页面导出的新 JSON 不会当场改写已有 PRD。
 
 ## 同版 Word 和 PRD 现在接通了吗？
 
-v1.0 的 `pm_task.py` 通过同任务适配器接通：task.json 内的规格生成原型与 PRD，Word 完整投影这版 PRD 的有序内容，相关标识一致。旧 `pm_toolkit.py` 阅读案例仍用其原合同；不要把旧 Word 与另一个任务的原型混成同版证据。
+当前本地工作台实际调用 `pm_task.py`，通过同任务适配器接通：task.json 内的规格生成原型与 PRD，Word 完整投影这版 PRD 的有序内容，相关标识一致。旧 `pm_toolkit.py` 阅读案例仍用其原合同；不要把旧 Word 与另一个任务的原型混成同版证据。
 
 ## HOLD 是失败吗？
 
@@ -66,7 +66,13 @@ v1.0 的 `pm_task.py` 通过同任务适配器接通：task.json 内的规格生
 
 生成命令使用新目录，固定组件不自动下载更新。保留旧工具、输入、输出和观察，阅读[版本记录](../CHANGELOG.md)，用新工具在新目录重建并核对。原输入合同不自动跨版本迁移，见[维护说明](maintenance.md)。
 
-## v1.0 已完成哪些验收，还保留什么限制？
+## 当前工作台已完成哪些验收？
+
+2026-10-28 远端匿名 Git 新副本 356 文件内容/模式/blob 核对、独立安装和 147 项回归通过。README 真实生成、HTTP 正负向、Chrome 合成操作和 Word/PRD 实际下载、Word 6 页逐页视觉已按记录通过；缺观察交接继续 `HOLD`/3。命名最终 SHA 的 HTTP ZIP 只核对文件内容，未单独运行。macOS 已实测，Linux 首用未验，Windows 不支持此服务器。细节与未覆盖条件见[当前验证记录](verification-local-workbench.md)。
+
+走读与试用材料的内容和操作检查见[独立验收记录](verification-promotion.md)，运行版验收不代替这些检查。真人采用、耗时收益与真实业务效果仍未采集。
+
+## 历史 v1.0 完成过哪些验收？
 
 v1.0 的六工作包、两类有限原型、三个合成场景和六项文字 Skill，以及准确公开资格与最终远端验收，已于 2026-10-27 在固定声明范围内闭合。首次使用评测由独立代理完成，真人反馈和真实业务效果未采集。匿名 Git 新副本的 139 项回归与 7 条固定检查已通过；独立 HTTP ZIP 只核对内容，未单独运行，Unix 模式仅由 Git 证明。Chrome 直接下载 ZIP 的客户端拦截、Word 首轮缺字环境与隔离字体补证继续分别保留。后续独立范围见[路线图](../ROADMAP.md)。
 

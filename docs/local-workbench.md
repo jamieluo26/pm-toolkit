@@ -1,10 +1,12 @@
 # 本地工作台：创建任务 → 修订 → 交接
 
-这是在公开 344 文件基线上制作的本地运行候选，尚未发布到 GitHub。它通过本机 Python 调用既有 `pm_task.py`，实际生成原型、PRD 和 Word，并运行对应核对命令。旧的[操作原型](workbench-prototype.md)继续保留。
+这是推荐的本地运行入口，已于 2026-10-28 公开并完成远端验收：提交 [`d54e6586f4a173dea73155f8564aafbcfb5d9d25`](https://github.com/jamieluo26/pm-toolkit/commit/d54e6586f4a173dea73155f8564aafbcfb5d9d25)，356 文件、147 项回归通过。它通过本机 Python 调用既有 `pm_task.py`，实际生成原型、PRD 和 Word，并运行对应核对命令。旧的[操作原型](workbench-prototype.md)继续作为设计记录保留。
+
+[走读演示](../walkthrough.html)与[文字版](walkthrough.md)说明完整操作过程；[开始体验](../start.html)引导启动，[试用包](../trial/README.md)提供合成任务与观察提示。其内容和操作证据见[独立验收记录](verification-promotion.md)。
 
 ## 先启动一次
 
-需要 macOS 或具备 `fcntl` 的 Unix、Python 3.10+，以及 `requirements.txt` 中的固定 Word 依赖。当前实际验证环境单独记录；Windows 尚不支持此服务器入口。服务只监听本机 `127.0.0.1`，不供局域网或公网访问。
+需要 Python 3.10+ 和 `requirements.txt` 中的固定 Word 依赖。实际验证环境为 macOS；服务器依赖 Unix `fcntl`，Linux 安装首用尚未验证，Windows 不支持此服务器入口。服务只监听本机 `127.0.0.1`，不供局域网或公网访问。
 
 在工具包根目录运行：
 
@@ -69,4 +71,4 @@ python3 -m venv .venv
 | `ERROR` / `INCOMPLETE` | 输入、依赖、进程或写入失败，不能据此交付通过 |
 | 已记录观察 | 用户提交了描述与引用，不认证实际执行或真实审批 |
 
-旧 CLI 的[输入合同](task-spec.md)、[完整生命周期](lifecycle.md)与[证据层次](../playbooks/evidence-quality.md)继续适用。当前本地候选的实测范围见[本地验证记录](verification-local-workbench.md)。
+旧 CLI 的[输入合同](task-spec.md)、[完整生命周期](lifecycle.md)与[证据层次](../playbooks/evidence-quality.md)继续适用。发布前验证与当前远端验收范围见[工作台验证记录](verification-local-workbench.md)。真人 PM 首次使用反馈及真实收益尚未采集；当前未新增开源许可证、在线托管或安装包。

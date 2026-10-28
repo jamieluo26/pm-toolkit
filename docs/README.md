@@ -1,17 +1,17 @@
 # 文档中心
 
-这份说明对应 **2026-10-27 已公开的 PM Toolkit v1.0 本地工作包**。该版固定声明范围的公开发布与远端验收已闭合；首次使用先选一条路径，运行、判断和发布的证据分别记录。
+本地工作台已于2026-10-28公开并远端验收。已验收运行功能基线为 [`d54e6586f4a173dea73155f8564aafbcfb5d9d25`](https://github.com/jamieluo26/pm-toolkit/commit/d54e6586f4a173dea73155f8564aafbcfb5d9d25)：356 文件、147 项回归通过。走读与试用材料的内容、操作证据见[独立验收记录](verification-promotion.md)；运行、判断和发布的证据分别记录。
 
 ## 第一次使用
 
-1. 使用完整副本，双击根目录 `index.html`，先看[三个案例](../START-HERE.md#先体验一个案例)。GitHub 的 HTML 链接显示源码。
-2. 整轮任务从[生命周期说明](lifecycle.md)开始；先读合成输入，再生成自己的新目录。
-3. 想准备自己的输入，可以打开[任务准备页面](../prepare.html)，或用 `pm_task.py init` 创建待填写材料。
-4. 本地依赖不齐时看[环境诊断](support-tools.md)；失败/升级看[维护说明](maintenance.md)和[FAQ](faq.md)。
+1. 推荐按[本地工作台启动说明](local-workbench.md)安装固定依赖、启动一次，再从 Chrome 创建、修订与交接。macOS 已实测；Linux 首用未验，Windows 不支持此服务器。
+2. [走读演示](../walkthrough.html)及[文字版](walkthrough.md)说明用途和操作过程；[开始体验](../start.html)进入启动指引，[试用包](../trial/README.md)引导记录一次合成任务的实际体验。
+3. 想先读预制材料，可打开完整副本的 `index.html` 或[进阶与历史案例](../START-HERE.md#进阶与历史路径)。GitHub 的 HTML 链接显示源码。
+4. CLI 使用者看[生命周期说明](lifecycle.md)，依赖不齐看[环境诊断](support-tools.md)，失败/升级看[维护说明](maintenance.md)和[FAQ](faq.md)。
 
-## 本地可运行工作台候选
+## 本地运行工作台
 
-[启动与操作说明](local-workbench.md)提供可视化创建、真实 Python 生成、准确差异修订、逐项观察和交接下载。此候选尚未公开；原核心、固定组件和 Skill 内容保持公开基线。[本地验证记录](verification-local-workbench.md)单独报告实际条件。
+[启动与操作说明](local-workbench.md)提供可视化创建、真实 Python 生成、准确差异修订、逐项观察和交接下载；以上运行能力已随 `d54e6586` 公开。原核心、固定组件和 Skill 内容沿用，工作台不调用模型。[工作台验证记录](verification-local-workbench.md)区分发布前候选验证与远端验收。
 
 ## 保留的工作台交互原型
 
@@ -21,6 +21,7 @@
 
 | 任务 | 文档 | 对应材料 |
 |---|---|---|
+| 本地运行与首次操作 | [本地工作台](local-workbench.md) · [支持范围](support-scope.md) | 创建、修订、观察与交接 |
 | 一轮产品迭代 | [完整步骤](lifecycle.md) · [统一输入合同](task-spec.md) | [阅读任务](../examples/lifecycle/README.md) |
 | 从问题到需求 | [需求澄清](../playbooks/workpacks/01-discover.md) · [范围规格](../playbooks/workpacks/02-specify.md) | [空白任务](../templates/task.json) · [已填任务](../examples/lifecycle/before.json) |
 | 集合原型 | [运行说明](prototype-loop.md) · [规格合同](prototype-spec.md) | [个人任务板](../examples/personal-tasks/spec.json) |
@@ -32,7 +33,7 @@
 | 运行准备与静态 HTML 检查 | [支撑工具](support-tools.md) | 明确选择的本地文件 |
 | 升级或恢复 | [维护说明](maintenance.md) · [FAQ](faq.md) | [版本记录](../CHANGELOG.md) |
 
-## 跑通同一版
+## CLI 备选：跑通同一版
 
 在工具包根目录运行：
 
@@ -44,7 +45,7 @@ python3 -m venv .venv
 .venv/bin/python pm_task.py check --source examples/lifecycle/before.json --output ../reading-before
 ```
 
-打开输出的 `journey.html`。Word 与 PRD 的内容来自同一任务版本；实际界面、Word 排版和业务适用性仍需核对。Windows 将虚拟环境命令替换为 `.venv\Scripts\python.exe`，不由此推定该环境已验收。
+打开输出的 `journey.html`。Word 与 PRD 的内容来自同一任务版本；实际界面、Word 排版和业务适用性仍需核对。Windows 的 CLI 首用尚未验收；本地工作台服务器不支持 Windows。
 
 输出目录需尚不存在，父目录需已存在。未决材料可能合法生成 `HOLD`；查看原因而不是删除问题。完整 review/deliver 命令见[生命周期说明](lifecycle.md)。
 
@@ -67,6 +68,6 @@ python3 pm_form.py check --source examples/request-flow/spec.json --output ../my
 | v0.2 评审工作包 | [说明](review-workpack.md) · [历史 Skill 边界](skills-v02.md) | `pm_review.py demo/check` |
 | v0.3 集合与评审增量 | [说明](prototype-loop.md) · [验证摘要](verification-v03.md) | `pm_flow.py build/check/review/review-check` |
 
-历史命令保留，完整任务走新适配器。生成、内容一致性、浏览器、视觉与人工验收各自支持不同结论；[证据质量说明](../playbooks/evidence-quality.md)解释这些层次。当前技术链与 Skill 显式调用已验证；代理使用评测与未覆盖范围见[验证记录](verification-v1.md)，后续独立范围见[路线图](../ROADMAP.md)。
+历史命令保留，完整任务走新适配器。生成、内容一致性、浏览器、视觉与人工验收各自支持不同结论；[证据质量说明](../playbooks/evidence-quality.md)解释这些层次。当前工作台证据见[工作台验证记录](verification-local-workbench.md)；v1.0 技术链、Skill 显式调用和代理使用评测见[历史验证记录](verification-v1.md)，后续独立范围见[路线图](../ROADMAP.md)。
 
-[当前验证与适用边界](verification-v1.md)
+[当前验证与适用边界](verification-local-workbench.md)
