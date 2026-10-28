@@ -1,0 +1,142 @@
+{
+  "format": "pm-local-workbench-draft/v1",
+  "draft": {
+    "kind": "collection",
+    "title": "个人灵感收集箱",
+    "audience": "希望整理日常阅读与生活灵感的个人使用者",
+    "problem": "零散灵感放在不同便签中，回看时难以按类别与整理状态找到想继续处理的条目。",
+    "positioning": "用于个人回看与整理灵感的桌面列表原型",
+    "value_hypothesis": "把灵感放在同一列表并提供搜索与交集筛选，可能减少重复翻找；价值尚未经过真人使用验证。",
+    "goal": "使用者能从三条合成灵感中找到指定条目、恢复全部记录，并把一次筛选位置调整同步为新版本原型与PRD。",
+    "priority_basis": "先验证最小的查找与整理路径，再讨论提醒、协作等扩展能力；本次只做一次筛选位置修订。",
+    "source_kind": "synthetic",
+    "source_note": "2026-10-28编写的全新人工合成练习。灵感名称、描述、分类和整理状态均为虚构，不对应真实个人、公司、客户、访谈或审批。本草案是练习提议；试用者只有在认可本次虚构范围后才可声明采用该练习方案，不能据此声称公司审批。",
+    "success_metric": {
+      "statement": "能否完成指定查找、筛选、布局修订和同版交接，并如实记录三项浏览器检查",
+      "baseline": "尚无真人试用数据；初始列表只有三条合成灵感，所有检查尚未执行。",
+      "target": "试用者完成三项浏览器检查、一次侧栏改顶部工具栏修订和交接，或明确留下阻断点及未完成项。",
+      "measurement": "记录各阶段实际耗时、所需协助、当前版本、逐项实际观察与证据引用；独立完成与协助后完成分开统计。"
+    },
+    "included": [
+      "三条合成灵感的列表、名称搜索、类别与整理状态交集筛选、重置和详情",
+      "首版侧栏筛选，以及仅把筛选位置改为顶部工具栏的一次修订",
+      "同版原型、PRD、Word、三项浏览器观察与本地交接包"
+    ],
+    "excluded": [
+      "真实个人或公司灵感资料、真实账号、客户资料、审批与业务后台",
+      "多人协作、提醒、云同步、持久化业务数据库及移动端验收",
+      "新增字段、修改合成数据、扩展需求以及把本次练习包装为真人调研结论"
+    ],
+    "pending": [],
+    "decision_status": "proposed",
+    "fields": [
+      {
+        "key": "name",
+        "label": "灵感名称",
+        "type": "text",
+        "required": true,
+        "choices": [],
+        "minimum": null,
+        "maximum": null
+      },
+      {
+        "key": "category",
+        "label": "类别",
+        "type": "choice",
+        "required": true,
+        "choices": ["阅读", "生活"],
+        "minimum": null,
+        "maximum": null
+      },
+      {
+        "key": "status",
+        "label": "整理状态",
+        "type": "choice",
+        "required": true,
+        "choices": ["待整理", "已归档"],
+        "minimum": null,
+        "maximum": null
+      },
+      {
+        "key": "note",
+        "label": "灵感描述",
+        "type": "text",
+        "required": true,
+        "choices": [],
+        "minimum": null,
+        "maximum": null
+      }
+    ],
+    "collection": {
+      "search_fields": ["name"],
+      "filters": ["category", "status"],
+      "layout": "sidebar",
+      "items": [
+        {
+          "id": "idea_a",
+          "values": {
+            "name": "晨间阅读角",
+            "category": "阅读",
+            "status": "待整理",
+            "note": "试着把窗边变成安静阅读位"
+          }
+        },
+        {
+          "id": "idea_b",
+          "values": {
+            "name": "周末步行路线",
+            "category": "生活",
+            "status": "已归档",
+            "note": "沿河散步并记录休息点"
+          }
+        },
+        {
+          "id": "idea_c",
+          "values": {
+            "name": "口袋书摘卡",
+            "category": "阅读",
+            "status": "已归档",
+            "note": "按主题收集喜欢的句子"
+          }
+        }
+      ]
+    },
+    "form": {
+      "initial_values": {
+        "name": "",
+        "category": "",
+        "status": "",
+        "note": ""
+      },
+      "initial_state": "draft"
+    },
+    "requirement": {
+      "statement": "个人使用者能够浏览灵感列表，用名称关键词及类别、整理状态交集筛选找到指定灵感，无结果时恢复全部，并打开详情；筛选位置以当前生成版本的PRD为准。",
+      "priority": "must",
+      "checks": [
+        {
+          "condition": "打开本版真实原型，保持默认检索与筛选，对照本版PRD核对筛选位置。",
+          "expected": "显示3 / 3条：晨间阅读角、周末步行路线、口袋书摘卡；筛选位置与本版PRD一致，首版为sidebar侧栏，修订版为toolbar顶部工具栏。",
+          "evidence_level": "browser"
+        },
+        {
+          "condition": "在名称搜索框输入“晨间”；清空搜索后，将类别设为“阅读”，整理状态设为“已归档”。",
+          "expected": "搜索“晨间”时仅显示晨间阅读角，计数1 / 3；清空搜索并同时选择两个筛选后仅显示口袋书摘卡，计数1 / 3。",
+          "evidence_level": "browser"
+        },
+        {
+          "condition": "点“重置筛选”，搜索“月面花园”；出现空结果后点“恢复全部”，再打开周末步行路线详情。",
+          "expected": "无匹配时显示0 / 3和空结果；恢复后显示全部三条，详情显示类别生活、整理状态已归档、描述“沿河散步并记录休息点”。",
+          "evidence_level": "browser"
+        }
+      ]
+    },
+    "rule": {
+      "statement": "名称搜索做字面子串匹配；类别和整理状态为精确单选筛选，搜索与所有筛选按交集同时生效。筛选位置来自当前版本配置，不改变查找规则。",
+      "default": "默认搜索为空、两个筛选均不限定，显示全部三条合成灵感；首版使用侧栏筛选。",
+      "exception": "没有匹配项时显示空结果，使用恢复全部或重置筛选清除搜索与筛选并恢复全部三条。",
+      "boundary": "本轮不新增或编辑记录，只查看给定合成数据；原型即使支持会话内维护，也不连接持久化业务数据库。练习决定由试用者自行声明，所有检查必须亲自执行。"
+    },
+    "legacy_notes": []
+  }
+}
