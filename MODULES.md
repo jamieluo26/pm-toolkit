@@ -1,4 +1,12 @@
-# 当前能力地图
+# 主要交付：六项PM Skills与案例
+
+[按问题选Skill](START-HERE.md) · [直接使用](docs/skill-quickstart.md) · [完整案例](examples/skills/README.md)
+
+讨论决定、给定影响范围、需求与验收追踪、反馈意图保留、给定验收证据、产品手册是六项独立文字能力。下面的模块图保留为可选工程工具说明；其工作台启动不是文字Skill的前置条件。
+
+---
+
+## 当前能力地图
 
 本地工作台已于2026-10-28按 `d54e6586` 基线公开并远端验收；它提供可视化创建、修订与交接，推荐从[启动说明](docs/local-workbench.md)进入。下表描述沿用的 **v1.0 核心能力**，运行版证据见[工作台验证](docs/verification-local-workbench.md)。四项新增 Skill 完整治理、六项实际显式调用与代理全链操作已验证；真人反馈和业务效果未采集。实测条件见[验证记录](docs/verification-v1.md)，历史见 [CHANGELOG](CHANGELOG.md)，后续范围见 [ROADMAP](ROADMAP.md)。
 
