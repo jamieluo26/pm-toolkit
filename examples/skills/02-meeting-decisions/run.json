@@ -1,0 +1,32 @@
+{
+  "skill": "meeting-decision-evidence",
+  "skill_tree_sha256": "9702557a6fe7e347c868c49a4930aad823918faf91dc957d5ccfbc306fc022ab",
+  "skill_files": {
+    "SKILL.md": "00199090b27f85429933fa71d1bbc6d62fbab765c449b7d3327a99b8b44a0fee",
+    "evals/cases/context-evolution.yaml": "3ace2c25f52c55f83cfb5bdbfc6ce87d4f383d48959b3a1b44dd050f1773abdf",
+    "evals/cases/partial-record.yaml": "c7da2bfa92440bae7c588a631ca9aa076ebcc4236c1f6a043e9001c7c85563d1",
+    "evals/cases/proposal-only.yaml": "b1d5548ad10e1d7462b60bcceb4f15bdbf3bc4f74001fa3f6c594eb49a60d1c0",
+    "evals/cases/unresolved-conflict.yaml": "bb21db778584e5aea5b4c9114ebc8b1d75551d4efa9c4e587835efcb3f842751",
+    "evals/eval.yaml": "fc6b15ea486ba909e15da2212a6bdf128f5f822bb25581076560b4399e796d4a",
+    "evals/fixtures/context-evolution.md": "92ae4860292f250c8b8d7c63ef803349ca9d2d032dc09822927a13d6a193f973",
+    "evals/fixtures/partial-record.md": "6d750aabc6f02a61bdc5b4832b5d17666c9621711f5d4013e7c61cc66d4dae07",
+    "evals/fixtures/proposal-only.md": "ffd8b80b40cafcd64958910a08b89879786446a9c2c45e99c7a4925c369753f8",
+    "evals/fixtures/unresolved-conflict.md": "28e6fa7bb8683f989dc57ea811842625e4fc8fffd21e8b57772a49384ad427c1",
+    "evaluation/trigger-cases.md": "c78c15091766472596103d46561c494a29fa20f09e18b84598d15c79a4608ed5",
+    "templates/decision-evidence.md": "ce4de0bc2f75647f8aa8d76fbe6121d7a64fe57ee0eba208324ddddc4fee2791"
+  },
+  "prompt_sha256": "ffea43f091892efc3c3e594747791ab588746c3edfce92f07103b8d0da033152",
+  "input_sha256": "3193fa601151d87f1950c28edc76e126d772d922a5f51a0bb1f9377e12ddf03e",
+  "output_sha256": "c2a30a5500df003fd9466c14a16f467ac2ff8da36424e6ac5e68dde2351a8055",
+  "cli_version": "codex-cli 0.166.0-alpha.5.1",
+  "finished_utc": "2026-11-02T03:28:33.820196+00:00",
+  "model_requested": "gpt-6.1-sol",
+  "reasoning_effort_requested": "medium",
+  "method": "Explicit complete SKILL.md plus line-labelled input, supplied as text",
+  "tree_digest_format": "SHA256 of JSON sorted skill_files, separators comma/colon",
+  "output": "Unedited last agent_message text",
+  "completed_tool_items": 0,
+  "evidence_limit": "One synthetic invocation, not native installation, general quality or human approval",
+  "input_authorship": "New synthetic material authored with Codex, not real meetings, people or company records",
+  "editorial_explanation": "Separate text prepared with Codex; not the unedited final and not human acceptance"
+}
