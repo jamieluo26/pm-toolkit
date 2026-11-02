@@ -1,0 +1,32 @@
+{
+  "skill": "product-asset-handbook",
+  "skill_tree_sha256": "cfe18fd81181fa87f7baff8d2cce1bce5fdecd738bee19af2f683c56f188803d",
+  "skill_files": {
+    "SKILL.md": "e1f0a768c0b5fca3bb31de301e2c5f9ccd458f5537330dbc8ec2bf606eab93b5",
+    "evals/cases/bounded-update.yaml": "36a1a75373bda22501162e4f08502e7dcaf55d5a93cada769cb7701eb8e56ccb",
+    "evals/cases/complete-handbook.yaml": "e4493457dbf2b4f08eedea316f98c338cee2f69f5107854f9748b56d5f58a8a2",
+    "evals/cases/conflicting-evidence.yaml": "2e2080b92c22c1b5fe99690539831a5441bb1c319a11b5169022d92c4f6c03ed",
+    "evals/cases/unread-input.yaml": "799b1e364c2a8400af48a1dc21305d56940cf1527b4899d956471094098ef088",
+    "evals/eval.yaml": "edb3f28f4ce8878b576ad7d498fc7a487b805e6e5e35a898c48642a6f16a625e",
+    "evals/fixtures/bounded-update.md": "314eca3c373fc5de8224e081b930b4cfc34679b8b2eb6fcadf394b3916384285",
+    "evals/fixtures/complete-handbook.md": "27471848c7c46c9a129494257d686e1e94a8718a7a0a884805fb7bd3d3f25737",
+    "evals/fixtures/conflicting-evidence.md": "c1f106b17d7693007b57fa3eb2f4ea3aee093320795acd4a7132070e54b5d5bb",
+    "evals/fixtures/unread-input.md": "e5b4bcd2dd8dd633c1042e0073fcbd662072737f6822d4ab51cf08aafcba43a1",
+    "evaluation/trigger-cases.md": "cd5494fc29f890334f707d71ad86780776c58b53e882511c8afdc2b2441cbc64",
+    "templates/asset-handbook.md": "b8f83acd9db2792a4667dd366e5ca627e3bbd7e7b7cd4deeabab8bd02b7514be"
+  },
+  "prompt_sha256": "c0084d055ed4ea7fe80e071deaff741ad8e3084c0f06a126efa287efbefcce83",
+  "input_sha256": "b4a1c0c61a90e84c268a13cebe88e8dfd11adabb4d931f441f2c29821f693d13",
+  "output_sha256": "6d330726605c481ab79ccff7651256ed2358ca5890bb1edcc9da1df836191c72",
+  "cli_version": "codex-cli 0.166.0-alpha.5.1",
+  "finished_utc": "2026-11-02T03:29:57.842332+00:00",
+  "model_requested": "gpt-6.1-sol",
+  "reasoning_effort_requested": "medium",
+  "method": "Explicit complete SKILL.md plus line-labelled input, supplied as text",
+  "tree_digest_format": "SHA256 of JSON sorted skill_files, separators comma/colon",
+  "output": "Unedited last agent_message text",
+  "completed_tool_items": 0,
+  "evidence_limit": "One synthetic invocation, not native installation, general quality or human approval",
+  "input_authorship": "New synthetic material authored with Codex, not real meetings, people or company records",
+  "editorial_explanation": "Separate text prepared with Codex; not the unedited final and not human acceptance"
+}
