@@ -1,4 +1,12 @@
-# 文档中心
+# 文档中心：先用Skills，再按需使用工具
+
+[按问题选Skill](../START-HERE.md) · [直接使用步骤](skill-quickstart.md) · [六个完整案例](../examples/skills/README.md) · [本轮验证](verification-skills-examples.md)
+
+文字Skill不需要Python或工作台。下面保留的文档目录描述原有可选生成工具和历史验证，按需进入。
+
+---
+
+## 文档中心
 
 本地工作台已于2026-10-28公开并远端验收。已验收运行功能基线为 [`d54e6586f4a173dea73155f8564aafbcfb5d9d25`](https://github.com/jamieluo26/pm-toolkit/commit/d54e6586f4a173dea73155f8564aafbcfb5d9d25)：356 文件、147 项回归通过。走读与试用材料的内容、操作证据见[独立验收记录](verification-promotion.md)；运行、判断和发布的证据分别记录。
 
