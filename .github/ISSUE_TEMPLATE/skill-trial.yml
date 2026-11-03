@@ -1,0 +1,85 @@
+{
+  "name": "PM Skill 试用反馈",
+  "description": "三个问题：案例、完成到哪一步、最想改的一点。提交后公开可见。",
+  "title": "[试用反馈] ",
+  "body": [
+    {
+      "type": "markdown",
+      "attributes": {
+        "value": "感谢实际试用。**这是公开Issue：正文、你的GitHub账号及附件将公开可见。**只填步骤和概述；不用提供姓名、公司、联系方式或原始项目材料。没有实际试用时请注明。"
+      }
+    },
+    {
+      "type": "dropdown",
+      "id": "case",
+      "attributes": {
+        "label": "1. 我试的案例",
+        "options": [
+          "反馈意图保留",
+          "会议决定证据",
+          "影响范围覆盖",
+          "需求验收追踪",
+          "验收证据审阅",
+          "产品资产手册"
+        ]
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "dropdown",
+      "id": "progress",
+      "attributes": {
+        "label": "2. 我完成到哪一步",
+        "options": [
+          "没找到开始入口",
+          "已取得完整调用",
+          "已得到AI回答",
+          "已核对结果"
+        ]
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "improvement",
+      "attributes": {
+        "label": "3. 我最希望改的一点",
+        "description": "卡住的位置、看不懂的词，或最有用的一个发现。只写可公开的概述。",
+        "placeholder": "例如：找到了完整调用，但不清楚应复制哪一段。"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "input",
+      "id": "host",
+      "attributes": {
+        "label": "可选：AI助手与模型",
+        "description": "只填产品名/型号，不要账号、密钥或会话链接。"
+      },
+      "validations": {
+        "required": false
+      }
+    },
+    {
+      "type": "dropdown",
+      "id": "reuse",
+      "attributes": {
+        "label": "可选：愿意换成自己的获准材料再用吗",
+        "options": [
+          "愿意",
+          "需要改进后再试",
+          "暂时不需要"
+        ]
+      },
+      "validations": {
+        "required": false
+      }
+    }
+  ]
+}
