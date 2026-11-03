@@ -4,7 +4,7 @@
 
 六个可独立使用的PM Skills，每个都配完整合成输入、可复制调用、实际AI输出和编辑解读。选一个问题，把Skill和材料交给自己的AI助手，就能开始；文字使用路径无需Python或本地工作台。
 
-[从一个案例开始](examples/skills/01-feedback-intent/README.md) · [怎样直接使用](docs/skill-quickstart.md) · [六个案例](examples/skills/README.md) · [English](README.en.md)
+[从一个案例开始](examples/skills/01-feedback-intent/README.md) · [怎样直接使用](docs/skill-quickstart.md) · [短演示与案例文章](outreach/README.md) · [English](README.en.md)
 
 ![从材料到判断的Skills使用路径](assets/skills-overview.svg)
 
@@ -46,6 +46,10 @@
 `input.md`合成材料 → `prompt.md`完整调用 → `result.md`未编辑的实际AI最终正文 → `README.md`编辑解读与下一步。`run.json`绑定准确输入、Skill树和输出摘要。
 
 六项文字Skill完整沿用已有公开树。本轮新案例和教程放在树外；[验证与限制](docs/verification-skills-examples.md)区分调用成功、内容核对与真实使用。没有采集节省时间、真人满意度或业务收益数据。
+
+## 试用后，留三条反馈
+
+选了哪个案例、完成到哪一步、最希望改哪一点。[填写试用反馈](outreach/trial-feedback.md)，不要求提供姓名、公司或原始项目材料。GitHub Issue是公开反馈路径，也可先保存为本地文本。
 
 ## 配套工具与更多材料
 

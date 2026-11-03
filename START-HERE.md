@@ -11,4 +11,4 @@
 
 每个案例都有完整可复制调用，不用手动拼多个文件。先读编辑解读，再对照实际输出；换成自己的材料后仍需核对引用与处理取舍。
 
-[直接使用步骤](docs/skill-quickstart.md) · [完整Skill目录](skills/) · [可选生成与工作台工具](docs/optional-tools.md) · [首页](README.md)
+[短演示与案例文章](outreach/README.md) · [试用反馈](outreach/trial-feedback.md) · [直接使用步骤](docs/skill-quickstart.md) · [完整Skill目录](skills/) · [可选生成与工作台工具](docs/optional-tools.md) · [首页](README.md)

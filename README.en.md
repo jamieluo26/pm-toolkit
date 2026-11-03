@@ -29,6 +29,10 @@ The examples and recorded outputs are in Chinese. You may request another output
 
 Each case includes `input.md`, a self-contained `prompt.md`, an unedited actual `result.md`, a editorial explanation prepared with Codex, and a `run.json` binding the exact input, Skill tree and output hashes. This is one synthetic invocation per Skill, not a claim of universal quality, host compatibility, human approval or production acceptance. See [verification](docs/verification-skills-examples.md).
 
+## Demo, stories and feedback
+
+[Short demo and three case stories (Chinese)](outreach/README.md) explain specific findings from the synthetic cases. [Trial feedback](outreach/trial-feedback.md) asks only three core questions; submitting a GitHub Issue is public. The demo shows existing outputs, not a new live model run or human trial.
+
 ## Optional tools
 
 Prototype, PRD, Word and local workbench tools remain [optional](docs/optional-tools.md). The [previous demo](toolkit-demo.html) and [lifecycle example](examples/lifecycle/README.md) are preserved. The primary delivery is Skills and examples.
