@@ -2,19 +2,21 @@
 
 [按问题选Skill](../START-HERE.md) · [直接使用步骤](skill-quickstart.md) · [六个完整案例](../examples/skills/README.md) · [本轮验证](verification-skills-examples.md)
 
+[短演示与三篇案例文章](../outreach/README.md) · [试用反馈](../outreach/trial-feedback.md)
+
 文字Skill不需要Python或工作台。下面保留的文档目录描述原有可选生成工具和历史验证，按需进入。
 
 ---
 
-## 文档中心
+## 可选工具与历史验证
 
 本地工作台已于2026-10-28公开并远端验收。已验收运行功能基线为 [`d54e6586f4a173dea73155f8564aafbcfb5d9d25`](https://github.com/jamieluo26/pm-toolkit/commit/d54e6586f4a173dea73155f8564aafbcfb5d9d25)：356 文件、147 项回归通过。走读与试用材料的内容、操作证据见[独立验收记录](verification-promotion.md)；运行、判断和发布的证据分别记录。
 
-## 第一次使用
+## 可选工作台：首次使用
 
-1. 推荐按[本地工作台启动说明](local-workbench.md)安装固定依赖、启动一次，再从 Chrome 创建、修订与交接。macOS 已实测；Linux 首用未验，Windows 不支持此服务器。
+1. 需要本地生成原型、PRD或Word时，再按[本地工作台启动说明](local-workbench.md)安装固定依赖、启动一次，再从 Chrome 创建、修订与交接。macOS 已实测；Linux 首用未验，Windows 不支持此服务器。
 2. [走读演示](../walkthrough.html)及[文字版](walkthrough.md)说明用途和操作过程；[开始体验](../start.html)进入启动指引，[试用包](../trial/README.md)引导记录一次合成任务的实际体验。
-3. 想先读预制材料，可打开完整副本的 `index.html` 或[进阶与历史案例](../START-HERE.md#进阶与历史路径)。GitHub 的 HTML 链接显示源码。
+3. 想先读预制材料，可打开完整副本的 `index.html` 或[可选工具与历史案例](optional-tools.md)。GitHub 的 HTML 链接显示源码。
 4. CLI 使用者看[生命周期说明](lifecycle.md)，依赖不齐看[环境诊断](support-tools.md)，失败/升级看[维护说明](maintenance.md)和[FAQ](faq.md)。
 
 ## 本地运行工作台
@@ -78,4 +80,4 @@ python3 pm_form.py check --source examples/request-flow/spec.json --output ../my
 
 历史命令保留，完整任务走新适配器。生成、内容一致性、浏览器、视觉与人工验收各自支持不同结论；[证据质量说明](../playbooks/evidence-quality.md)解释这些层次。当前工作台证据见[工作台验证记录](verification-local-workbench.md)；v1.0 技术链、Skill 显式调用和代理使用评测见[历史验证记录](verification-v1.md)，后续独立范围见[路线图](../ROADMAP.md)。
 
-[当前验证与适用边界](verification-local-workbench.md)
+[可选工作台的验证与适用边界](verification-local-workbench.md)
